@@ -1,0 +1,11 @@
+/*
+   Vamos definir o preço de uma bicicleta para ser exibido como texto verde em negrito. 
+   Adicione a seguinte entrada .price ao arquivo detail.css.
+*/
+body{
+  margin: 0;
+}
+.price {
+  color: green;
+  font-weight: bold;
+}

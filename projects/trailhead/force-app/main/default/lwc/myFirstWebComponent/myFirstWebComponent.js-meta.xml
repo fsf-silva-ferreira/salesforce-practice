@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Este é o arquivo de definição de metadados. 
+    Ele contém vários elementos de configuração que controlam, por exemplo, onde você pode adicioná-lo 
+    à interface de usuário do Salesforce usando o Criador de aplicativo Lightning (tag <target>).
+-->
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+   <apiVersion>50.0</apiVersion>
+   <isExposed>true</isExposed>
+   <targets>
+       <target>lightning__AppPage</target>
+       <target>lightning__RecordPage</target>
+       <target>lightning__HomePage</target>
+   </targets>
+</LightningComponentBundle>
