@@ -1,0 +1,47 @@
+{
+    "serverMaxRevisionCounter": 119,
+    "sourceMembers": {
+        "LightningComponentBundle__myFirstWebComponent": {
+            "serverRevisionCounter": 116,
+            "lastRetrievedFromServer": 116,
+            "memberType": "LightningComponentBundle",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__myFirstWebComponent/myFirstWebComponent.html": {
+            "serverRevisionCounter": 117,
+            "lastRetrievedFromServer": 117,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__myFirstWebComponent/myFirstWebComponent.js-meta.xml": {
+            "serverRevisionCounter": 118,
+            "lastRetrievedFromServer": 118,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__myFirstWebComponent/myFirstWebComponent.js": {
+            "serverRevisionCounter": 119,
+            "lastRetrievedFromServer": 119,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "FlexiPage__Conta_P_gina_de_registro": {
+            "serverRevisionCounter": 57,
+            "lastRetrievedFromServer": null,
+            "memberType": "FlexiPage",
+            "isNameObsolete": false
+        },
+        "FlexiPage__Conta_P_gina_de_registro1": {
+            "serverRevisionCounter": 109,
+            "lastRetrievedFromServer": null,
+            "memberType": "FlexiPage",
+            "isNameObsolete": false
+        },
+        "CustomObject__Account": {
+            "serverRevisionCounter": 111,
+            "lastRetrievedFromServer": null,
+            "memberType": "CustomObject",
+            "isNameObsolete": false
+        }
+    }
+}
