@@ -1,0 +1,33 @@
+<!--
+  The <template> tag is part of the custom element specification and includes the HTML markup for a 
+  web component.
+-->
+<template>
+<!--
+  Remove the header tag with its content.
+  <header>
+    <img src="resources/lwc.png" alt="App logo">
+    <h2>Lightning Conference</h2>
+  </header>
+-->
+<!--
+  Replace the opening <main class="content"> tag with this code.
+  <main class="content">
+-->
+  <lightning-card>
+    <div class="slds-var-p-horizontal_small">
+      <template if:true={isStateList}>
+          <c-session-list onnavigate={handleNavigate}>
+          </c-session-list>
+      </template>
+      <template if:true={isStateDetails}>
+          <c-session-details onnavigate={handleNavigate} session-id={sessionId}>
+          </c-session-details>
+      </template>
+      <!--
+        Replace the closing </main> tag with:
+        </main>
+      -->
+    </div>
+  </lightning-card>
+</template>
