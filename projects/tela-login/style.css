@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+ 
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+ 
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(45deg, #213f7f, #2c4f9ae0);
+}
+ 
+h1 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+ 
+h1::before{
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 95%;
+    bottom: 3px;
+    left: 7px;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #213f7f, #2c4f9ae0);
+}
+ 
+.container {
+    background: white;
+    min-width: 320px;
+    min-height: 40vh;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+} 
+ 
+.form{
+    display: flex;
+    flex-direction: column;
+}
+ 
+.inputField{
+    position: relative;
+}
+ 
+.form .inputField:first-child{
+    margin-bottom: 1.5rem;
+}
+ 
+.inputField input {
+    outline: none;
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.7);
+    width: 100%;
+}
+ 
+.inputField .underline::after{
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(45deg, #213f7f, #2c4f9ae0);
+    transform: scale(x);
+    transition: all 3s ease-in-out;
+    transform-origin: left;
+}
+ 
+button {
+    margin-top: 2rem;
+    padding: 0.4rem;
+    width: 100%;
+    background: linear-gradient(45deg, #213f7f, #2c4f9ae0);
+    cursor: pointer;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 300;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+ 
+button:hover {
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #2c4f9ae0, #213f7f);
+}
+
+.footer .social-field a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.footer span {
+    color:#39b54a;/* rgba(0, 0, 0, 0.7);*/
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.footer .social-field {
+    padding: 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.footer .social-field a i {
+    margin: 0 0.5rem;
+    width: 15px;
+}
+
+.footer .social-field a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer .social-field.linkedin {
+    background: linear-gradient(to right, #56a7f2, #468aca);
+}
+
+.footer .social-field.google {
+    background: linear-gradient(to right, #bdbdbd, #e4e2e2);
+}
+
+.footer .social-field .colorGoogle {
+    color: black;
+}

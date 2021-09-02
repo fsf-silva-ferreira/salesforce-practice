@@ -1,0 +1,62 @@
+<!-- Falar para o nevegador o tipo do nosso arqiuvo -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<!-- Cabeçalho, declarações-->
+<head>
+    <!--"meta" são itens padrão de configuração -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Titulo da guia -->
+    <title>GFTForcers</title>
+
+    <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
+
+    <!-- Imports -->
+    <script src="index.js"></script>
+    <!-- "href" equivale ao "src" do script -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Formulário GFT</h1>
+        </div>
+        <div class="form">
+            <div class="inputField">
+                <input type="text" name="username" id="username" placeholder="Insira o seu nome de usuário">
+                <div class="underline"></div>
+            </div>
+
+            <div class="inputField">
+                <input type="password" name="password" id="password" placeholder="Insira sua senha">
+                <div class="underline"></div>
+            </div>
+            <button onclick="getData();">Entrar</button>
+        </div>
+
+        <div class="footer">
+            <span>Conetar com rede social</span>
+            <div class="social-fields">
+            <div class="social-field linkedin">
+            <a href="#">
+            <i class="fab fa-linkedin"></i>
+            Logar com Linkedin
+            </a>
+            </div>
+            <div class="social-field google">
+            <a href="#" class="colorGoogle">
+            <i class="fab fa-google"></i>
+            Logar com Google
+            </a>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
