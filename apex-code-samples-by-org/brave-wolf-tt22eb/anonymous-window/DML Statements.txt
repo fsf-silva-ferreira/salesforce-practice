@@ -1,0 +1,80 @@
+//DML STATEMENTS
+//RUN IN DEBUG -> OPEN EXECUTE IN ANONYMOUS WINDOW
+
+/*DML for Insert in Standard Objects*/
+Account newAccount = new Account(name = 'Acme');
+insert newAccount;
+
+/*DML for Insert in Custom Objects*/
+Customer__c objCust = new Customer__c(name = 'Test ABC');
+//objCust.name = 'Test ABC';
+insert objCust;
+
+Account newAccount = [SELECT Id FROM Account WHERE id='0016g00001svKjTAAU'];
+newAccount.Address__c = 'Rua Vergueiro, 9024';
+
+update newAccount;
+
+
+List<Account> someAccounts = [SELECT 
+                         	Id, 
+                         	name, 
+                         	active__c
+                         FROM 
+                         	Account 
+                         WHERE 
+                         	name = 'Acme'or 
+                         	name = 'Dickenson PLC (Edited by Visualforce)'
+                        ];
+
+List<Account> activeAccounts = new List<Account>();
+for(Account anAccount /*anAccount = temp variable*/ : someAccounts) {
+	anAccount.active__c = 'Yes';   
+    activeAccounts.add(anAccount);
+}
+
+//NUNCA EXECUTE DML DENTRO DE UM LOOP
+UPDATE activeAccounts;
+
+
+List<Account> newAcct = [SELECT 
+                         	Id, 
+                         	name, 
+                         	active__c
+                         FROM 
+                         	Account 
+                         WHERE 
+                         	name = 'Acme'
+						 ALL ROWS
+                        ];
+
+//NUNCA EXECUTE DML DENTRO DE UM LOOP
+UNDELETE newAcct;
+
+
+Account newAcct = [SELECT 
+                   Id, 
+                   name, 
+                   active__c
+                   FROM 
+                   Account 
+                   WHERE 
+                   name = 'Acme'
+                  ];
+newAcct.active__c = 'No';
+
+List<Account> listAcc = new List<Account>();
+listAcc.add(newAcct);
+
+Account account2 = new Account(name = 'Acme2', active__c = 'Yes');
+listAcc.add(account2);
+
+UPSERT listAcc;
+
+
+//MERGE
+Account newAcct1 = [SELECT Id, name, active__c FROM Account WHERE name = 'Acme'];
+
+Account newAcct2 = [SELECT Id, name, active__c FROM Account WHERE name = 'Acme2'];
+
+MERGE newAcct1 newAcct2;
