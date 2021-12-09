@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-08-2021
+ * @last modified on  : 12-09-2021
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 @IsTest
@@ -12,12 +12,15 @@ private class AccountServiceTest {
     String acctName = 'Salesforce';
     String acctNumber = 'SFDC';
     String tickerSymbol = 'CRM';
+
     Test.startTest();
       AccountService service = new AccountService();
       Account newAcct = service.createAccount( acctName, acctNumber, tickerSymbol );
       insert newAcct;
     Test.stopTest();
+    
     List<Account> accts = [ SELECT Id, Name, AccountNumber, TickerSymbol FROM Account WHERE Id = :newAcct.Id ];
+
     System.assertEquals( 1, accts.size(), 'should have found new account' );
     System.assertEquals( acctName, accts[0].Name, 'incorrect name' );
     System.assertEquals( acctNumber, accts[0].AccountNumber, 'incorrect account number' );
