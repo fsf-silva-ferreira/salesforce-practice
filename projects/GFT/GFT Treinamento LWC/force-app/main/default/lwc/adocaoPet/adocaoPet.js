@@ -11,6 +11,7 @@
     * - Modification    : 
 **/
 import { LightningElement } from 'lwc';
+import getAnimal from '@salesforce/apex/AdocaoPetController.getAnimal';
 
 export default class AdocaoPet extends LightningElement {
 
@@ -27,6 +28,8 @@ export default class AdocaoPet extends LightningElement {
                         } );
 
         console.log(this.lstPets);
+
+        this.template.querySelector('c-detalhes-pet').updateDataTable(JSON.stringify(this.lstPets));
     }
 
     handleClear(){
@@ -53,5 +56,4 @@ export default class AdocaoPet extends LightningElement {
             {label : 'Grande', value : 'Grande'}
         ]
     }
-
 }

@@ -1,0 +1,33 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 12-09-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_2-of-3 slds-p-right_small">
+            <lightning-datatable
+                    key-field="codigoPET"
+                    data={data}
+                    columns={columns}
+                    onrowaction={onRowAction}
+                    hide-checkbox-column="true"
+                    >
+                    
+            </lightning-datatable>
+        </div>
+        
+        <div class="slds-col slds-size_1-of-3 slds-theme_default ">
+            
+            <div class="slds-align_absolute-center slds-text-heading_small">
+                Foto : {apresentacaoPET}
+            </div>
+            <div class="slds-box">
+                <img src={petURL} >
+            </div>
+        </div>
+    </div>
+    
+</template>
