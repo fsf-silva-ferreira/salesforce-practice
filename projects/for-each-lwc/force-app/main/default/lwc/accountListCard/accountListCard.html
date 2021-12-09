@@ -1,0 +1,21 @@
+<!--
+  @description       : 
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 12-09-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Account List using for:each" icon-name="custom:custom63">
+        <div class="slds-m-around_medium">
+            <template if:true={accounts.data}>
+                <template for:each={accounts.data} for:item="acc">
+                    <p key={acc.Id}>{acc.Name}</p>
+                </template>
+            </template>
+            <template if:true={accounts.error}>
+                {accounts.error}
+            </template>
+        </div>
+    </lightning-card>
+</template>
