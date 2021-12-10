@@ -70,8 +70,10 @@ export default class AdocaoPet extends LightningElement {
         console.log('handleClear');
 
         this.template.querySelector("[data-id='nomePET']").value = '';
+        /*
         this.template.querySelector("[data-id='codigoPET']").value = '';
-        this.template.querySelector("[data-id='email']").value = '';
+        */
+        this.template.querySelector("[data-id='emailSolicitante']").value = '';
         this.template.querySelector("[data-id='preferenciaTipoPET']").value = null;
         this.template.querySelector("[data-id='portePET']").value = null;
     }

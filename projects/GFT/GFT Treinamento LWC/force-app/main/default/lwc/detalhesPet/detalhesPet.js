@@ -17,7 +17,10 @@ export default class DetalhesPet extends LightningElement {
 
     //It cannot be const, to assign values
     columns = [
+        /*
+        Code is autonumber
         { label: 'Código', fieldName: 'codigoPET', type: 'number'},
+        */
         { label: 'Nome Pet', fieldName: 'nomePET', type: 'text' },
         { label: 'Tipo', fieldName: 'preferenciaTipoPET', type: 'text' },
         {
