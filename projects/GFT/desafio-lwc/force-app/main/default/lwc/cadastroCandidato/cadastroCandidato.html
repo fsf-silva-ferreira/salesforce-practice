@@ -6,7 +6,22 @@
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
-    <lightning-card title="Cadastro do Candidato">
+    <lightning-card title="Formulário">
+      <div class="slds-p-left_small slds-p-right_small">
 
+        <lightning-input type="text" required label="Nome" data-id="nomeCandidato" ></lightning-input>
+        <lightning-combobox label="Sexo" data-id="sexoCandidato" required placeholder="Selecione o porte" options={sexo} ></lightning-combobox>     
+        <lightning-input type="text" required label="Cargo" data-id="cargoCandidato" ></lightning-input>
+
+        <div class="slds-align_absolute-center slds-m-top_large">
+
+            <lightning-button variant="success" label="Confirmar candidato" onclick={handleSave}></lightning-button>
+
+        </div>
+    </div>
     </lightning-card>
+
+    <div class="slds-m-top_small">
+      <c-dados-candidato></c-dados-candidato>
+  </div>
 </template>
