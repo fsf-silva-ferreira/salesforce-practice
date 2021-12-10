@@ -1,5 +1,5 @@
 /**
- * @description       : 
+ * @description       : Callout to receive data from Cat and Dog APIs.
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
  * @last modified on  : 12-10-2021
