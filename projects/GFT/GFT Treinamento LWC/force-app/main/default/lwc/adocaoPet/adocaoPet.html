@@ -2,16 +2,19 @@
   @description       : 
   @author            : Flávio Ferreira
   @group             : 
-  @last modified on  : 12-09-2021
+  @last modified on  : 12-10-2021
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
     <lightning-card title="Adote um PET" icon-name="utility:animal_and_nature" >
         <div class="slds-p-left_small slds-p-right_small">
 
-            <lightning-input type="text" required label="Dê um nome ao seu PET" data-id="nomePET" ></lightning-input>            
-            <lightning-input type="number" label="Código" data-id="codigoPET"></lightning-input>
-            <lightning-input type="email" required label="E-mail" data-id="email" ></lightning-input>
+            <lightning-input type="text" required label="Dê um nome ao seu PET" data-id="nomePET" ></lightning-input>     
+            <!-- 
+                Animal object has an autonumber field for code    
+                <lightning-input type="number" label="Código" data-id="codigoPET"></lightning-input>
+            -->
+            <lightning-input type="email" label="E-mail" data-id="emailSolicitante" ></lightning-input>
             <lightning-combobox label="Porte" data-id="portePET" required placeholder="Selecione o porte" options={porte} ></lightning-combobox>
             <lightning-combobox label="Preferência" data-id="preferenciaTipoPET" required placeholder="Selecione sua preferência" options={options} ></lightning-combobox>
 

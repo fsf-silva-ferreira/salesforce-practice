@@ -2,20 +2,22 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-09-2021
+ * @last modified on  : 12-10-2021
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class AdocaoPetController {
+
     @AuraEnabled
     public static string getAnimal(string tipoPet){
         String endpointCat = 'https://api.thecatapi.com/v1/images/search?breed_ids=beng&include_breeds=true';
         String endpointRandomDog = 'https://dog.ceo/api/breeds/image/random';
         HttpRequest req = new HttpRequest();
         HttpResponse resp = new HttpResponse();
+        
         try{
             req.setHeader('Content-Type', 'application/json');  
             req.setMethod('GET');
-            if(tipoPet == 'Cat'){
+            if(tipoPet == 'Gato'){
                 req.setEndpoint(endpointCat);   
             }else{
                 req.setEndpoint(endpointRandomDog);  

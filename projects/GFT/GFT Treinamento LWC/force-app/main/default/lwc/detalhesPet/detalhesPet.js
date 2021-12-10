@@ -1,20 +1,21 @@
 /**
     * @description      : 
-    * @author           : fodf
+    * @author           : Flávio da Silva Ferreira
     * @group            : 
-    * @created          : 09/12/2021 - 09:30:11
+    * @created          : 10/12/2021 - 09:15:18
     * 
     * MODIFICATION LOG
     * - Version         : 1.0.0
-    * - Date            : 09/12/2021
+    * - Date            : 10/12/2021
     * - Author          : fodf
-    * - Modification    : 
+    * - Modification    : Fixes ion onRowAction method.
 **/
 import { LightningElement, api } from 'lwc';
+import getAnimal from '@salesforce/apex/AdocaoPetController.getAnimal';
 
 export default class DetalhesPet extends LightningElement {
 
-    //Não pode ser uma contante, pois vai receber valores
+    //It cannot be const, to assign values
     columns = [
         { label: 'Código', fieldName: 'codigoPET', type: 'number'},
         { label: 'Nome Pet', fieldName: 'nomePET', type: 'text' },
@@ -29,21 +30,31 @@ export default class DetalhesPet extends LightningElement {
         }
     ];
 
-    data = []
+    data = [];
     tipo;
     apresentacaoPET;
-    petURL;
+    petLinkVisualizacao;
 
-    connectedCallback() {
-
-    }
-
-    onRowAction(event) {
+    onRowAction(event){
         let codigoPET = event.detail.row.codigoPET;
         let nomePET = event.detail.row.nomePET;
         let preferenciaTipoPET = event.detail.row.preferenciaTipoPET;
 
-        console.log('event=>' + event.detail.row);
+        console.log('preferenciaTipoPET ' + preferenciaTipoPET);
+
+        getAnimal( { tipoPet : preferenciaTipoPET } )
+            .then( (result) => {
+                console.log('result=>', result)
+                let objResult = JSON.parse(result);
+
+                if(preferenciaTipoPET == 'Gato') {
+                    console.log('URL gato ' + objResult[0].url)
+                    this.petLinkVisualizacao = objResult[0].url;
+                } else {
+                    console.log('URL cachorro ' + objResult.message)
+                    this.petLinkVisualizacao = objResult.message;
+                }            
+            });
     }
 
     lstMeusPets;
