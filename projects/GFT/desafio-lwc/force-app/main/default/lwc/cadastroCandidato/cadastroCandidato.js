@@ -20,4 +20,38 @@ import CARGO_FIELD from '@salesforce/schema/Candidato__c.cargo__c';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-export default class CadastroCandidato extends LightningElement {}
+export default class CadastroCandidato extends LightningElement {
+
+    lstCandidatos = [];
+
+    handleSave(){
+        console.log('handleSave');
+
+        this.lstCandidatos.push( { 
+            nomeCandidato : this.template.querySelector("[data-id='nomeCandidato']").value,
+            sexoCandidato : this.template.querySelector("[data-id='sexoCandidato']").value,
+            cargoCandidato : this.template.querySelector("[data-id='cargoCandidato']").value
+        } );
+
+        console.log(this.lstCandidatos);
+
+        this.template.querySelector('c-dados-candidato').updateDataTable(JSON.stringify(this.lstCandidatos));
+
+        //this.insertRecord();
+    }
+
+    handleClear(){
+        console.log('handleClear');
+
+        this.template.querySelector("[data-id='nomeCandidato']").value = '';
+        this.template.querySelector("[data-id='sexoCandidato']").value = null;
+        this.template.querySelector("[data-id='cargoCandidato']").value = '';                
+    }
+
+    get options() {
+        return [
+            {label : 'Masculino', value : 'Masculino'},
+            {label : 'Feminino', value : 'Feminino'}
+        ]
+    }
+}

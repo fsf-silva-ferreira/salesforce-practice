@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 12-10-2021
+  @last modified on  : 12-13-2021
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -10,12 +10,16 @@
       <div class="slds-p-left_small slds-p-right_small">
 
         <lightning-input type="text" required label="Nome" data-id="nomeCandidato" ></lightning-input>
-        <lightning-combobox label="Sexo" data-id="sexoCandidato" required placeholder="Selecione o porte" options={sexo} ></lightning-combobox>     
+        <lightning-combobox label="Sexo" data-id="sexoCandidato" required placeholder="Selecione o porte" options={options} ></lightning-combobox>     
         <lightning-input type="text" required label="Cargo" data-id="cargoCandidato" ></lightning-input>
 
         <div class="slds-align_absolute-center slds-m-top_large">
 
             <lightning-button variant="success" label="Confirmar candidato" onclick={handleSave}></lightning-button>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+                
+            <lightning-button variant="destructive" label="Limpar campos" onclick={handleClear}></lightning-button>
 
         </div>
     </div>
