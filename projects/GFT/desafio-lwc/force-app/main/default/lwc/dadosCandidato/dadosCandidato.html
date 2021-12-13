@@ -7,7 +7,7 @@
 -->
 <template>
     <div class="slds-grid">
-        <div class="slds-col slds-size_2-of-3 slds-p-right_small">
+        <div class="slds-col slds-size_3-of-3 slds-p-horizontal_none">
             <lightning-datatable
                     key-field="codigoCandidato"
                     data={data}
@@ -16,17 +16,6 @@
                     hide-checkbox-column="true"
                     >       
             </lightning-datatable>
-        </div>
-        
-        <div class="slds-col slds-size_1-of-3 slds-theme_default ">
-            
-            <div class="slds-align_absolute-center slds-text-heading_small">
-                Foto {fotoCandidato}
-            </div>
-            <div class="slds-box">
-                <img src={linkFotoCandidato} >
-            </div>
-
         </div>
     </div>
 </template>
