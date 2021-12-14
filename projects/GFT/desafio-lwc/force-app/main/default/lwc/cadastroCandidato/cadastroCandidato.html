@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 12-13-2021
+  @last modified on  : 12-14-2021
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -16,12 +16,12 @@
         </lightning-combobox>     
         <lightning-input data-id="cpfCandidato" type="text" label="CPF" 
           pattern="(^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$)" maxlength="14" onchange={handleMaskCPF}
-	        required>
+	        >
         </lightning-input>
         <lightning-input data-id="foneCandidato" type="text" class="slds-m-bottom_small" label="Telefone"
           onchange={handleMaskTelefone}
           pattern="(^\([1-9]\d\)\s9?\d{5}-\d{4}$)"
-          required>
+          >
         </lightning-input>
 
         <div class="slds-align_absolute-center slds-m-top_large">

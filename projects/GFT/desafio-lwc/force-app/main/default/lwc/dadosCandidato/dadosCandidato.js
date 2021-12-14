@@ -24,9 +24,10 @@ export default class DadosCandidato extends LightningElement {
     ];
 
     data = [];
+    sexoCandidato;
 
     /*
-    onRowAction(event){
+    onChangeAction(event){
         let nomeCandidato = event.detail.row.nomeCandidadto;
         let sexoCandidato = event.detail.row.sexoCandidato;
         let cargoCandidato = event.detail.row.cargoCandidato;
@@ -51,13 +52,49 @@ export default class DadosCandidato extends LightningElement {
     }*/
 
     lstCandidatosIncluidos;
+    sexoCandidato;
+    dadosApi;
 
     @api
     updateDataTable(jsonCandidatos) {
         this.lstCandidatosIncluidos = jsonCandidatos;
 
         if(jsonCandidatos) {
-            this.data = JSON.parse(jsonCandidatos);
+            this.data = JSON.parse(jsonCandidatos);  
+            
+            console.log('Chamando API ...');
+
+            let newCandidate = this.breakList(this.lstCandidatosIncluidos);
+
+            this.callApi(newCandidate);
+
+            console.log('Nome: ' + this.dadosApi.results[0].name.first);
         }
+    }
+
+    callApi(sexo) {
+        console.log('Inside the callAPI() - new candidate: ' + sexo);
+
+        if(sexo.includes('Masculino')) {
+            console.log('Masculino');
+            this.sexoCandidato = 'Masculino';
+        } else {
+            console.log('Feminino');
+            this.sexoCandidato = 'Feminino';
+        }
+
+        getCandidate( { sexo : this.sexoCandidato } )
+            .then( (result) => {
+                //console.log('result=>', result)
+                this.dadosApi = JSON.parse(result);
+
+                console.log('Retorno da API: ' + this.dadosApi.results[0].name.first);            
+            });        
+    }
+
+    breakList(list) {
+        const arrayVar = list.split("},");
+
+        return arrayVar[arrayVar.length-1];
     }
 }

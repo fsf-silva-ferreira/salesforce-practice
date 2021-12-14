@@ -10,7 +10,7 @@
     * - Author          : fodf
     * - Modification    : 
 **/
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class RandomUser extends LightningElement {
 
@@ -22,6 +22,15 @@ export default class RandomUser extends LightningElement {
     ];
 
     data = [];
-    fotoCandidato = null;
-    linkFotoCandidato = null;
+    fotoCandidato
+    linkFotoCandidato;
+
+    @api
+    updateDataTable(jsonCandidatos) {
+        this.lstCandidatosIncluidos = jsonCandidatos;
+
+        if(jsonCandidatos) {
+            this.data = JSON.parse(jsonCandidatos);  
+        }
+    }
 }
