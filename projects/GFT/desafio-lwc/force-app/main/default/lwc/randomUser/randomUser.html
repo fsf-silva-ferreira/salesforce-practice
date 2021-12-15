@@ -7,25 +7,23 @@
 -->
 <template>
     <div class="slds-grid">
-        <div class="slds-col slds-size_2-of-3 slds-p-right_small">
+        <div class="slds-col slds-size_5-of-6 slds-p-right_small">
             <lightning-datatable
                     key-field="codigoPET"
                     data={data}
                     columns={columns}
-                    hide-checkbox-column="true"
+                    hide-checkbox-column="true"                    
                     >       
             </lightning-datatable>
         </div>
-        <!--class="slds-box"-->
-        <div class="slds-col slds-size_1-of-3 slds-theme_default">
-            <div class="slds-align_absolute-center slds-text-heading_small">
+
+        <div class="slds-col slds-size_1-of-6 slds-theme_default">
+            <div class="slds-align_absolute-center">
                 Foto {fotoCandidato}
             </div>
-            <div>
+            <div class="slds-box">
                 <img src={linkFotoCandidato} >
             </div>
-        </div>
-        
+        </div>        
     </div>  
-    
 </template>

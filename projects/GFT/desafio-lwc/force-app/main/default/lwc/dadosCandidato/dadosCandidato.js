@@ -99,7 +99,7 @@ export default class DadosCandidato extends LightningElement {
                 
                 this.template.querySelector('c-random-user').updateGrid(JSON.stringify(this.lstApiGridFilho));
                 this.template.querySelector('c-random-user').getLinkFotoCandidatofromParent(
-                    this.dadosApi.results[0].picture.thumbnail);
+                    this.dadosApi.results[0].picture.large);
             });     
     }
 
