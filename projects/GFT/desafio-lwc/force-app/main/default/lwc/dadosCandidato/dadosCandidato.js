@@ -52,6 +52,7 @@ export default class DadosCandidato extends LightningElement {
     }*/
 
     lstCandidatosIncluidos;
+    lstApiGridFilho = [];
     sexoCandidato;
     dadosApi;
 
@@ -67,8 +68,6 @@ export default class DadosCandidato extends LightningElement {
             let newCandidate = this.breakList(this.lstCandidatosIncluidos);
 
             this.callApi(newCandidate);
-
-            console.log('Nome: ' + this.dadosApi.results[0].name.first);
         }
     }
 
@@ -88,8 +87,20 @@ export default class DadosCandidato extends LightningElement {
                 //console.log('result=>', result)
                 this.dadosApi = JSON.parse(result);
 
-                console.log('Retorno da API: ' + this.dadosApi.results[0].name.first);            
-            });        
+                console.log('Retorno da API: ' + this.dadosApi.results[0].name.first); 
+                console.log('Link foto: ' + this.dadosApi.results[0].picture.thumbnail);  
+                
+                this.lstApiGridFilho.push( { 
+                    sexo : this.dadosApi.results[0].gender,
+                    nome : this.dadosApi.results[0].name.first + ' ' + this.dadosApi.results[0].name.last,
+                    cidade : this.dadosApi.results[0].location.city, 
+                    estado : this.dadosApi.results[0].location.state           
+                } );
+                
+                this.template.querySelector('c-random-user').updateGrid(JSON.stringify(this.lstApiGridFilho));
+                this.template.querySelector('c-random-user').getLinkFotoCandidatofromParent(
+                    this.dadosApi.results[0].picture.thumbnail);
+            });     
     }
 
     breakList(list) {

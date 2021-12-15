@@ -26,11 +26,20 @@ export default class RandomUser extends LightningElement {
     linkFotoCandidato;
 
     @api
-    updateDataTable(jsonCandidatos) {
+    updateGrid(jsonCandidatos) {
+        console.log('Inside updateGrid')
         this.lstCandidatosIncluidos = jsonCandidatos;
+        console.log('jsonCandidatos: ' + jsonCandidatos);
 
         if(jsonCandidatos) {
             this.data = JSON.parse(jsonCandidatos);  
+
+            console.log('random user data: ' + this.data);
         }
+    }
+
+    @api
+    getLinkFotoCandidatofromParent(linkFotoCandidatoParent) {
+        this.linkFotoCandidato = linkFotoCandidatoParent;
     }
 }
