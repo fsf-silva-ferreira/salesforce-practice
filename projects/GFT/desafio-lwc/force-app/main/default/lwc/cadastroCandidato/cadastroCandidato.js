@@ -57,8 +57,8 @@ export default class CadastroCandidato extends LightningElement {
         let newRecordId;
 
         createRecord(recordInput)
-            .then(animal => {
-                newRecordId = animal.id;
+            .then(candidato => {
+                newRecordId = candidato.id;
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
