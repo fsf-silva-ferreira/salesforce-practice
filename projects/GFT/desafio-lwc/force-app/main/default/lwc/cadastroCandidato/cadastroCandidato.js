@@ -1,17 +1,18 @@
 /**
     * @description      : 
-    * @author           : fodf
+    * @author           : Flávio da Silva Ferreira
     * @group            : 
     * @created          : 10/12/2021 - 17:39:50
     * 
     * MODIFICATION LOG
     * - Version         : 1.0.0
-    * - Date            : 10/12/2021
+    * - Date            : 28/12/2021
     * - Author          : fodf
     * - Modification    : 
 **/
 import { LightningElement } from 'lwc';
 import { createRecord } from 'lightning/uiRecordApi';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import CANDIDATO_OBJECT from '@salesforce/schema/Candidato__c';
 import NAME_FIELD from '@salesforce/schema/Candidato__c.name';
@@ -19,8 +20,6 @@ import SEXO_FIELD from '@salesforce/schema/Candidato__c.sexo__c';
 import CARGO_FIELD from '@salesforce/schema/Candidato__c.cargo__c';
 import CPF_FIELD from '@salesforce/schema/Candidato__c.cpf__c';
 import FONE_FIELD from '@salesforce/schema/Candidato__c.telefone__c';
-
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class CadastroCandidato extends LightningElement {
 
@@ -80,19 +79,14 @@ export default class CadastroCandidato extends LightningElement {
     }
 
     handleMaskCPF(event) {
-        const x = event.target.value
-            .replace(/\D+/g, '')
-            .match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
-        event.target.value =
+        const x = event.target.value.replace(/\D+/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
+        event.target.value = 
             `${x[1]}` + (x[2] ? `.${x[2]}` : ``) + (x[3] ? `.${x[3]}` : ``) + (x[4] ? `-${x[4]}` : ``);
     }
 
     handleMaskTelefone(event) {
-        const x = event.target.value
-            .replace(/\D+/g, '')
-            .match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-        event.target.value =
-            !x[2] ? x[1] : `(${x[1]}) ${x[2]}` + (x[3] ? `-${x[3]}` : ``);
+        const x = event.target.value.replace(/\D+/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        event.target.value = !x[2] ? x[1] : `(${x[1]}) ${x[2]}` + (x[3] ? `-${x[3]}` : ``);
     }
 
     get options() {
