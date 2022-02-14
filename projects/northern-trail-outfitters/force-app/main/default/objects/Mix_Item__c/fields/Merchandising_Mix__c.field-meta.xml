@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Merchandising_Mix__c</fullName>
+    <externalId>false</externalId>
+    <label>Merchandising Mix</label>
+    <referenceTo>Merchandising_Mix__c</referenceTo>
+    <relationshipLabel>Mix Items</relationshipLabel>
+    <relationshipName>Mix_Items</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

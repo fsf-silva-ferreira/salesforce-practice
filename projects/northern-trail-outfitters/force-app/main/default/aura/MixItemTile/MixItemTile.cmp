@@ -1,0 +1,27 @@
+<aura:component>
+    
+    <aura:attribute name="mixItem" type="Object"/>
+    <aura:attribute name="index" type="Integer"/>
+    
+    <aura:registerEvent name="navigateToSObject" type="force:navigateToSObject"/>
+    <aura:registerEvent name="onDelete" type="c:MixItemEvent"/>
+    <aura:registerEvent name="onChange" type="c:MixItemEvent"/>
+	<div>
+		<lightning:layout class="slds-m-around_x-small slds-p-around_x-small">
+			<lightning:layoutitem flexibility="no-grow">
+				<img src="{#v.mixItem.pictureURL}" class="product"/>
+			</lightning:layoutitem>
+			<lightning:layoutitem flexibility="no-grow">
+				<div class="slds-text-title_caps"><a href="" onclick="{!c.titleClickHandler}">{#v.mixItem.name}</a></div>
+				<div>MSRP: <span class="price"><lightning:formattedNumber value="{#v.mixItem.price}" style="currency"/></span></div>
+				<div class="qty">Qty: 
+					<lightning:input type="number" name="qty" label="Qty" value="{#v.mixItem.qty}" step="1"
+						onblur="{!c.qtyChangeHandler}"/>
+					<lightning:buttonIcon iconName="utility:delete" variant="bare" size="medium" class="toggle"
+					onclick="{!c.deleteHandler}"/>
+				</div>
+			</lightning:layoutitem>
+		</lightning:layout>
+	</div>
+    
+</aura:component>

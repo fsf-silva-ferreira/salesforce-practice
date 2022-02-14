@@ -1,0 +1,72 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="tweets" type="Object[]" default="[]" />
+    <aura:attribute name="channel" type="String" default="/event/Einstein_Event__e" />
+
+    <lightning:empApi aura:id="empApi" />
+    <aura:handler name="init" value="{!this}" action="{!c.subscribe}" />
+
+    <lightning:layout multipleRows="true" verticalAlign="stretch">
+
+        <aura:iteration items="{!v.tweets}" var="tweet" indexVar="index">
+            <lightning:layoutitem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="3" class="layout-item">
+                <article class="slds-card">
+                    <div class="slds-p-around_small">
+                        <lightning:layout>
+                            <lightning:layoutItem>
+                                <img src="{!tweet.User_Pic_URL__c}" class="user" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem>
+                                <p>{!tweet.User_Name__c}</p>
+                                <p>@{!tweet.Screen_Name__c}</p>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                        <div class="slds-card__body">
+                            {!tweet.Phrase__c}
+                            <aura:if isTrue="{!tweet.Image_URL__c}">
+                                <img src="{!tweet.Image_URL__c}" />
+                            </aura:if>
+                        </div>
+                    </div>
+                    <footer class="slds-card__footer">
+                        <aura:if isTrue="{!tweet.Vision_Predictions__c}">
+                            <div>
+                                {!tweet.Vision_Predictions__c.probabilities[0].label}
+                                (
+                                <lightning:formattedNumber value="{!tweet.Vision_Predictions__c.probabilities[0].probability * 100}"
+                                    maximumFractionDigits="0" />%)
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!tweet.Sentiment_Predictions__c}">
+                            <div>
+                                <aura:if isTrue="{!tweet.Sentiment_Predictions__c.probabilities[0].label == 'neutral' }">
+                                    <img src="{!$Resource.nto + '/emoji-neutral-color.svg'}" class="emoji" />
+                                </aura:if>
+                                <aura:if isTrue="{!tweet.Sentiment_Predictions__c.probabilities[0].label == 'positive' }">
+                                    <img src="{!$Resource.nto + '/emoji-positive-color.svg'}" class="emoji" />
+                                </aura:if>
+                                <aura:if isTrue="{!tweet.Sentiment_Predictions__c.probabilities[0].label == 'negative' }">
+                                    <img src="{!$Resource.nto + '/emoji-negative-color.svg'}" class="emoji" />
+                                </aura:if>
+                                {!tweet.Sentiment_Predictions__c.probabilities[0].label}
+                                (
+                                <lightning:formattedNumber value="{!tweet.Sentiment_Predictions__c.probabilities[0].probability * 100}"
+                                    maximumFractionDigits="0" />%)
+                            </div>
+                        </aura:if>
+                        <aura:if isTrue="{!tweet.Intent_Predictions__c}">
+                            <div>
+                                {!tweet.Intent_Predictions__c.probabilities[0].label}
+                                (
+                                <lightning:formattedNumber value="{!tweet.Intent_Predictions__c.probabilities[0].probability * 100}"
+                                    maximumFractionDigits="0" />%)
+                            </div>
+                        </aura:if>
+                    </footer>
+                </article>
+            </lightning:layoutitem>
+        </aura:iteration>
+
+    </lightning:layout>
+
+</aura:component>
