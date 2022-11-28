@@ -1,0 +1,4 @@
+MerchandiseExceptionExample.insertMerchandiseWithoutTryCatch();
+MerchandiseExceptionExample.insertMerchandiseSimpleTryCatch();
+MerchandiseExceptionExample.insertMerchandiseAdditionalTryCatch();
+MerchandiseExceptionExample.insertMerchandiseWithStatementAfterBlock();
