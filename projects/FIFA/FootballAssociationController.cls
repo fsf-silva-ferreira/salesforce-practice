@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-16-2022
+ * @last modified on  : 12-18-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationController {
@@ -18,6 +18,7 @@ public with sharing class FootballAssociationController {
             footballAssociations.add(footballAssociation);
         }
 
-        insert footballAssociations;
+        //TO-DO: Notify duplicates
+        Database.insert(footballAssociations, false);
     }
 }
