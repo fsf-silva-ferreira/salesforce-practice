@@ -2,13 +2,15 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-19-2022
+ * @last modified on  : 12-20-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class Notification {
 
     public static boolean notifyErrorsToAdmins(String title, String errorMessages) {
         try {
+            Set<String> adminIds = getAdminsId();
+
             CustomNotificationType customNotificationType = [SELECT Id FROM CustomNotificationType WHERE DeveloperName = 'Admin_Notification'];
             
             Messaging.CustomNotification notification = new Messaging.CustomNotification();
@@ -16,9 +18,7 @@ public with sharing class Notification {
             notification.setTitle(title);
             notification.setSenderId(Userinfo.getUserId());
             notification.setNotificationTypeId(customNotificationType.Id);
-            //notification.setTargetId('006B0000005hCxzIAE'); // target object id
-
-            Set<String> adminIds = getAdminsId();
+            notification.setTargetId(Userinfo.getUserId());
             notification.send(adminIds);
         } catch (Exception e) {
             return false;

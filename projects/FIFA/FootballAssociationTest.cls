@@ -52,11 +52,9 @@ public with sharing class FootballAssociationTest {
         List<Football_Association__c> listFA = new List<Football_Association__c>();
         listFA.add(footballAssociation);
 
+        Database.insert(listFA, false);
         List<Database.SaveResult> listSaveResults = Database.insert(listFA, false);
         String errorMessages = DatabaseErrorManager.handleSaveResults(listSaveResults);
-
-        listSaveResults = Database.insert(listFA, false);
-        errorMessages = DatabaseErrorManager.handleSaveResults(listSaveResults);
 
         System.assertEquals(true, errorMessages.startsWith('The following error has occurred: cannot specify'));
     }
