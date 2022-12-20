@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-18-2022
+ * @last modified on  : 12-19-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationController {
@@ -18,7 +18,12 @@ public with sharing class FootballAssociationController {
             footballAssociations.add(footballAssociation);
         }
 
-        //TO-DO: Notify duplicates
-        Database.insert(footballAssociations, false);
+        Database.SaveResult[] saveResults = Database.insert(footballAssociations, false);
+        String errorMessages = DatabaseErrorManager.handleSaveResults(saveResults);
+
+        if(errorMessages != '') {
+            MailSender.sendErrorMessagesToAdmins(errorMessages);
+            Notification.notifyErrorsToAdmins('Fifa App - Error Notification', errorMessages);
+        }
     }
 }
