@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-19-2022
+ * @last modified on  : 12-21-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 @IsTest
@@ -56,6 +56,6 @@ public with sharing class FootballAssociationTest {
         List<Database.SaveResult> listSaveResults = Database.insert(listFA, false);
         String errorMessages = DatabaseErrorManager.handleSaveResults(listSaveResults);
 
-        System.assertEquals(true, errorMessages.startsWith('The following error has occurred: cannot specify'));
+        System.assertEquals(true, errorMessages.contains('DuplicateError'));
     }
 }
