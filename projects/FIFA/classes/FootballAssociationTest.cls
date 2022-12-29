@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-28-2022
+ * @last modified on  : 12-29-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 @IsTest
@@ -67,7 +67,7 @@ public with sharing class FootballAssociationTest {
 
         Football_Association__c jff = FootballAssociationObjectHandler.getFootballAssociationObject(jfaHtmlPageList);
 
-        //System.assertEquals('Jamaica_Football_Federation', jff.name);
+        System.assertEquals('Jamaica Football Federation', jff.name);
         System.assertEquals(1910, jff.Year_Founded__c);
         //System.assertEquals(1962, jff.Year_FIFA_Affiliation__c);
         //System.assertEquals(1963, jff.Year_Continental_Affiliation__c);

@@ -2,12 +2,13 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-28-2022
+ * @last modified on  : 12-29-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
 
     private List<String> htmlPageLines = new List<String>();
+    private String htmlLineFounded;
 
     public FootballAssociationHtmlReader(List<String> htmlData) {
         htmlPageLines = htmlData;
@@ -20,14 +21,26 @@ public with sharing class FootballAssociationHtmlReader {
     }
 
     public String getFullNameField() {
-        String fullName;
+        String fullName = null;        
+
+        for(String htmlLine : htmlPageLines) {
+            if(htmlLine.contains('<title>')) {
+                htmlLineFounded = htmlLine;
+                break;
+            }    
+        }
+
+        if(htmlLineFounded != null) {
+            fullName = htmlLineFounded.replace('<title>', '').replace(' - Wikipedia</title>', '').trim();
+        }
+
+        system.debug('Valor do fullName: ' + fullName);
 
         return fullName;
     }
 
     public Integer getYearFoundedField() {
         Integer yearFounded = null;
-        String htmlLineFounded = null;
 
         for(String htmlLine : htmlPageLines) {
             if(htmlLine.contains('Founded')) {
