@@ -23,18 +23,11 @@ public with sharing class FootballAssociationHtmlReader {
     public String getFullNameField() {
         String fullName = null;        
 
-        for(String htmlLine : htmlPageLines) {
-            if(htmlLine.contains('<title>')) {
-                htmlLineFounded = htmlLine;
-                break;
-            }    
-        }
+        searchHtmlKey('<title>');
 
         if(htmlLineFounded != null) {
             fullName = htmlLineFounded.replace('<title>', '').replace(' - Wikipedia</title>', '').trim();
         }
-
-        system.debug('Valor do fullName: ' + fullName);
 
         return fullName;
     }
@@ -42,12 +35,7 @@ public with sharing class FootballAssociationHtmlReader {
     public Integer getYearFoundedField() {
         Integer yearFounded = null;
 
-        for(String htmlLine : htmlPageLines) {
-            if(htmlLine.contains('Founded')) {
-                htmlLineFounded = htmlLine;
-                break;
-            }    
-        }
+        searchHtmlKey('Founded');
 
         if(htmlLineFounded != null) {
             List<String> htmlLineFounded1 = htmlLineFounded.split('Founded</th><td class="infobox-data">');
@@ -62,11 +50,29 @@ public with sharing class FootballAssociationHtmlReader {
     public Integer getYearFifaAffiliationField() {
         Integer yearFifaAffiliation;
 
+        searchHtmlKey('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
+
+        if(htmlLineFounded != null) {
+            List<String> htmlLineFifaAffiliation1 = htmlLineFounded.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
+            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('</td></tr><tr><th'); 
+            
+            yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+        }
+
         return yearFifaAffiliation;
     }
 
     public Integer getYearContinentalAffiliationField() {
         Integer yearContinentalAffiliation;
+
+        searchContinentalAffiliation();
+        
+        if(htmlLineFounded != null) {
+            List<String> htmlLineFifaAffiliation1 = htmlLineFounded.split('"CONCACAF">CONCACAF</a> affiliation</span></th><td class="infobox-data">');
+            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
+            
+            yearContinentalAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+        }
 
         return yearContinentalAffiliation;
     }
@@ -81,5 +87,23 @@ public with sharing class FootballAssociationHtmlReader {
         String website;
         
         return website;
+    }
+
+    private void searchHtmlKey(String htmlKey) {
+        for(String htmlLine : htmlPageLines) {
+            if(htmlLine.contains(htmlKey)) {
+                htmlLineFounded = htmlLine;
+                break;
+            }    
+        }    
+    }
+
+    private void searchContinentalAffiliation() {
+        for(String htmlLine : htmlPageLines) {
+            if(htmlLine.contains('CONCACAF</a> affiliation')) {
+                htmlLineFounded = htmlLine;
+                break;
+            }    
+        }    
     }
 }

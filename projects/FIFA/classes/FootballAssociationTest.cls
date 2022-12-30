@@ -62,6 +62,7 @@ public with sharing class FootballAssociationTest {
     @IsTest
     static void testFromUrlToObject() {
         StaticResource jfaHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'jamaican_fa_html' LIMIT 1];
+        
         String jfaHtmlPageString = jfaHtmlPageObject.body.toString();
         List<String> jfaHtmlPageList = jfaHtmlPageString.split('\n');
 
@@ -69,8 +70,8 @@ public with sharing class FootballAssociationTest {
 
         System.assertEquals('Jamaica Football Federation', jff.name);
         System.assertEquals(1910, jff.Year_Founded__c);
-        //System.assertEquals(1962, jff.Year_FIFA_Affiliation__c);
-        //System.assertEquals(1963, jff.Year_Continental_Affiliation__c);
+        System.assertEquals(1962, jff.Year_FIFA_Affiliation__c);
+        System.assertEquals(1963, jff.Year_Continental_Affiliation__c);
         //System.assertEquals('Michael Rickets', jff.President__c);
         //System.assertEquals('http://www.jff.live', jff.Website__c);
     }
