@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-29-2022
+ * @last modified on  : 12-30-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -64,14 +64,14 @@ public with sharing class FootballAssociationHtmlReader {
 
     public Integer getYearContinentalAffiliationField() {
         Integer yearContinentalAffiliation;
+        List<String> continentalConfederations = new List<String>{'CONCACAF', 'CONMEBOL', 'UEFA', 'CAF', 'AFC', 'OFC'};
 
-        searchContinentalAffiliation();
-        
-        if(htmlLineFounded != null) {
-            List<String> htmlLineFifaAffiliation1 = htmlLineFounded.split('"CONCACAF">CONCACAF</a> affiliation</span></th><td class="infobox-data">');
-            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
-            
-            yearContinentalAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+        for(String continentalConfederation : continentalConfederations) {
+            yearContinentalAffiliation = searchYearContinentalAffiliation(continentalConfederation);    
+
+            if(yearContinentalAffiliation != null) {
+                break;
+            }
         }
 
         return yearContinentalAffiliation;
@@ -98,12 +98,23 @@ public with sharing class FootballAssociationHtmlReader {
         }    
     }
 
-    private void searchContinentalAffiliation() {
+    private Integer searchYearContinentalAffiliation(String continentalConfederation) {
+        Integer yearContinentalAffiliation;
+
         for(String htmlLine : htmlPageLines) {
-            if(htmlLine.contains('CONCACAF</a> affiliation')) {
+            if(htmlLine.contains(continentalConfederation + '</a> affiliation')) {
                 htmlLineFounded = htmlLine;
                 break;
             }    
         }    
+
+        if(htmlLineFounded != null) {
+            List<String> htmlLineFifaAffiliation1 = htmlLineFounded.split(continentalConfederation + '</a> affiliation</span></th><td class="infobox-data">');
+            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
+            
+            yearContinentalAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+        }
+
+        return yearContinentalAffiliation;
     }
 }
