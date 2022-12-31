@@ -88,13 +88,14 @@ public with sharing class FootballAssociationHtmlReader {
             List<String> htmlLinePresident1 = htmlLineFounded.split('</td></tr><tr><th scope="row" class="infobox-label">President</th><td class="infobox-data">');
 
             List<String> htmlLinePresident2 = null;
-            List<String> htmlLinePresident3 = null;
+            List<String> htmlLinePresident3 = null;            
 
             if(htmlLinePresident1[1].startsWith('<a href="/wiki/')) { 
-                htmlLinePresident2 = htmlLinePresident1[1].split('">'); 
+                htmlLinePresident2 = htmlLinePresident1[1].split('">');
                 htmlLinePresident3 = htmlLinePresident2[1].split('</td>');
 
-                president = htmlLinePresident3[0].replace('</a> (since 23 March 2022)','').replace('</a>', '');
+                president = htmlLinePresident3[0].replace('</a> (since 23 March 2022)','').replace('</a>', '').
+                    replace('<sup id="cite_ref-JFA_President_2-0" class="reference', '');
             } else { 
                 htmlLinePresident2 = htmlLinePresident1[1].split('<');
 
@@ -123,7 +124,7 @@ public with sharing class FootballAssociationHtmlReader {
             }
 
             htmlLineWebsite2 = htmlLineWebsite1[1].split('">');
-            website = htmlLineWebsite2[0].replace('https://', '').replace('http://', '');
+            website = htmlLineWebsite2[0].replace('https://', '').replace('http://', '').replace('/eng', '');
 
             if(website.endsWith('/')) {
                 website = website.replace(website.substring(website.length()-1, website.length()), '');    
