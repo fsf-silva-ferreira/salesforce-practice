@@ -40,23 +40,8 @@ public with sharing class FootballAssociationHtmlReader {
         if(htmlLineFounded != null) {
             List<String> htmlLineFounded1 = htmlLineFounded.split('Founded</th><td class="infobox-data">');
             htmlLineFounded1[1] = htmlLineFounded1[1].replace('8&#160;June ', '');
-            
+
             yearFounded = integer.valueof(htmlLineFounded1[1].substring(0, 4));
-
-            /*
-            List<String> htmlLineFounded2 = htmlLineFounded1[1].split('<span class="noprint">'); 
-            List<String> htmlLineFounded3 = null;
-
-            if(htmlLineFounded2[0].contains(' ')) {
-                htmlLineFounded3 = htmlLineFounded2[0].split(' ');
-
-                System.debug('FOUNDED -> ' + htmlLineFounded3);
-
-                yearFounded = integer.valueof(htmlLineFounded3[htmlLineFounded3.size()-1]);
-            } else {                
-                yearFounded = integer.valueof(htmlLineFounded2[0]);
-            }
-            */
         }
 
         return yearFounded;

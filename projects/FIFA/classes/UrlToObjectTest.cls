@@ -58,4 +58,21 @@ public with sharing class UrlToObjectTest {
         System.assertEquals('Salemane Phafane', lefa.President__c);
         System.assertEquals('lesothofootball.com', lefa.Website__c);
     }
+
+    @IsTest
+    static void testOfcAssociation() {
+        StaticResource nzfHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'nz_football_html' LIMIT 1];
+        
+        String nzfHtmlPageString = nzfHtmlPageObject.body.toString();
+        List<String> nzfHtmlPageList = nzfHtmlPageString.split('\n');
+
+        Football_Association__c nzf = FootballAssociationObjectHandler.getFootballAssociationObject(nzfHtmlPageList);
+
+        System.assertEquals('New Zealand Football', nzf.name);
+        System.assertEquals(1891, nzf.Year_Founded__c);
+        System.assertEquals(1948, nzf.Year_FIFA_Affiliation__c);
+        System.assertEquals(1966, nzf.Year_Continental_Affiliation__c);
+        System.assertEquals('Johanna Wood', nzf.President__c);
+        System.assertEquals('www.nzfootball.co.nz', nzf.Website__c);
+    }
 }
