@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-30-2022
+ * @last modified on  : 12-31-2022
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -21,7 +21,7 @@ public with sharing class FootballAssociationHtmlReader {
     }
 
     public String getFullNameField() {
-        String fullName = null;        
+        String fullName;        
 
         searchHtmlKey('<title>');
 
@@ -33,15 +33,21 @@ public with sharing class FootballAssociationHtmlReader {
     }
 
     public Integer getYearFoundedField() {
-        Integer yearFounded = null;
+        Integer yearFounded;
 
         searchHtmlKey('Founded');
 
         if(htmlLineFounded != null) {
             List<String> htmlLineFounded1 = htmlLineFounded.split('Founded</th><td class="infobox-data">');
             List<String> htmlLineFounded2 = htmlLineFounded1[1].split('<span class="noprint">'); 
-            
-            yearFounded = integer.valueof(htmlLineFounded2[0]);
+            List<String> htmlLineFounded3 = null;
+
+            if(htmlLineFounded2[0].contains(' ')) {
+                htmlLineFounded3 = htmlLineFounded2[0].split(' ');
+                yearFounded = integer.valueof(htmlLineFounded3[htmlLineFounded3.size()-1]);
+            } else {
+                yearFounded = integer.valueof(htmlLineFounded2[0]);
+            }
         }
 
         return yearFounded;
@@ -53,9 +59,9 @@ public with sharing class FootballAssociationHtmlReader {
         searchHtmlKey('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
         if(htmlLineFounded != null) {
-            List<String> htmlLineFifaAffiliation1 = htmlLineFounded.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
-            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('</td></tr><tr><th'); 
-            
+            List<String> htmlLineFifaAffiliation1 = htmlLineFounded.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');            
+            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
+
             yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
         }
 
@@ -121,7 +127,7 @@ public with sharing class FootballAssociationHtmlReader {
             }
 
             htmlLineWebsite2 = htmlLineWebsite1[1].split('">');
-            website = htmlLineWebsite2[0];
+            website = htmlLineWebsite2[0].replace('http://', '');
         }
 
         return website;
@@ -139,6 +145,7 @@ public with sharing class FootballAssociationHtmlReader {
     private Integer searchYearContinentalAffiliation(String continentalConfederation) {
         Integer yearContinentalAffiliation;
 
+        htmlLineFounded = null; 
         for(String htmlLine : htmlPageLines) {
             if(htmlLine.contains(continentalConfederation + '</a> affiliation')) {
                 htmlLineFounded = htmlLine;
