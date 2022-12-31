@@ -41,4 +41,21 @@ public with sharing class UrlToObjectUefaTest {
         System.assertEquals('Marco Tura', smff.President__c);
         System.assertEquals('www.fsgc.sm', smff.Website__c);
     }
+
+    @IsTest
+    static void testGermanFootballAssociation() {
+        StaticResource gfaHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'german_fa_html' LIMIT 1];
+        
+        String gfaHtmlPageString = gfaHtmlPageObject.body.toString();
+        List<String> gfafHtmlPageList = gfaHtmlPageString.split('\n');
+
+        Football_Association__c gfa = FootballAssociationObjectHandler.getFootballAssociationObject(gfafHtmlPageList);
+
+        System.assertEquals('German Football Association', gfa.name);
+        System.assertEquals(1900, gfa.Year_Founded__c);
+        System.assertEquals(1904, gfa.Year_FIFA_Affiliation__c);
+        System.assertEquals(1954, gfa.Year_Continental_Affiliation__c);
+        System.assertEquals('Bernd Neuendorf', gfa.President__c);
+        System.assertEquals('www.dfb.de', gfa.Website__c);
+    }
 }

@@ -39,8 +39,8 @@ public with sharing class FootballAssociationHtmlReader {
 
         if(htmlLineFounded != null) {
             List<String> htmlLineFounded1 = htmlLineFounded.split('Founded</th><td class="infobox-data">');
-            htmlLineFounded1[1] = htmlLineFounded1[1].replace('8&#160;June ', '').replace('18 December ', '');
-
+            htmlLineFounded1[1] = htmlLineFounded1[1].replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '');
+ 
             yearFounded = integer.valueof(htmlLineFounded1[1].substring(0, 4));
         }
 
@@ -124,7 +124,7 @@ public with sharing class FootballAssociationHtmlReader {
             }
 
             htmlLineWebsite2 = htmlLineWebsite1[1].split('">');
-            website = htmlLineWebsite2[0].replace('https://', '').replace('http://', '').replace('/eng', '');
+            website = htmlLineWebsite2[0].replace('https://', '').replace('http://', '').replace('/eng', '').replace('/en/en-start/', '');
 
             if(website.endsWith('/')) {
                 website = website.replace(website.substring(website.length()-1, website.length()), '');    
