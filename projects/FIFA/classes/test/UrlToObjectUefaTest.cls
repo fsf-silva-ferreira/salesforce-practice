@@ -24,4 +24,21 @@ public with sharing class UrlToObjectUefaTest {
         System.assertEquals('Karl-Erik Nilsson', svff.President__c);
         System.assertEquals('svenskfotboll.se', svff.Website__c);
     }
+
+    @IsTest
+    static void testSanMarinoFootballFederation() {
+        StaticResource smffHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'san_marino_ff_html' LIMIT 1];
+        
+        String smffHtmlPageString = smffHtmlPageObject.body.toString();
+        List<String> smffHtmlPageList = smffHtmlPageString.split('\n');
+
+        Football_Association__c smff = FootballAssociationObjectHandler.getFootballAssociationObject(smffHtmlPageList);
+
+        System.assertEquals('San Marino Football Federation', smff.name);
+        System.assertEquals(1931, smff.Year_Founded__c);
+        System.assertEquals(1988, smff.Year_FIFA_Affiliation__c);
+        System.assertEquals(1988, smff.Year_Continental_Affiliation__c);
+        System.assertEquals('Marco Tura', smff.President__c);
+        System.assertEquals('www.fsgc.sm', smff.Website__c);
+    }
 }
