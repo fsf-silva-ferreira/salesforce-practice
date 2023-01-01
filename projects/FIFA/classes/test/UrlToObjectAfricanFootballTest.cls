@@ -41,4 +41,21 @@ public with sharing class UrlToObjectAfricanFootballTest {
         System.assertEquals('Samuel Eto\'o', fecafoot.President__c);
         System.assertEquals('fecafoot-officiel.com', fecafoot.Website__c);
     }
+
+    @IsTest
+    static void testFrmf() {
+        StaticResource frmfHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'frmf_html' LIMIT 1];
+        
+        String frmfHtmlPageString = frmfHtmlPageObject.body.toString();
+        List<String> frmfHtmlPageList = frmfHtmlPageString.split('\n');
+
+        Football_Association__c fecafoot = FootballAssociationObjectHandler.getFootballAssociationObject(frmfHtmlPageList);
+
+        System.assertEquals('Royal Moroccan Football Federation', fecafoot.name);
+        System.assertEquals(1956, fecafoot.Year_Founded__c);
+        System.assertEquals(1960, fecafoot.Year_FIFA_Affiliation__c);
+        System.assertEquals(1960, fecafoot.Year_Continental_Affiliation__c);
+        System.assertEquals('Fouzi Lekjaa', fecafoot.President__c);
+        System.assertEquals('www.frmf.ma', fecafoot.Website__c);
+    }
 }
