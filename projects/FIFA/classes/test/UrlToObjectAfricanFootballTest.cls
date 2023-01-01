@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 12-31-2022
+ * @last modified on  : 01-01-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 @IsTest
@@ -23,5 +23,22 @@ public with sharing class UrlToObjectAfricanFootballTest {
         System.assertEquals(1963, lefa.Year_Continental_Affiliation__c);
         System.assertEquals('Salemane Phafane', lefa.President__c);
         System.assertEquals('lesothofootball.com', lefa.Website__c);
+    }
+
+    @IsTest
+    static void testFecafoot() {
+        StaticResource fecafootHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'fecafoot_html' LIMIT 1];
+        
+        String fecafootHtmlPageString = fecafootHtmlPageObject.body.toString();
+        List<String> fecafootHtmlPageList = fecafootHtmlPageString.split('\n');
+
+        Football_Association__c fecafoot = FootballAssociationObjectHandler.getFootballAssociationObject(fecafootHtmlPageList);
+
+        System.assertEquals('Cameroonian Football Federation', fecafoot.name);
+        System.assertEquals(1959, fecafoot.Year_Founded__c);
+        System.assertEquals(1964, fecafoot.Year_FIFA_Affiliation__c);
+        System.assertEquals(1963, fecafoot.Year_Continental_Affiliation__c);
+        System.assertEquals('Samuel Eto\'o', fecafoot.President__c);
+        System.assertEquals('fecafoot-officiel.com', fecafoot.Website__c);
     }
 }
