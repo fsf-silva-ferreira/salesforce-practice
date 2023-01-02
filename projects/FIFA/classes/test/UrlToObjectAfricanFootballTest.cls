@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-01-2023
+ * @last modified on  : 01-02-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 @IsTest
@@ -57,5 +57,22 @@ public with sharing class UrlToObjectAfricanFootballTest {
         System.assertEquals(1960, fecafoot.Year_Continental_Affiliation__c);
         System.assertEquals('Fouzi Lekjaa', fecafoot.President__c);
         System.assertEquals('www.frmf.ma', fecafoot.Website__c);
+    }
+
+    @IsTest
+    static void testNigeriaFootball() {
+        StaticResource nffHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'nff_html' LIMIT 1];
+        
+        String nffHtmlPageString = nffHtmlPageObject.body.toString();
+        List<String> nffHtmlPageList = nffHtmlPageString.split('\n');
+
+        Football_Association__c nff = FootballAssociationObjectHandler.getFootballAssociationObject(nffHtmlPageList);
+
+        System.assertEquals('Nigeria Football Federation', nff.name);
+        System.assertEquals(1933, nff.Year_Founded__c);
+        System.assertEquals(1960, nff.Year_FIFA_Affiliation__c);
+        System.assertEquals(1959, nff.Year_Continental_Affiliation__c);
+        System.assertEquals('Ibrahim Musa Gusau', nff.President__c);
+        System.assertEquals('www.thenff.com', nff.Website__c);
     }
 }

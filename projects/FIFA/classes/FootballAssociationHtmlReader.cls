@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-01-2023
+ * @last modified on  : 01-02-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -40,9 +40,9 @@ public with sharing class FootballAssociationHtmlReader {
         if(htmlLineFound != null) {
             List<String> htmlLineFound1 = htmlLineFound.split('Founded</th><td class="infobox-data">');
             htmlLineFound1[1] = htmlLineFound1[1].replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '')
-                .replace('21&#160;February ', '').replace('19&#160;June ', '');
+                .replace('21&#160;February ', '').replace('19&#160;June ', '').replace('21 August ', '');
  
-            system.debug('YEAR FOUNDED LINE: --> ' + htmlLineFound1[1] + ' SIZE: --> ' + htmlLineFound1.size());
+            //system.debug('YEAR FOUNDED LINE: --> ' + htmlLineFound1[1] + ' SIZE: --> ' + htmlLineFound1.size());
  
             try{
                 yearFounded = integer.valueof(htmlLineFound1[1].substring(0, 4));
