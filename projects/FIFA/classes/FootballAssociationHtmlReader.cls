@@ -40,7 +40,7 @@ public with sharing class FootballAssociationHtmlReader {
         if(htmlLineFound != null) {
             List<String> htmlLineFound1 = htmlLineFound.split('Founded</th><td class="infobox-data">');
             htmlLineFound1[1] = htmlLineFound1[1].replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '')
-                .replace('21&#160;February ', '');
+                .replace('21&#160;February ', '').replace('19&#160;June ', '');
  
             system.debug('YEAR FOUNDED LINE: --> ' + htmlLineFound1[1] + ' SIZE: --> ' + htmlLineFound1.size());
  
@@ -102,19 +102,34 @@ public with sharing class FootballAssociationHtmlReader {
             List<String> htmlLinePresident1 = htmlLineFound.split('</td></tr><tr><th scope="row" class="infobox-label">President</th><td class="infobox-data">');
 
             List<String> htmlLinePresident2 = null;
-            List<String> htmlLinePresident3 = null;            
+            List<String> htmlLinePresident3 = null;
+            List<String> htmlLinePresident4 = null;            
 
-            if(htmlLinePresident1[1].startsWith('<a href="/wiki/')) { 
+            if(htmlLinePresident1[1].contains('<sup')) {
+                htmlLinePresident2 = htmlLinePresident1[1].split('<sup');
+
+                if(htmlLinePresident2[0].contains('">')) {
+                    htmlLinePresident3 =  htmlLinePresident2[0].split('">') ; 
+                    president = htmlLinePresident3[1];
+                } else {
+                    president = htmlLinePresident2[0];
+                }
+            } else
+            if(htmlLinePresident1[1].contains('">')) { 
                 htmlLinePresident2 = htmlLinePresident1[1].split('">');
-                htmlLinePresident3 = htmlLinePresident2[1].split('</td>');
+                htmlLinePresident3 = htmlLinePresident2[0].split('</td>');
 
-                president = htmlLinePresident3[0].replace('</a> (since 23 March 2022)','').replace('</a>', '').
-                    replace('<sup id="cite_ref-JFA_President_2-0" class="reference', '').replace('<sup id="cite_ref-afa2020_2-0" class="reference', '');
-            } else { 
-                htmlLinePresident2 = htmlLinePresident1[1].split('<');
-
-                president = htmlLinePresident2[0].replace('</a>', '');
+                if(htmlLinePresident3[0].contains('title="')) {
+                    htmlLinePresident4 = htmlLinePresident3[0].split('title="');
+                    president = htmlLinePresident4[1];
+                } else {
+                    president = htmlLinePresident3[0];
+                }
             }
+
+            president = president.replace('</a> (since 23 March 2022)','').replace('</a>', '').replace('&#39;', '\'').replace(' (referee)', '').
+                replace('<sup id="cite_ref-JFA_President_2-0" class="reference', '').replace('<sup id="cite_ref-1" class="reference', '').
+                replace('<sup id="cite_ref-afa2020_2-0" class="reference', '');
         }
 
         return president;

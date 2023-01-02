@@ -41,4 +41,21 @@ public with sharing class UrlToObjectConmebolTest {
         System.assertEquals('Claudio Tapia', afa.President__c);
         System.assertEquals('www.afa.com.ar', afa.Website__c);
     }
+
+    @IsTest
+    static void testChileanFootballFederation() {
+        StaticResource ffchHtmlPageObject = [SELECT Id, Body FROM StaticResource WHERE Name = 'ffch_html' LIMIT 1];
+        
+        String ffchHtmlPageString = ffchHtmlPageObject.body.toString();
+        List<String> ffchHtmlPageList = ffchHtmlPageString.split('\n');
+
+        Football_Association__c ffch = FootballAssociationObjectHandler.getFootballAssociationObject(ffchHtmlPageList);
+
+        System.assertEquals('Football Federation of Chile', ffch.name);
+        System.assertEquals(1895, ffch.Year_Founded__c);
+        System.assertEquals(1913, ffch.Year_FIFA_Affiliation__c);
+        System.assertEquals(1916, ffch.Year_Continental_Affiliation__c);
+        System.assertEquals('Pablo Milad Abusleme', ffch.President__c);
+        System.assertEquals('laroja.cl', ffch.Website__c);
+    }
 }
