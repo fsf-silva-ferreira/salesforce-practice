@@ -10,8 +10,7 @@ public with sharing class FootballAssociationLinksManagerTest {
     
     @IsTest
     public static void testGetLinks() {
-        List<String> footballAssociationLinks = new List<String>();
-        footballAssociationLinks = FootballAssociationLinksManager.getLinks();
+        List<String> footballAssociationLinks = FootballAssociationLinksManager.getLinks();
 
         System.assertEquals(15, footballAssociationLinks.size());
     }
