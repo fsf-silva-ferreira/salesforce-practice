@@ -2,14 +2,14 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-02-2023
+ * @last modified on  : 01-03-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationLinksManager {
    
     public static List<String> getLinks() {
         List<String> footballAssociationLinks = new List<String>();
-                
+   
         footballAssociationLinks.addAll(getConmebolLinks());
         footballAssociationLinks.addAll(getConcacafLinks());
         footballAssociationLinks.addAll(getOfcLinks());
@@ -49,7 +49,7 @@ public with sharing class FootballAssociationLinksManager {
     private static List<String> getAfricanFootballLinks() {
         List<String> africanFootballLinks = new List<String>();
 
-        africanFootballLinks.add('https://en.wikipedia.org/wiki/Lesotho_Football_Associationl');
+        africanFootballLinks.add('https://en.wikipedia.org/wiki/Lesotho_Football_Association');
         africanFootballLinks.add('https://en.wikipedia.org/wiki/Cameroonian_Football_Federation');
         africanFootballLinks.add('https://en.wikipedia.org/wiki/Royal_Moroccan_Football_Federation');
         africanFootballLinks.add('https://en.wikipedia.org/wiki/Nigeria_Football_Federation');

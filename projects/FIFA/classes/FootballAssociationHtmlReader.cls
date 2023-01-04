@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-02-2023
+ * @last modified on  : 01-03-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -35,23 +35,38 @@ public with sharing class FootballAssociationHtmlReader {
     public Integer getYearFoundedField() {
         Integer yearFounded;
 
-        searchHtmlLine('Founded');
+        searchHtmlLine('Founded</th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
+            System.debug('htmlLineFound: --> ' + htmlLineFound);
+
             List<String> htmlLineFound1 = htmlLineFound.split('Founded</th><td class="infobox-data">');
+
+            System.debug('htmlLineFound1: --> ' + htmlLineFound1);
+
+            /*
             htmlLineFound1[1] = htmlLineFound1[1].replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '')
-                .replace('21&#160;February ', '').replace('19&#160;June ', '').replace('21 August ', '');
- 
-            //system.debug('YEAR FOUNDED LINE: --> ' + htmlLineFound1[1] + ' SIZE: --> ' + htmlLineFound1.size());
- 
-            try{
+                .replace('21&#160;February ', '').replace('19&#160;June ', '').replace('21 August ', '').replace('7&#160;April ', '');
+            */
+
+            htmlLineFound1[1] = cleanTrashFromYear(htmlLineFound1[1]);
+
+            try {
                 yearFounded = integer.valueof(htmlLineFound1[1].substring(0, 4));
             } catch (Exception e) {
                 searchHtmlLineBelow('Founded');
 
                 if(htmlLineFound != null) {
                     htmlLineFound = htmlLineFound.replace('<ul><li>', '');
-                    yearFounded = integer.valueof(htmlLineFound.substring(0, 4));
+
+                    System.debug('      HTML year founded line found: --> ' + htmlLineFound);  
+
+                    try {
+                        yearFounded = integer.valueof(htmlLineFound.substring(0, 4));
+                    } catch (Exception eLineBelow) {
+                        System.debug('Exception: ' + e.getMessage());
+                        yearFounded = null;
+                    }
                 } else {
                     yearFounded = null;
                 }
@@ -70,9 +85,18 @@ public with sharing class FootballAssociationHtmlReader {
             List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');            
             List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
 
-            htmlLineFifaAffiliation2[0] = htmlLineFifaAffiliation2[0].replace('21 May ', '').replace('1&#160;July ', '');
+            //htmlLineFifaAffiliation2[0] = htmlLineFifaAffiliation2[0].replace('21 May ', '').replace('1&#160;July ', '');
 
-            yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+            htmlLineFifaAffiliation2[0] = cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
+
+            System.debug('      HTML FIFA affiliation line found: --> ' + htmlLineFifaAffiliation2[0]);
+
+            try {
+                yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+            } catch (Exception e) {
+                System.debug('Exception: ' + e.getMessage());
+                yearFifaAffiliation = null;
+            }
         }
 
         return yearFifaAffiliation;
@@ -179,21 +203,34 @@ public with sharing class FootballAssociationHtmlReader {
             List<String> htmlLineFifaAffiliation1 = htmlLineFound.split(continentalConfederation + '</a> affiliation</span></th><td class="infobox-data">');
             List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
             
-            htmlLineFifaAffiliation2[0] = htmlLineFifaAffiliation2[0].replace('9&#160;July ', '');
+            //htmlLineFifaAffiliation2[0] = htmlLineFifaAffiliation2[0].replace('9&#160;July ', '');
 
-            yearContinentalAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+            htmlLineFifaAffiliation2[0] = cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
+
+            System.debug('      HTML year continental affiliation line found: --> ' + htmlLineFound);  
+
+            try {
+                yearContinentalAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+            } catch (Exception e) {
+                System.debug('Exception: ' + e.getMessage());
+                yearContinentalAffiliation = null;
+            }            
         }
 
         return yearContinentalAffiliation;
     }
 
     private void searchHtmlLine(String htmlKey) {
+        System.debug('htmlKey: ' + htmlKey);
+
         for(String htmlLine : htmlPageLines) {
             if(htmlLine.contains(htmlKey)) {
                 htmlLineFound = htmlLine;
                 break;
             }    
-        }    
+        }  
+        
+        System.debug('htmlLineFound: ' + htmlLineFound);
     }
 
     private void searchHtmlLineBelow(String htmlKey) {
@@ -205,5 +242,21 @@ public with sharing class FootballAssociationHtmlReader {
                 break;
             }    
         }    
+    }
+
+    private String cleanTrashFromYear(String yearToClean) {
+        yearToClean = yearToClean.replace(' (1945 as NFA)', '');
+
+        List<String> yearToCleanArray1 = yearToClean.split('<');
+        System.debug('yearToClean: ' + yearToClean);
+        System.debug('yearToCleanArray1: ' + yearToCleanArray1);
+        List<String> yearToCleanArray2 = yearToCleanArray1[0].split(' ');
+        
+        System.debug('yearToCleanArray2: ' + yearToCleanArray2);
+        return yearToCleanArray2[yearToCleanArray2.size()-1];
+        /*
+        replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '')
+                .replace('21&#160;February ', '').replace('19&#160;June ', '').replace('21 August ', '').replace('7&#160;April ', ''); 
+        */
     }
 }
