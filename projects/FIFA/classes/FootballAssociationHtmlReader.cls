@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-03-2023
+ * @last modified on  : 01-04-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -44,17 +44,12 @@ public with sharing class FootballAssociationHtmlReader {
 
             System.debug('htmlLineFound1: --> ' + htmlLineFound1);
 
-            /*
-            htmlLineFound1[1] = htmlLineFound1[1].replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '')
-                .replace('21&#160;February ', '').replace('19&#160;June ', '').replace('21 August ', '').replace('7&#160;April ', '');
-            */
-
             htmlLineFound1[1] = cleanTrashFromYear(htmlLineFound1[1]);
 
             try {
                 yearFounded = integer.valueof(htmlLineFound1[1].substring(0, 4));
             } catch (Exception e) {
-                searchHtmlLineBelow('Founded');
+                searchHtmlLineBelow('Founded</th><td class="infobox-data">');
 
                 if(htmlLineFound != null) {
                     htmlLineFound = htmlLineFound.replace('<ul><li>', '');
@@ -82,18 +77,21 @@ public with sharing class FootballAssociationHtmlReader {
         searchHtmlLine('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
-            List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');            
-            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
+            List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');                
+            htmlLineFifaAffiliation1[1] = htmlLineFifaAffiliation1[1].replace('August 2, ', '').replace(' (provisional)', '').
+                replace('<span class="nowrap">', '');
 
-            //htmlLineFifaAffiliation2[0] = htmlLineFifaAffiliation2[0].replace('21 May ', '').replace('1&#160;July ', '');
-
+            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<');             
             htmlLineFifaAffiliation2[0] = cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
 
-            System.debug('      HTML FIFA affiliation line found: --> ' + htmlLineFifaAffiliation2[0]);
+            System.debug('      HTML FIFA affiliation line #1 found: --> ' + htmlLineFifaAffiliation1[1]);
+            System.debug('      HTML FIFA affiliation line #2 found: --> ' + htmlLineFifaAffiliation2[0]);
 
             try {
                 yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
             } catch (Exception e) {
+                searchHtmlLineBelow('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
+
                 System.debug('Exception: ' + e.getMessage());
                 yearFifaAffiliation = null;
             }
@@ -202,8 +200,6 @@ public with sharing class FootballAssociationHtmlReader {
         if(htmlLineFound != null) {
             List<String> htmlLineFifaAffiliation1 = htmlLineFound.split(continentalConfederation + '</a> affiliation</span></th><td class="infobox-data">');
             List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
-            
-            //htmlLineFifaAffiliation2[0] = htmlLineFifaAffiliation2[0].replace('9&#160;July ', '');
 
             htmlLineFifaAffiliation2[0] = cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
 
@@ -234,11 +230,16 @@ public with sharing class FootballAssociationHtmlReader {
     }
 
     private void searchHtmlLineBelow(String htmlKey) {
+        System.debug('[searchHtmlLineBelow] htmlKey: ' + htmlKey);
+
         for(Integer i=0; i<htmlPageLines.size(); i++) {
             String htmlLine = htmlPageLines.get(i);
 
             if(htmlLine.contains(htmlKey)) {
                 htmlLineFound = htmlPageLines.get(i+1);
+
+                System.debug('[searchHtmlLineBelow] htmlLineFound: ' + htmlLineFound);
+
                 break;
             }    
         }    
@@ -254,9 +255,5 @@ public with sharing class FootballAssociationHtmlReader {
         
         System.debug('yearToCleanArray2: ' + yearToCleanArray2);
         return yearToCleanArray2[yearToCleanArray2.size()-1];
-        /*
-        replace('8&#160;June ', '').replace('18 December ', '').replace('28&#160;January ', '')
-                .replace('21&#160;February ', '').replace('19&#160;June ', '').replace('21 August ', '').replace('7&#160;April ', ''); 
-        */
     }
 }
