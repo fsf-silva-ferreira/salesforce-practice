@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-04-2023
+ * @last modified on  : 01-05-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -10,6 +10,7 @@ public with sharing class FootballAssociationHtmlReader {
     private List<String> htmlPageLines = new List<String>();
     private HtmlHandlingUtility htmlHandler = new HtmlHandlingUtility();
     private String htmlLineFound;
+    private String nameContinentalAffiliation;
 
     public FootballAssociationHtmlReader(List<String> htmlData) {
         htmlPageLines = htmlData;
@@ -35,8 +36,7 @@ public with sharing class FootballAssociationHtmlReader {
 
     public Integer getYearFoundedField() {
         Integer yearFounded;
-
-        //searchHtmlLine('Founded</th><td class="infobox-data">');        
+                
         htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, 'Founded</th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
@@ -75,8 +75,7 @@ public with sharing class FootballAssociationHtmlReader {
 
     public Integer getYearFifaAffiliationField() {
         Integer yearFifaAffiliation;
-
-        //searchHtmlLine('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');        
+               
         htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, 'FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
@@ -116,6 +115,10 @@ public with sharing class FootballAssociationHtmlReader {
         }
 
         return yearContinentalAffiliation;
+    }
+
+    public String getNameContinentalAffiliationField() {
+        return nameContinentalAffiliation;
     }
 
     public String getPresidentField() {
@@ -196,6 +199,7 @@ public with sharing class FootballAssociationHtmlReader {
         for(String htmlLine : htmlPageLines) {
             if(htmlLine.contains(continentalConfederation + '</a> affiliation')) {
                 htmlLineFound = htmlLine;
+                nameContinentalAffiliation = continentalConfederation;
                 break;
             }    
         }    
