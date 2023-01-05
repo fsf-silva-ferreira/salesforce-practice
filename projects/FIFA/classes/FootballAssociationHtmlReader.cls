@@ -8,6 +8,7 @@
 public with sharing class FootballAssociationHtmlReader {
 
     private List<String> htmlPageLines = new List<String>();
+    private HtmlHandlingUtility htmlHandler = new HtmlHandlingUtility();
     private String htmlLineFound;
 
     public FootballAssociationHtmlReader(List<String> htmlData) {
@@ -23,7 +24,7 @@ public with sharing class FootballAssociationHtmlReader {
     public String getFullNameField() {
         String fullName;        
 
-        searchHtmlLine('<title>');
+        htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, '<title>');
 
         if(htmlLineFound != null) {
             fullName = htmlLineFound.replace('<title>', '').replace(' - Wikipedia</title>', '').trim();
@@ -35,7 +36,8 @@ public with sharing class FootballAssociationHtmlReader {
     public Integer getYearFoundedField() {
         Integer yearFounded;
 
-        searchHtmlLine('Founded</th><td class="infobox-data">');
+        //searchHtmlLine('Founded</th><td class="infobox-data">');        
+        htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, 'Founded</th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
             System.debug('htmlLineFound: --> ' + htmlLineFound);
@@ -44,12 +46,12 @@ public with sharing class FootballAssociationHtmlReader {
 
             System.debug('htmlLineFound1: --> ' + htmlLineFound1);
 
-            htmlLineFound1[1] = cleanTrashFromYear(htmlLineFound1[1]);
+            htmlLineFound1[1] = htmlHandler.cleanTrashFromYear(htmlLineFound1[1]);
 
             try {
                 yearFounded = integer.valueof(htmlLineFound1[1].substring(0, 4));
             } catch (Exception e) {
-                searchHtmlLineBelow('Founded</th><td class="infobox-data">');
+                htmlLineFound = htmlHandler.searchHtmlLineBelow(htmlPageLines, 'Founded</th><td class="infobox-data">');
 
                 if(htmlLineFound != null) {
                     htmlLineFound = htmlLineFound.replace('<ul><li>', '');
@@ -74,7 +76,8 @@ public with sharing class FootballAssociationHtmlReader {
     public Integer getYearFifaAffiliationField() {
         Integer yearFifaAffiliation;
 
-        searchHtmlLine('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
+        //searchHtmlLine('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');        
+        htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, 'FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
             List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');                
@@ -82,7 +85,7 @@ public with sharing class FootballAssociationHtmlReader {
                 replace('<span class="nowrap">', '');
 
             List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<');             
-            htmlLineFifaAffiliation2[0] = cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
+            htmlLineFifaAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
 
             System.debug('      HTML FIFA affiliation line #1 found: --> ' + htmlLineFifaAffiliation1[1]);
             System.debug('      HTML FIFA affiliation line #2 found: --> ' + htmlLineFifaAffiliation2[0]);
@@ -90,7 +93,7 @@ public with sharing class FootballAssociationHtmlReader {
             try {
                 yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
             } catch (Exception e) {
-                searchHtmlLineBelow('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
+                htmlLineFound = htmlHandler.searchHtmlLineBelow(htmlPageLines, 'FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
                 System.debug('Exception: ' + e.getMessage());
                 yearFifaAffiliation = null;
@@ -118,7 +121,7 @@ public with sharing class FootballAssociationHtmlReader {
     public String getPresidentField() {
         String president;
         
-        searchHtmlLine('</td></tr><tr><th scope="row" class="infobox-label">President');
+        htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, '</td></tr><tr><th scope="row" class="infobox-label">President');
 
         if(htmlLineFound != null) {
             List<String> htmlLinePresident1 = htmlLineFound.split('</td></tr><tr><th scope="row" class="infobox-label">President</th><td class="infobox-data">');
@@ -160,7 +163,7 @@ public with sharing class FootballAssociationHtmlReader {
     public String getWebsiteField() {
         String website;
 
-        searchHtmlLine('<th scope="row" class="infobox-label">Website');
+        htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, '<th scope="row" class="infobox-label">Website');
 
         if(htmlLineFound != null) {
             List<String> htmlLineWebsite1 = null;
@@ -201,7 +204,7 @@ public with sharing class FootballAssociationHtmlReader {
             List<String> htmlLineFifaAffiliation1 = htmlLineFound.split(continentalConfederation + '</a> affiliation</span></th><td class="infobox-data">');
             List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
 
-            htmlLineFifaAffiliation2[0] = cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
+            htmlLineFifaAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
 
             System.debug('      HTML year continental affiliation line found: --> ' + htmlLineFound);  
 
@@ -214,46 +217,5 @@ public with sharing class FootballAssociationHtmlReader {
         }
 
         return yearContinentalAffiliation;
-    }
-
-    private void searchHtmlLine(String htmlKey) {
-        System.debug('htmlKey: ' + htmlKey);
-
-        for(String htmlLine : htmlPageLines) {
-            if(htmlLine.contains(htmlKey)) {
-                htmlLineFound = htmlLine;
-                break;
-            }    
-        }  
-        
-        System.debug('htmlLineFound: ' + htmlLineFound);
-    }
-
-    private void searchHtmlLineBelow(String htmlKey) {
-        System.debug('[searchHtmlLineBelow] htmlKey: ' + htmlKey);
-
-        for(Integer i=0; i<htmlPageLines.size(); i++) {
-            String htmlLine = htmlPageLines.get(i);
-
-            if(htmlLine.contains(htmlKey)) {
-                htmlLineFound = htmlPageLines.get(i+1);
-
-                System.debug('[searchHtmlLineBelow] htmlLineFound: ' + htmlLineFound);
-
-                break;
-            }    
-        }    
-    }
-
-    private String cleanTrashFromYear(String yearToClean) {
-        yearToClean = yearToClean.replace(' (1945 as NFA)', '');
-
-        List<String> yearToCleanArray1 = yearToClean.split('<');
-        System.debug('yearToClean: ' + yearToClean);
-        System.debug('yearToCleanArray1: ' + yearToCleanArray1);
-        List<String> yearToCleanArray2 = yearToCleanArray1[0].split(' ');
-        
-        System.debug('yearToCleanArray2: ' + yearToCleanArray2);
-        return yearToCleanArray2[yearToCleanArray2.size()-1];
     }
 }
