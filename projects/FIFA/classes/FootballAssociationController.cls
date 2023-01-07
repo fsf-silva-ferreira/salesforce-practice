@@ -2,13 +2,14 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-03-2023
+ * @last modified on  : 01-07-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationController {
     
     public static void runWebToBaseProcess() {
         List<Football_Association__c> footballAssociations = new List<Football_Association__c>();
+        Set<Football_Association__c> footballAssociationsNoDuplicates = new Set<Football_Association__c>();
 
         System.debug('************************ ||PROCESS START|| ************************');
 
@@ -23,11 +24,12 @@ public with sharing class FootballAssociationController {
             Football_Association__c footballAssociation = FootballAssociationObjectHandler.getFootballAssociationObject(footballAssociationHtmlPage);
             System.debug('      ||--> OBJECT: ' + footballAssociation);
 
-            footballAssociations.add(footballAssociation);
+            footballAssociationsNoDuplicates.add(footballAssociation);
         }
         System.debug('||--> STEP 2 DONE!');
 
         System.debug('||--> STEP 3: INSERT Football_Association__c OBJECTS INTO DATABASE');
+        footballAssociations.addAll(footballAssociationsNoDuplicates);
         Database.SaveResult[] saveResults = Database.insert(footballAssociations, false);
         String errorMessages = DatabaseErrorManager.handleSaveResults(saveResults);
         System.debug('||--> STEP 3 DONE!');
@@ -41,7 +43,6 @@ public with sharing class FootballAssociationController {
             System.debug('NO DATABASE ERROR FOUND');    
         }
         
-
         System.debug('************************ ||PROCESS END|| ************************');
     }
 }
