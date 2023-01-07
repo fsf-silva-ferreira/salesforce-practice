@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-06-2023
+ * @last modified on  : 01-07-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -222,23 +222,28 @@ public with sharing class FootballAssociationHtmlReader {
 
         htmlLineFound = null; 
         for(String htmlLine : htmlPageLines) {
+            htmlLine = htmlLine.replace('<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">&#91;1&#93;</a></sup>', '');
+            
             if(htmlLine.contains(continentalConfederation + '</a> affiliation')) {
                 htmlLineFound = htmlLine;
                 nameContinentalAffiliation = continentalConfederation;
+
+                System.debug('      HTML continental affiliation line found: --> ' + htmlLineFound);
+
                 break;
             }    
         }    
 
         if(htmlLineFound != null) {
-            List<String> htmlLineFifaAffiliation1 = htmlLineFound.split(continentalConfederation + '</a> affiliation</span></th><td class="infobox-data">');
-            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<'); 
+            List<String> htmlLineContinentalAffiliation1 = htmlLineFound.split(continentalConfederation + '</a> affiliation</span></th><td class="infobox-data">');
+            List<String> htmlLineContinentalAffiliation2 = htmlLineContinentalAffiliation1[1].split('<'); 
 
-            htmlLineFifaAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
+            htmlLineContinentalAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineContinentalAffiliation2[0]);
 
             System.debug('      HTML year continental affiliation line found: --> ' + htmlLineFound);  
 
             try {
-                yearContinentalAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+                yearContinentalAffiliation = integer.valueof(htmlLineContinentalAffiliation2[0]);
             } catch (Exception e) {
                 System.debug('Exception: ' + e.getMessage());
                 yearContinentalAffiliation = null;

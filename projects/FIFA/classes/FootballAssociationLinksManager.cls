@@ -62,7 +62,6 @@ public with sharing class FootballAssociationLinksManager {
 
         ofcLinks.add('https://en.wikipedia.org/wiki/New_Zealand_Football');
         ofcLinks.add('https://en.wikipedia.org/wiki/Fiji_Football_Association');
-        ofcLinks.add('https://en.wikipedia.org/wiki/Fiji_Football_Association');
         ofcLinks.add('https://en.wikipedia.org/wiki/Tuvalu_Islands_Football_Association');
 
         return ofcLinks;
