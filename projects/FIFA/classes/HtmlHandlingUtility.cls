@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-04-2023
+ * @last modified on  : 01-06-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class HtmlHandlingUtility {
@@ -43,7 +43,7 @@ public with sharing class HtmlHandlingUtility {
     }
 
     public String cleanTrashFromYear(String yearToClean) {
-        yearToClean = yearToClean.replace(' (1945 as NFA)', '');
+        yearToClean = yearToClean.replace(' (1945 as NFA)', '').replace('May&#160;', '');
 
         List<String> yearToCleanArray1 = yearToClean.split('<');
         System.debug('yearToClean: ' + yearToClean);

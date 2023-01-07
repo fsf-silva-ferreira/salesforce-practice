@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-05-2023
+ * @last modified on  : 01-06-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationHtmlReader {
@@ -11,6 +11,7 @@ public with sharing class FootballAssociationHtmlReader {
     private HtmlHandlingUtility htmlHandler = new HtmlHandlingUtility();
     private String htmlLineFound;
     private String nameContinentalAffiliation;
+    private String website;
 
     public FootballAssociationHtmlReader(List<String> htmlData) {
         htmlPageLines = htmlData;
@@ -18,6 +19,30 @@ public with sharing class FootballAssociationHtmlReader {
 
     public String getAcronymField() {
         String acronym;
+
+        if(website != null) {
+            List<String> acronymArray = website.split('\\.');
+
+            if(acronymArray[0].equals('www')) {
+                acronym = acronymArray[1];
+            } else {
+                acronym = acronymArray[0];    
+            }
+
+            //TODO: CLEAN UP
+            if(acronym.startsWith('the')) {
+                acronym = acronym.replace('the', '');
+            }
+
+            acronym = acronym.replace('-officiel', '').replace('laroja', '');
+            acronym = acronym.toUpperCase();
+
+            if(acronym.length() > 8 || acronym.equals('')) {
+                acronym = null;
+            }
+        }
+
+        System.debug('--> Acronym: ' + acronym);
 
         return acronym;
     }
@@ -81,7 +106,7 @@ public with sharing class FootballAssociationHtmlReader {
         if(htmlLineFound != null) {
             List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');                
             htmlLineFifaAffiliation1[1] = htmlLineFifaAffiliation1[1].replace('August 2, ', '').replace(' (provisional)', '').
-                replace('<span class="nowrap">', '');
+                replace('<span class="nowrap">', '').replace('–1926;', '');
 
             List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<');             
             htmlLineFifaAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
@@ -164,7 +189,7 @@ public with sharing class FootballAssociationHtmlReader {
     }
 
     public String getWebsiteField() {
-        String website;
+        website = null;
 
         htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, '<th scope="row" class="infobox-label">Website');
 
@@ -182,7 +207,7 @@ public with sharing class FootballAssociationHtmlReader {
 
             htmlLineWebsite2 = htmlLineWebsite1[1].split('">');
             website = htmlLineWebsite2[0].replace('https://', '').replace('http://', '').replace('/eng', '').replace('/en/en-start/', '')
-                .replace('/es/', '');
+                .replace('/es/', '').replace('/en', '');
 
             if(website.endsWith('/')) {
                 website = website.replace(website.substring(website.length()-1, website.length()), '');    

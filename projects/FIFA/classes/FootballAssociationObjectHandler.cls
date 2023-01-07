@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-05-2023
+ * @last modified on  : 01-06-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationObjectHandler {
@@ -11,6 +11,12 @@ public with sharing class FootballAssociationObjectHandler {
         FootballAssociationHtmlReader reader = new FootballAssociationHtmlReader(htmlData);
         Football_Association__c footballAssociation = new Football_Association__c();
 
+        System.debug('      ||--> GETTING WEBSITE ...');
+        footballAssociation.website__c = reader.getWebsiteField();
+        System.debug('      ||--> DONE!');
+        System.debug('      ||--> GETTING ACRONYM ...');
+        footballAssociation.acronym__c = reader.getAcronymField();
+        System.debug('      ||--> DONE!');
         System.debug('      ||--> GETTING FULL NAME ...');
         footballAssociation.name = reader.getFullNameField();
         System.debug('      ||--> DONE!');
@@ -28,9 +34,6 @@ public with sharing class FootballAssociationObjectHandler {
         System.debug('      ||--> DONE!');
         System.debug('      ||--> GETTING PRESIDENT ...');
         footballAssociation.president__c = reader.getPresidentField();
-        System.debug('      ||--> DONE!');
-        System.debug('      ||--> GETTING WEBSITE ...');
-        footballAssociation.website__c = reader.getWebsiteField();
         System.debug('      ||--> DONE!');
 
         return footballAssociation;
