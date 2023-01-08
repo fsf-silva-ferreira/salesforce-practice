@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-06-2023
+ * @last modified on  : 01-07-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class HtmlHandlingUtility {
@@ -10,7 +10,7 @@ public with sharing class HtmlHandlingUtility {
     private String htmlLineFound;
 
     public String searchHtmlLine(List<String> htmlPageLines, String htmlKey) {
-        System.debug('htmlKey: ' + htmlKey);
+        System.debug('[searchHtmlLine] htmlKey: ' + htmlKey);
 
         for(String htmlLine : htmlPageLines) {
             if(htmlLine.contains(htmlKey)) {
@@ -19,7 +19,7 @@ public with sharing class HtmlHandlingUtility {
             }    
         }  
         
-        System.debug('htmlLineFound: ' + htmlLineFound);
+        System.debug('[searchHtmlLine] htmlLineFound: ' + htmlLineFound);
 
         return htmlLineFound;
     }
@@ -43,7 +43,7 @@ public with sharing class HtmlHandlingUtility {
     }
 
     public String cleanTrashFromYear(String yearToClean) {
-        yearToClean = yearToClean.replace(' (1945 as NFA)', '').replace('May&#160;', '');
+        yearToClean = yearToClean.replace(' (1945 as NFA)', '').replace('May&#160;', '').replace(' (associate member)', '');
 
         List<String> yearToCleanArray1 = yearToClean.split('<');
         System.debug('yearToClean: ' + yearToClean);

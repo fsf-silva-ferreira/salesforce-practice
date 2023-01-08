@@ -29,12 +29,11 @@ public with sharing class FootballAssociationHtmlReader {
                 acronym = acronymArray[0];    
             }
 
-            //TODO: CLEAN UP
             if(acronym.startsWith('the')) {
                 acronym = acronym.replace('the', '');
             }
 
-            acronym = acronym.replace('-officiel', '').replace('laroja', '');
+            acronym = acronym.replace('-officiel', '').replace('laroja', '').replace('ghana', 'g');
             acronym = acronym.toUpperCase();
 
             if(acronym.length() > 8 || acronym.equals('')) {
@@ -71,26 +70,28 @@ public with sharing class FootballAssociationHtmlReader {
 
             System.debug('htmlLineFound1: --> ' + htmlLineFound1);
 
-            htmlLineFound1[1] = htmlHandler.cleanTrashFromYear(htmlLineFound1[1]);
+            if(htmlLineFound1.size() > 1) {
+                htmlLineFound1[1] = htmlHandler.cleanTrashFromYear(htmlLineFound1[1]);
 
-            try {
-                yearFounded = integer.valueof(htmlLineFound1[1].substring(0, 4));
-            } catch (Exception e) {
-                htmlLineFound = htmlHandler.searchHtmlLineBelow(htmlPageLines, 'Founded</th><td class="infobox-data">');
+                try {
+                    yearFounded = integer.valueof(htmlLineFound1[1].substring(0, 4));
+                } catch (Exception e) {
+                    htmlLineFound = htmlHandler.searchHtmlLineBelow(htmlPageLines, 'Founded</th><td class="infobox-data">');
 
-                if(htmlLineFound != null) {
-                    htmlLineFound = htmlLineFound.replace('<ul><li>', '');
+                    if(htmlLineFound != null) {
+                        htmlLineFound = htmlLineFound.replace('<ul><li>', '');
 
-                    System.debug('      HTML year founded line found: --> ' + htmlLineFound);  
+                        System.debug('      HTML year founded line found: --> ' + htmlLineFound);  
 
-                    try {
-                        yearFounded = integer.valueof(htmlLineFound.substring(0, 4));
-                    } catch (Exception eLineBelow) {
-                        System.debug('Exception: ' + e.getMessage());
+                        try {
+                            yearFounded = integer.valueof(htmlLineFound.substring(0, 4));
+                        } catch (Exception eLineBelow) {
+                            System.debug('Exception: ' + e.getMessage());
+                            yearFounded = null;
+                        }
+                    } else {
                         yearFounded = null;
                     }
-                } else {
-                    yearFounded = null;
                 }
             }
         }
@@ -104,23 +105,26 @@ public with sharing class FootballAssociationHtmlReader {
         htmlLineFound = htmlHandler.searchHtmlLine(htmlPageLines, 'FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
         if(htmlLineFound != null) {
-            List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');                
-            htmlLineFifaAffiliation1[1] = htmlLineFifaAffiliation1[1].replace('August 2, ', '').replace(' (provisional)', '').
-                replace('<span class="nowrap">', '').replace('–1926;', '');
+            List<String> htmlLineFifaAffiliation1 = htmlLineFound.split('FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">'); 
+            
+            if(htmlLineFifaAffiliation1.size() > 1) {
+                htmlLineFifaAffiliation1[1] = htmlLineFifaAffiliation1[1].replace('August 2, ', '').replace(' (provisional)', '').
+                    replace('<span class="nowrap">', '').replace('–1926;', '');
 
-            List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<');             
-            htmlLineFifaAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
+                List<String> htmlLineFifaAffiliation2 = htmlLineFifaAffiliation1[1].split('<');             
+                htmlLineFifaAffiliation2[0] = htmlHandler.cleanTrashFromYear(htmlLineFifaAffiliation2[0]);
 
-            System.debug('      HTML FIFA affiliation line #1 found: --> ' + htmlLineFifaAffiliation1[1]);
-            System.debug('      HTML FIFA affiliation line #2 found: --> ' + htmlLineFifaAffiliation2[0]);
+                System.debug('      HTML FIFA affiliation line #1 found: --> ' + htmlLineFifaAffiliation1[1]);
+                System.debug('      HTML FIFA affiliation line #2 found: --> ' + htmlLineFifaAffiliation2[0]);
 
-            try {
-                yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
-            } catch (Exception e) {
-                htmlLineFound = htmlHandler.searchHtmlLineBelow(htmlPageLines, 'FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
+                try {
+                    yearFifaAffiliation = integer.valueof(htmlLineFifaAffiliation2[0]);
+                } catch (Exception e) {
+                    htmlLineFound = htmlHandler.searchHtmlLineBelow(htmlPageLines, 'FIFA">FIFA</a> affiliation</span></th><td class="infobox-data">');
 
-                System.debug('Exception: ' + e.getMessage());
-                yearFifaAffiliation = null;
+                    System.debug('Exception: ' + e.getMessage());
+                    yearFifaAffiliation = null;
+                }
             }
         }
 
@@ -154,35 +158,43 @@ public with sharing class FootballAssociationHtmlReader {
         if(htmlLineFound != null) {
             List<String> htmlLinePresident1 = htmlLineFound.split('</td></tr><tr><th scope="row" class="infobox-label">President</th><td class="infobox-data">');
 
-            List<String> htmlLinePresident2 = null;
-            List<String> htmlLinePresident3 = null;
-            List<String> htmlLinePresident4 = null;            
+            if(htmlLinePresident1.size() > 1) {
+                List<String> htmlLinePresident2 = null;
+                List<String> htmlLinePresident3 = null;
+                List<String> htmlLinePresident4 = null;            
 
-            if(htmlLinePresident1[1].contains('<sup')) {
-                htmlLinePresident2 = htmlLinePresident1[1].split('<sup');
+                if(htmlLinePresident1[1].contains('<sup')) {
+                    htmlLinePresident2 = htmlLinePresident1[1].split('<sup');
 
-                if(htmlLinePresident2[0].contains('">')) {
-                    htmlLinePresident3 =  htmlLinePresident2[0].split('">') ; 
-                    president = htmlLinePresident3[1];
-                } else {
-                    president = htmlLinePresident2[0];
+                    if(htmlLinePresident2[0].contains('">')) {
+                        htmlLinePresident3 =  htmlLinePresident2[0].split('">') ; 
+                        president = htmlLinePresident3[1];
+                    } else {
+                        president = htmlLinePresident2[0];
+                    }
+                } else
+                if(htmlLinePresident1[1].contains('">')) { 
+                    htmlLinePresident2 = htmlLinePresident1[1].split('">');
+                    htmlLinePresident3 = htmlLinePresident2[0].split('</td>');
+
+                    if(htmlLinePresident3[0].contains('title="')) {
+                        htmlLinePresident4 = htmlLinePresident3[0].split('title="');
+                        president = htmlLinePresident4[1];
+                    } else {
+                        president = htmlLinePresident3[0];
+                    }
                 }
-            } else
-            if(htmlLinePresident1[1].contains('">')) { 
-                htmlLinePresident2 = htmlLinePresident1[1].split('">');
-                htmlLinePresident3 = htmlLinePresident2[0].split('</td>');
 
-                if(htmlLinePresident3[0].contains('title="')) {
-                    htmlLinePresident4 = htmlLinePresident3[0].split('title="');
-                    president = htmlLinePresident4[1];
-                } else {
-                    president = htmlLinePresident3[0];
+                if(president != null) {
+                    president = president.replace('</a> (since 23 March 2022)','').replace('</a>', '').replace('&#39;', '\'').replace(' (referee)', '').
+                        replace('<sup id="cite_ref-JFA_President_2-0" class="reference', '').replace('<sup id="cite_ref-1" class="reference', '').
+                        replace('<sup id="cite_ref-afa2020_2-0" class="reference', '').replace('<i>Vacant</i>', '').replace(' (page does not exist)', '');
+                    
+                    if(president.equals('')) {
+                        president = null;
+                    }
                 }
             }
-
-            president = president.replace('</a> (since 23 March 2022)','').replace('</a>', '').replace('&#39;', '\'').replace(' (referee)', '').
-                replace('<sup id="cite_ref-JFA_President_2-0" class="reference', '').replace('<sup id="cite_ref-1" class="reference', '').
-                replace('<sup id="cite_ref-afa2020_2-0" class="reference', '');
         }
 
         return president;
@@ -207,7 +219,7 @@ public with sharing class FootballAssociationHtmlReader {
 
             htmlLineWebsite2 = htmlLineWebsite1[1].split('">');
             website = htmlLineWebsite2[0].replace('https://', '').replace('http://', '').replace('/eng', '').replace('/en/en-start/', '')
-                .replace('/es/', '').replace('/en', '');
+                .replace('/es/', '').replace('/en', '').replace('-', '');
 
             if(website.endsWith('/')) {
                 website = website.replace(website.substring(website.length()-1, website.length()), '');    
@@ -223,7 +235,7 @@ public with sharing class FootballAssociationHtmlReader {
         htmlLineFound = null; 
         for(String htmlLine : htmlPageLines) {
             htmlLine = htmlLine.replace('<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">&#91;1&#93;</a></sup>', '');
-            
+
             if(htmlLine.contains(continentalConfederation + '</a> affiliation')) {
                 htmlLineFound = htmlLine;
                 nameContinentalAffiliation = continentalConfederation;

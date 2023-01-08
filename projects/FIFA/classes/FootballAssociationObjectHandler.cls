@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-06-2023
+ * @last modified on  : 01-07-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationObjectHandler {
@@ -26,10 +26,10 @@ public with sharing class FootballAssociationObjectHandler {
         System.debug('      ||--> GETTING YEAR FIFA AFFILIATION ...');
         footballAssociation.year_Fifa_affiliation__c = reader.getYearFifaAffiliationField();
         System.debug('      ||--> DONE!');
-        System.debug('      ||--> GETTING YEAR COMNTINENTAL AFFILIATION ...');
+        System.debug('      ||--> GETTING YEAR CONTINENTAL AFFILIATION ...');
         footballAssociation.year_continental_affiliation__c = reader.getYearContinentalAffiliationField();
         System.debug('      ||--> DONE!');
-        System.debug('      ||--> GETTING NAME COMNTINENTAL AFFILIATION ...');
+        System.debug('      ||--> GETTING NAME CONTINENTAL AFFILIATION ...');
         footballAssociation.continental_affiliation__c = reader.getNameContinentalAffiliationField();
         System.debug('      ||--> DONE!');
         System.debug('      ||--> GETTING PRESIDENT ...');
