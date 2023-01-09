@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-08-2023
+ * @last modified on  : 01-09-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationController {
@@ -15,7 +15,7 @@ public with sharing class FootballAssociationController {
     public static void runWebToBaseConcacafConmebolUefa() {
         System.debug('************************ ||PROCESS START - CONCACAF, CONMEBOL, UEFA|| ************************');
 
-        System.debug('||--> STEP 1: GET WIKIPEDIA URL LINKS');        
+        System.debug('||--> STEP 1: GET WIKIPEDIA URLS');        
         List<String> concacafUrls = FootballAssociationLinksManager.getConcacafLinks();
         List<String> conmebolUrls = FootballAssociationLinksManager.getConmebolLinks();
         List<String> uefaUrls = FootballAssociationLinksManager.getUefaLinks();
