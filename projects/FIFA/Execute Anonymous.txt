@@ -1,0 +1,7 @@
+FootballAssociationController.runWebToBaseProcess();
+
+FootballAssociationController.runWebToBaseConcacafConmebolUefa();
+FootballAssociationController.runWebToBaseCafAfcOfc();
+
+List<Football_Association__c> footballAssociations = [select id from Football_Association__c];
+delete footballAssociations;
