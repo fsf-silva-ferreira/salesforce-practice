@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-09-2023
+ * @last modified on  : 01-12-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationController {
@@ -12,6 +12,7 @@ public with sharing class FootballAssociationController {
     private static List<String> footballAssociationHtmlPage;
     private static Football_Association__c footballAssociation;
 
+    @future(callout=true)
     public static void runWebToBaseConcacafConmebolUefa() {
         System.debug('************************ ||PROCESS START - CONCACAF, CONMEBOL, UEFA|| ************************');
 
@@ -42,6 +43,7 @@ public with sharing class FootballAssociationController {
         System.debug('************************ ||PROCESS END - CONCACAF, CONMEBOL, UEFA|| ************************');
     }
 
+    @future(callout=true)
     public static void runWebToBaseCafAfcOfc() {
         System.debug('************************ ||PROCESS START - CAF, AFC, OFC|| ************************');
 

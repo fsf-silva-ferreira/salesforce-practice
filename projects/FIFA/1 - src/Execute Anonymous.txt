@@ -1,3 +1,4 @@
+//CLEANING AND POPULATING DATA
 FootballAssociationController.runWebToBaseProcess();
 
 FootballAssociationController.runWebToBaseConcacafConmebolUefa();
@@ -5,3 +6,11 @@ FootballAssociationController.runWebToBaseCafAfcOfc();
 
 List<Football_Association__c> footballAssociations = [select id from Football_Association__c];
 delete footballAssociations;
+
+
+
+
+//SCHEDULING
+FootballAssociationScheduler footballAssociationScheduler = new FootballAssociationScheduler();
+footballAssociationScheduler.scheduleConcacafConmebolUefa();
+footballAssociationScheduler.scheduleCafAfcOfc();
