@@ -1,0 +1,11 @@
+SELECT 
+	Id, 
+	CronExpression, 
+	StartTime, 
+	TimesTriggered, 
+	NextFireTime, 
+	CronJobDetail.Id, 
+	CronJobDetail.Name, 
+	CronJobDetail.JobType
+FROM 
+	CronTrigger 
