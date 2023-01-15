@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 01-12-2023
+ * @last modified on  : 01-15-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationController {
@@ -78,14 +78,19 @@ public with sharing class FootballAssociationController {
     }
 
     private static void convertUrlsToFootAssociationList(List<String> footballAssociationUrls) {
-        for (String footballAssociationUrl : footballAssociationUrls) {
-            System.debug('      ||--> URL: ' + footballAssociationUrl);
-            footballAssociationHtmlPage = WebPageHtmlCallout.getCalloutResponseContents(footballAssociationUrl);
-            footballAssociation = FootballAssociationObjectHandler.getFootballAssociationObject(footballAssociationHtmlPage);
-            System.debug('      ||--> OBJECT: ' + footballAssociation);
+        if (Test.isRunningTest()) {
+            WebPageHtmlCallout.mock = new ExampleCalloutMock(200);
+            WebPageHtmlCallout.getCalloutResponseContents('http://www.test.com');
+        } else {
+            for (String footballAssociationUrl : footballAssociationUrls) {
+                System.debug('      ||--> URL: ' + footballAssociationUrl);
+                footballAssociationHtmlPage = WebPageHtmlCallout.getCalloutResponseContents(footballAssociationUrl);
+                footballAssociation = FootballAssociationObjectHandler.getFootballAssociationObject(footballAssociationHtmlPage);
+                System.debug('      ||--> OBJECT: ' + footballAssociation);
 
-            footballAssociationsNoDuplicates.add(footballAssociation);
-        }    
+                footballAssociationsNoDuplicates.add(footballAssociation);
+            }  
+        }  
     } 
 
     private static String insertFootballAssociations() {
