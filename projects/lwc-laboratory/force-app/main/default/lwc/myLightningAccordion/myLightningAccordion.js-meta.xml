@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+
+    <!-- A double value that binds the component to a Salesforce API version.-->
+    <apiVersion>56.0</apiVersion>
+
+    <!-- If isExposed is false, the component is not exposed to Lightning App Builder or Experience Builder.-->
+    <isExposed>true</isExposed>
+
+    <!-- Targets specify where component can be added such as on a type of Lightning Page or in Embedded Service Chat.-->
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+</LightningComponentBundle>
