@@ -1,0 +1,45 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-26-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+	<lightning-card title="Search Account - Imperative" iconname="custom:custom57">
+
+		<div class="slds-m-around_medium">
+
+			<lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search"></lightning-input>
+
+			<template if:true={accounts}>
+				<template for:each={accounts} for:item="account">
+					<lightning-layout vertical-align="center" key={account.id}>
+						<li>
+							<!--
+                                https://www.apexhours.com/conditional-rendering-in-lwc-using-lwcif-and-lwcelse/
+                            -->
+
+                            <template lwc:if={account.AccountNumber}>
+                                {account.Name}
+
+                                -
+
+                                {account.AccountNumber}
+                            </template>
+
+                            <template lwc:else>
+                                {account.Name}
+
+                                - 
+
+                                No Account Number
+                            </template>
+						</li>
+					</lightning-layout>
+				</template>
+			</template>
+
+		</div>
+	</lightning-card>
+</template>
