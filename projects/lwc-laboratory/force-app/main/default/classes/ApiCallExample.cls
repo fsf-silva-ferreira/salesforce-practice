@@ -61,6 +61,7 @@ public with sharing class ApiCallExample {
 
     public class ResponseWrapper {
 
+        //https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_properties.htm
         Integer httpCode {get; set;}
         String responseBody {get; set;}
 
