@@ -5,4 +5,39 @@ import callApiErrorResponse from '@salesforce/apex/ApiCallExample.callApiErrorRe
 
 export default class ApiData extends LightningElement {
 
+    user;
+    error;
+
+    connectedCallback() {
+    }
+    
+    callSuccessTrue() {
+        callApiSuccessResponseTrue()
+			.then(result => {
+
+			})
+			.catch(error => {
+
+			})
+    }
+
+    callSuccessFalse() {
+        callApiSuccessResponseFalse()
+			.then(result => {
+
+			})
+			.catch(error => {
+
+			})
+    }
+
+    callSuccessError() {
+        callApiErrorResponse()
+			.then(result => {
+
+			})
+			.catch(error => {
+
+			})
+    }
 }
