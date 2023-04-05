@@ -1,3 +1,24 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 04-04-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     
+    <lightning-card title="API Mock User Data - Data Found"> 
+        <p class="generic-text">Name: {userName} </p> <br>
+        <p class="generic-text">Email: {userEmail} </p> <br>
+        <p class="generic-text">Mobile: {userPhone} </p>
+    </lightning-card>
+
+    <lightning-card title="API Mock User Data - Validation Message">     
+        <p class="generic-text">Error: {apiErrorMessage} </p>
+    </lightning-card>
+
+    <lightning-card title="API Mock User Data - HTTP 500">     
+      <p class="generic-text">{http500ErrorMessage} </p>
+  </lightning-card>
+
 </template>
