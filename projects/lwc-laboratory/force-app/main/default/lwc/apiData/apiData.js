@@ -5,12 +5,15 @@ import callApiErrorResponse from '@salesforce/apex/ApiCallExample.callApiErrorRe
 
 export default class ApiData extends LightningElement {
 
+    // User data
     userName;
     userEmail;
     userPhone;
 
+    // Mocked API response data
     responseBody;
 
+    // Error data
     http500ErrorMessage;
     apiErrorMessage;
     error;

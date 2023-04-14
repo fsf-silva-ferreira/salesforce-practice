@@ -2,14 +2,15 @@
  * @description       : 
  * @author            : flavio.ferreira
  * @group             : 
- * @last modified on  : 04-02-2023
+ * @last modified on  : 04-05-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class ApiCallExample {
 
+    //https://salesforce.stackexchange.com/questions/107584/accessing-static-resource-in-apex
+
     @AuraEnabled
     public static ResponseWrapper callApiSuccessResponseTrue() {        
-        //https://salesforce.stackexchange.com/questions/107584/accessing-static-resource-in-apex
         StaticResource apiSuccessResponseTrue = 
         [
             SELECT 
@@ -22,7 +23,7 @@ public with sharing class ApiCallExample {
                 Name = 'API_Success_True'
         ];
 
-        return new ResponseWrapper(200, apiSuccessResponseTrue.body.toString());
+        return  new ResponseWrapper(200, apiSuccessResponseTrue.Body.toString());
     }
 
     @AuraEnabled
@@ -39,7 +40,7 @@ public with sharing class ApiCallExample {
                 Name = 'API_Success_False'
         ];
 
-        return new ResponseWrapper(200, apiSuccessResponseFalse.body.toString());
+        return new ResponseWrapper(200, apiSuccessResponseFalse.Body.toString());
     }
 
     @AuraEnabled
@@ -56,14 +57,20 @@ public with sharing class ApiCallExample {
                 Name = 'API_Error_Response'
         ];
 
-        return new ResponseWrapper(500, apiErrorResponse.body.toString());
+        ResponseWrapper responseWrapper = new ResponseWrapper(500,  apiErrorResponse.Body.toString());
+
+        return responseWrapper;
     }
 
-    public class ResponseWrapper {
+    public with sharing class ResponseWrapper {
 
         //https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_properties.htm
-        Integer httpCode {get; set;}
-        String responseBody {get; set;}
+        
+        @AuraEnabled
+        public Integer httpCode {get; set;}
+
+        @AuraEnabled
+        public String responseBody {get; set;}
 
         public ResponseWrapper(Integer httpCode, String responseBody) {
             this.httpCode = httpCode;
