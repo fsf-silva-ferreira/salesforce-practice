@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : flavio.ferreira
  * @group             : 
- * @last modified on  : 04-05-2023
+ * @last modified on  : 04-25-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class ApiCallExample {
@@ -58,6 +58,23 @@ public with sharing class ApiCallExample {
         ];
 
         ResponseWrapper responseWrapper = new ResponseWrapper(500,  apiErrorResponse.Body.toString());
+
+        return responseWrapper;
+    }
+
+    @AuraEnabled
+    public static ResponseWrapper lookupZipCode() {
+        String zipCode = '37550001';
+
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint('viacep.com.br/ws/' + zipCode + '/json/');
+        request.setMethod('GET');
+
+        Http http = new Http();
+        HTTPResponse response = http.send(request);
+        System.debug('API response body: ' + response.getBody());  
+        
+        ResponseWrapper responseWrapper = new ResponseWrapper(response.getStatusCode(),  response.getBody());
 
         return responseWrapper;
     }
