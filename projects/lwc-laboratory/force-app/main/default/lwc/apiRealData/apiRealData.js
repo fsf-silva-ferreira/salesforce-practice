@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import getZipCode from '@salesforce/apex/ApiCallExample.lookupZipCode';
+import lookupZipCode from '@salesforce/apex/ApiCallExample.lookupZipCode';
 
 export default class ApiRealData extends LightningElement {
 
@@ -8,13 +8,14 @@ export default class ApiRealData extends LightningElement {
     address;
 
     connectedCallback() {
-        getZipCode();
+        this.getZipCode();
     }
 
     getZipCode() {
         lookupZipCode()
             .then(result => {
                 this.apiResponseBody = JSON.parse(result.responseBody);
+                console.log('apiResponseBody:', this.apiResponseBody);
                 this.address = this.apiResponseBody.cep + ' ' + this.apiResponseBody.logradouro;
             })
             .catch(error => {

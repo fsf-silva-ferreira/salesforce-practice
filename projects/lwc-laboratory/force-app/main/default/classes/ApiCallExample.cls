@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : flavio.ferreira
  * @group             : 
- * @last modified on  : 04-25-2023
+ * @last modified on  : 05-07-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class ApiCallExample {
@@ -67,7 +67,7 @@ public with sharing class ApiCallExample {
         String zipCode = '37550001';
 
         HttpRequest request = new HttpRequest();
-        request.setEndpoint('viacep.com.br/ws/' + zipCode + '/json/');
+        request.setEndpoint('https://viacep.com.br/ws/' + zipCode + '/json/');
         request.setMethod('GET');
 
         Http http = new Http();
