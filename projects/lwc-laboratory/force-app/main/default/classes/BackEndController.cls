@@ -2,13 +2,13 @@
  * @description       : 
  * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
  * @group             : 
- * @last modified on  : 03-26-2023
+ * @last modified on  : 03-28-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
-public with sharing class BackEndController {
+public with sharing class BackendController {
 
     @AuraEnabled
-    public static String sayHelloLwc() {
+    public static String getHelloMessage() {
         return 'Hello LWC!';
     }
 }

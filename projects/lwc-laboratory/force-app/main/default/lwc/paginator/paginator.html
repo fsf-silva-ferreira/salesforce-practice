@@ -1,0 +1,33 @@
+<!--
+  @description       : https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 09-16-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <lightning-layout>
+
+      <lightning-layout-item>
+        <lightning-button
+          label="Previous"
+          icon-name="utility:chevronleft"
+          onclick={previousHandler}>
+        </lightning-button>
+      </lightning-layout-item>
+
+      <lightning-layout-item flexibility="grow"></lightning-layout-item>
+
+      <lightning-layout-item>
+        <lightning-button
+          label="Next"
+          icon-name="utility:chevronright"
+          icon-position="right"
+          onclick={nextHandler}>
+        </lightning-button>
+      </lightning-layout-item>
+
+    </lightning-layout>
+
+  </template>

@@ -64,6 +64,7 @@ public with sharing class ApiCallExample {
 
     @AuraEnabled
     public static ResponseWrapper lookupZipCode() {
+        System.debug('lookupZipCode() init');
         String zipCode = '37550001';
 
         HttpRequest request = new HttpRequest();
