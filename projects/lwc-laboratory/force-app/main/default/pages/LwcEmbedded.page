@@ -1,0 +1,20 @@
+<apex:page standardController="Account">
+	<apex:includeLightning />
+
+    <div id="lightningvf" />
+
+    <script>
+        $Lightning.use("c:alert", function() {
+          $Lightning.createComponent("c:alert",
+              {
+              },
+              "lightningvf",
+              function(cmp) {
+                console.log("button was created");
+                // do some stuff
+              }
+          );
+        });
+    </script>
+    
+</apex:page>

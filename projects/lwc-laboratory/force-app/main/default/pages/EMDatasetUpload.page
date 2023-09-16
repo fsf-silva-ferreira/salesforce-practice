@@ -1,0 +1,95 @@
+<apex:page sidebar="false" title="Trailhead Event Monitoring Data Manager" controller="Upload_controller_EM">
+    <apex:stylesheet value="{!URLFOR($Resource.upload_styles)}"/>
+    <apex:stylesheet value="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
+    
+    <h2>Trailhead Event Monitoring Data Manager</h2>
+    
+    <apex:outputtext rendered="{!!isDatasetRecentlyUpdated}" >
+        <center><font size="3" face="verdana">To complete the Event Monitoring Analytics App module in Trailhead, you need event monitoring data.<br/>
+        When directed in the module, click <b>Get DTC Electronics Event Data</b> to get the data in your Trailhead Analytics Developer Edition org.</font></center><br/>
+    </apex:outputtext>
+   
+    <apex:outputtext rendered="{!isDatasetRecentlyUpdated}" >
+            <center><font size="3" face="verdana">Looks like you already have the DTC Electronics data in your org. You're ready to complete the exercises in the Event Monitoring Analytics App module.</font></center><br/>
+    </apex:outputtext>
+         
+    <apex:form id="form_wrapper" styleClass="form_wrapper">
+        <apex:actionfunction name="uploadEMCsv" action="{!uploadEMCsv}" reRender="form_wrapper" />
+        
+        <div class="loadingWrapper" style="display:none;" id="loading">
+            <div class="loadingHexagon"></div>
+        </div>
+        
+        <!-- 
+           <apex:outputtext rendered="{!isDatasetRecentlyUpdated}" >
+            <font size="3">Looks like you already have the DTC Electronics data in your org. You're ready to complete the exercises in the Event Monitoring Analytics App module.</font><br/>
+            </apex:outputtext>
+        -->
+        <apex:outPutPanel layout="block" id="datablock" styleClass="datablock">
+            
+            <apex:outPutPanel layout="block" id="start_panel" rendered="{!job_id == null}">
+                 <apex:outputPanel layout="block" id="success_panel" rendered="{! success != null }" styleClass="loading_panel">
+                     <center><font size="3" face="verdana"><p> Successfully uploaded dataset! </p> </font></center><br/>
+                </apex:outputPanel>
+                
+                <apex:outPutPanel layout="block" id="error_panel" rendered="{! error != null }" styleClass="loading_panel">
+                    <p>An error occured while uploading your Sample Dataset.</p>
+                    
+                    <p class="error">{! error }</p>
+                    
+                    <p>Please retry again or start a discussion in the <a href="https://developer.salesforce.com/forums/#!/feedtype=RECENT&criteria=ALLQUESTIONS" target="_blank">Developers Forum</a>.</p>
+                </apex:outPutPanel>
+                
+                <apex:commandLink action="{!uploadEMCsv}" value="Get DTC Electronics Event Data" reRender="form_wrapper" onclick="loading();" styleClass="btn-action"/>
+                
+            </apex:outPutPanel>
+            
+            <apex:outPutPanel layout="block" id="loading_panel" rendered="{!job_id != null}" styleClass="loading_panel">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="loadingWrapper"><div class="loadingHexagon"></div></div>
+                            </td>
+                            <td>
+                                <h2>Import In Progress. Please Wait...</h2>
+                                
+                                <ol class="jobs">
+                                    <li class="{!init_isrunning}">Uploading the dataset</li>
+                                    <li class="{!process_isrunning}">Processing the dataset</li>
+                                    <!-- <li class="{!process_iscompleted}">Dataset uploaded</li> -->
+                                </ol>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </apex:outPutPanel>
+            
+            
+            <apex:actionPoller action="{!updateJobsData}" enabled="{!job_id != null}" reRender="datablock" interval="5" />
+        </apex:outPutPanel>
+        
+    </apex:form>
+    
+    <p class="version">Trailhead Event Monitoring Data Manager - v1.0</p>
+    
+    <apex:includeScript value="//code.jquery.com/jquery-1.12.0.min.js"  />
+    <apex:includeScript value="//code.jquery.com/jquery-migrate-1.2.1.min.js"  />
+    <script>
+    var uploadCsv = function() {
+        uploadEMCsv();
+    }
+    
+    var reload = function() {
+        window.location.reload();
+    }
+    var loading = function() {
+        // Display loading
+        $('#loading').show();
+        
+        // Hide all parts
+        $('.datablock').hide();
+        
+    }
+    </script>
+</apex:page>
