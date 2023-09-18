@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : flavio.ferreira
  * @group             : 
- * @last modified on  : 09-17-2023
+ * @last modified on  : 09-18-2023
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class ApiCallExample {
@@ -80,7 +80,7 @@ public with sharing class ApiCallExample {
         return responseWrapper;
     }
 
-    public static ResponseWrapper lookupZipByCode(String zipCode) {
+    public static ResponseWrapper lookupAddressByZip(String zipCode) {
         System.debug('lookupZipCode() init');
 
         HttpRequest request = new HttpRequest();
