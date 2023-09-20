@@ -2,13 +2,31 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-05-2023
+  @last modified on  : 09-20-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
-    
-    <lightning-card title="Zip Code API - Adress"> 
-        <p class="generic-text"> {address} </p> <br>
-    </lightning-card>
+
+    <lightning-layout>
+
+      <lightning-layout-item padding="around-small">
+        <lightning-input type="text" label="Enter ZIP Code" value={zipCode}>
+        </lightning-input>
+      </lightning-layout-item>
+
+      <lightning-layout-item padding="around-small">
+        <!-- Brand variant: Identifies the primary action in a group of buttons -->
+        <lightning-button variant="brand" label="Get Address" title="Primary action" 
+          onclick={getAddress} class="slds-m-left_x-small">          
+        </lightning-button>
+      </lightning-layout-item>
+
+      <lightning-layout-item padding="around-small">
+        <lightning-card title="Zip Code API - Adress"> 
+            <p class="generic-text"> {address} </p>
+        </lightning-card>
+      </lightning-layout-item>
+
+    </lightning-layout>
 
 </template>

@@ -1,22 +1,22 @@
 import { LightningElement } from 'lwc';
-import lookupZipCode from '@salesforce/apex/ApiCallExample.lookupZipCode';
+import lookupAddressByZip from '@salesforce/apex/ApiCallExample.lookupAddressByZip';
 
 export default class ApiRealData extends LightningElement {
 
+    zipCode;
     apiResponseBody;
     error;
     address;
 
-    connectedCallback() {
-        this.getZipCode();
-    }
-
-    getZipCode() {
-        lookupZipCode()
+    getAddress() {
+        lookupAddressByZip()
             .then(result => {
                 this.apiResponseBody = JSON.parse(result.responseBody);
+
                 console.log('apiResponseBody:', this.apiResponseBody);
-                this.address = this.apiResponseBody.cep + ' ' + this.apiResponseBody.logradouro;
+
+                this.address = this.apiResponseBody.cep + ' - ' + this.apiResponseBody.logradouro + ' - ' +
+                    this.apiResponseBody.localidade + ' (' + this.apiResponseBody.uf + ')';
             })
             .catch(error => {
                 this.error = error;
