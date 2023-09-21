@@ -9,7 +9,12 @@ export default class ApiRealData extends LightningElement {
     address;
 
     getAddress() {
-        lookupAddressByZip()
+        lookupAddressByZip
+        (
+            {
+                zipCode : zipCode
+            }
+        )
             .then(result => {
                 this.apiResponseBody = JSON.parse(result.responseBody);
 
