@@ -8,11 +8,15 @@ export default class ApiRealData extends LightningElement {
     error;
     address;
 
+    connectedCallback() {
+        this.getAddress();
+    }
+
     getAddress() {
         lookupAddressByZip
         (
             {
-                zipCode : zipCode
+                zipCode: this.zipCode
             }
         )
             .then(result => {
