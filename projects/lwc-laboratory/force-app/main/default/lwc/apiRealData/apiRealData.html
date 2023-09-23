@@ -2,31 +2,41 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 09-21-2023
+  @last modified on  : 09-23-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
 
+  <lightning-card title="Address Lookup"> 
+
     <lightning-layout>
 
       <lightning-layout-item padding="around-small">
-        <lightning-input type="text" label="Enter ZIP Code" value={zipCode}>
+        <lightning-input 
+          type="text" 
+          label="Enter ZIP Code" 
+          message-when-value-missing="ZIP code required."
+          value={zipCode}
+          onchange={handleKeyChange}
+          >
         </lightning-input>
       </lightning-layout-item>
 
       <lightning-layout-item padding="around-small">
         <!-- Brand variant: Identifies the primary action in a group of buttons -->
         <lightning-button variant="brand" label="Get Address" title="Primary action" 
-          onclick={getAddress} class="slds-p-left_xx-large">          
+          onclick={handleButtonClick} class="slds-p-left_xx-large">          
         </lightning-button>
       </lightning-layout-item>
 
       <lightning-layout-item padding="around-small">
-        <lightning-card title="Zip Code API - Adress"> 
+        <lightning-card title="Address Response"> 
             <p class="generic-text"> {address} </p>
         </lightning-card>
       </lightning-layout-item>
 
     </lightning-layout>
+
+  </lightning-card>
 
 </template>
