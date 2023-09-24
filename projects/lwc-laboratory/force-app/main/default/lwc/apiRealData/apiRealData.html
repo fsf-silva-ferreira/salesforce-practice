@@ -11,32 +11,39 @@
 
     <lightning-layout>
 
-      <lightning-layout-item padding="around-small">
-        <lightning-input 
-          type="text" 
-          label="Enter ZIP Code" 
-          required
-          message-when-value-missing="ZIP code required."
-          value={zipCode}
-          onchange={handleKeyChange}
-          minlength="8"
-          maxlength="8"
-          >
-        </lightning-input>
-      </lightning-layout-item>
+      <lightning-layout-item size="1"></lightning-layout-item>
 
-      <lightning-layout-item padding="around-small">
-        <!-- Brand variant: Identifies the primary action in a group of buttons -->
-        <lightning-button variant="brand" label="Get Address" title="Primary action" 
-          onclick={handleButtonClick} class="slds-p-left_xx-large">          
-        </lightning-button>
-      </lightning-layout-item>
+        <lightning-layout-item size="5">
+          <lightning-layout-item size="6">
+              <lightning-input 
+                type="text" 
+                label="Enter ZIP Code" 
+                required
+                message-when-value-missing="ZIP code required."
+                value={zipCode}
+                onchange={handleKeyChange}
+                minlength="8"
+                maxlength="8"
+                >
+              </lightning-input>
+          </lightning-layout-item>
 
-      <lightning-layout-item padding="around-small">
-        <lightning-card title="Address Response"> 
-            <p class="generic-text"> {address} </p>
-        </lightning-card>
-      </lightning-layout-item>
+          <lightning-layout-item size="6">
+            <!-- Brand variant: Identifies the primary action in a group of buttons -->
+            <lightning-button variant="brand" label="Get Address" title="Primary action" 
+              onclick={handleButtonClick} class="slds-m-top_medium">
+            </lightning-button>
+          </lightning-layout-item>
+        </lightning-layout-item>
+
+        <lightning-layout-item size="5">
+          <lightning-card title="Address Response">
+            <p> {address} </p>
+          </lightning-card>
+        </lightning-layout-item>
+
+        <lightning-layout-item size="1"></lightning-layout-item>
+    </lightning-layout-item>
 
     </lightning-layout>
 
