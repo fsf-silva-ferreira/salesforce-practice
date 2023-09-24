@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 09-23-2023
+  @last modified on  : 09-24-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -15,9 +15,12 @@
         <lightning-input 
           type="text" 
           label="Enter ZIP Code" 
+          required
           message-when-value-missing="ZIP code required."
           value={zipCode}
           onchange={handleKeyChange}
+          minlength="8"
+          maxlength="8"
           >
         </lightning-input>
       </lightning-layout-item>
