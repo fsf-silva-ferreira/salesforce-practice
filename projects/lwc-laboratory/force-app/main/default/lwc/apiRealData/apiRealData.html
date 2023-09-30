@@ -2,51 +2,61 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 09-24-2023
+  @last modified on  : 09-30-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
 
   <lightning-card title="Address Lookup"> 
-
-    <lightning-layout>
+    
+    <lightning-layout multiple-rows="true">
 
       <!-- Left side layout item -->
-      <lightning-layout-item size="1"></lightning-layout-item>
+      <lightning-layout-item size="2"></lightning-layout-item>
 
       <!-- Input layout item-->
-      <lightning-layout-item size="5">
-        <lightning-layout-item size="6">
-            <lightning-input 
-              type="text" 
-              label="Enter ZIP Code" 
-              required
-              message-when-value-missing="ZIP code required."
-              value={zipCode}
-              onchange={handleKeyChange}
-              minlength="8"
-              maxlength="8"
-              >
-            </lightning-input>
-        </lightning-layout-item>
+      <lightning-layout-item size="3">
+        <div class="slds-m-around_small">
+          <lightning-layout-item size="6">
+              <lightning-input 
+                type="text" 
+                label="Enter ZIP Code"
+                required
+                message-when-value-missing="ZIP code required."
+                value={zipCode}
+                onchange={handleKeyChange}
+                minlength="8"
+                maxlength="8">
+              </lightning-input>
+          </lightning-layout-item>
 
-        <lightning-layout-item size="6">
-          <!-- Brand variant: Identifies the primary action in a group of buttons -->
-          <lightning-button variant="brand" label="Get Address" title="Primary action" 
-            onclick={handleButtonClick} class="slds-m-top_medium">
-          </lightning-button>
-        </lightning-layout-item>
+          <lightning-layout-item size="6">
+            <!-- Brand variant: Identifies the primary action in a group of buttons -->
+            <lightning-button 
+              variant="brand"
+              label="Get Address" 
+              title="Primary action" 
+              onclick={handleButtonClick}
+              class="slds-m-top_x-small">
+            </lightning-button>
+          </lightning-layout-item>
+        </div>
       </lightning-layout-item>
 
       <!-- Output layout item -->
       <lightning-layout-item size="5">
-        <lightning-card title="Address Response">
-          <p> {address} </p>
-        </lightning-card>
+        <div class="slds-m-around_small">
+          <lightning-input 
+            type="text" 
+            label="Address" 
+            value={address}
+            disabled>
+          </lightning-input>
+        </div>
       </lightning-layout-item>
 
       <!-- Right side layout item -->
-      <lightning-layout-item size="1"></lightning-layout-item>
+      <lightning-layout-item size="2"></lightning-layout-item>
 
     </lightning-layout>
 
