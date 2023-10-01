@@ -2,14 +2,16 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 04-01-2023
+  @last modified on  : 10-01-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
-    <lightning-card title="Apex Imperative Method With Params" icon-name="custom:custom63">
 
+    <lightning-card title="Apex Imperative Method with Params" icon-name="custom:custom63">
+
+
+        <!-- Search layout -->
         <div class="slds-var-m-around_medium">
-
             <lightning-layout vertical-align="end" class="slds-var-m-bottom_small">
                 <lightning-layout-item flexibility="grow">
                     <lightning-input
@@ -19,7 +21,6 @@
                         value={searchKey}
                     ></lightning-input>
                 </lightning-layout-item>
-
                 <lightning-layout-item class="slds-var-p-left_xx-small">
                     <lightning-button
                         label="Search"
@@ -28,28 +29,32 @@
                 </lightning-layout-item>
             </lightning-layout>
 
-            <template lwc:if={contacts}>
+            <!-- Constacts list displayed -->
+            <template lwc:if={isContactsFound}>
                 <template for:each={contacts} for:item="contact">
-                    <p key={contact.Id}>{contact.Name}</p>
+                    <p key={contact.Id}>{contact.Name} </p>
                 </template>
             </template>
 
+            <!-- Not-found message -->
+            <template lwc:elseif={isContactsEmpty}>
+                No accounts found.
+            </template>
+
+            
+            <!-- Ussing 'Error Panel' component -->
             <template lwc:elseif={error}>
                 <c-error-panel errors={error}></c-error-panel>
-            </template> 
-
-            <template lwc:else>
-                <p>No results found</p>    
-            </template>           
+            </template>
         </div>
-        <!--
+
+
+        <!-- Using 'View Source' component -->
         <c-view-source
             source="lwc/apexImperativeMethodWithParams"
-            slot="footer"
-        >
+            slot="footer">
             Call an Apex method with parameters imperatively.
         </c-view-source>
-        -->
 
     </lightning-card>
 
