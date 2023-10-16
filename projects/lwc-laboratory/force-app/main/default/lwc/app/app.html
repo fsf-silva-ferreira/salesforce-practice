@@ -1,0 +1,27 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 10-16-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card>
+        <template lwc:if={ready}>
+            <div id="display" class="slds-var-m-around_small">
+                <div>Name: {name}</div>
+                <div>Description: {description}</div>
+                <lightning-badge label={material}></lightning-badge>
+                <lightning-badge label={category}></lightning-badge>
+                <div>Price: {price}</div>
+                <div><img src={pictureUrl}/></div>
+            </div>
+        </template>
+
+        <template lwc:else>
+            <div id="waiting" class="slds-var-m-around_small">Loading…</div>
+        </template>
+    </lightning-card>
+
+</template>
