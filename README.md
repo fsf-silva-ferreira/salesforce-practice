@@ -1,2 +1,2 @@
 # salesforce-trailhead
-Repository for some challenges of modules, projects, trails and trailmixes in Trailhead.
+Repository for studying and practicing many subjects about Salesforce, such as development, administration, etc.
