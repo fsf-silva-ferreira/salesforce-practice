@@ -1,0 +1,15 @@
+<aura:component
+    implements="lightning:appHomeTemplate"
+    description="Three columns layout"
+    access="global"
+>
+    <aura:attribute name="left" type="Aura.Component[]" access="global" />
+    <aura:attribute name="center" type="Aura.Component[]" access="global" />
+    <aura:attribute name="right" type="Aura.Component[]" access="global" />
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-12 left">{!v.left}</div>
+        <div class="slds-col slds-size_7-of-12 center">{!v.center}</div>
+        <div class="slds-col slds-size_3-of-12 right">{!v.right}</div>
+    </div>
+</aura:component>

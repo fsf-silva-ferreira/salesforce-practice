@@ -1,0 +1,22 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 10-21-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <div class="container">
+
+        <template for:each={bikes} for:item="bike">            
+            <c-tile 
+                key={bike.fields.Id.value} 
+                product={bike} 
+                ontileclick={handleTileClick}>
+            </c-tile>
+        </template>
+        
+    </div>
+
+</template>
