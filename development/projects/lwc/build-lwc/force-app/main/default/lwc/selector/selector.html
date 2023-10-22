@@ -2,23 +2,23 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 10-21-2023
+  @last modified on  : 10-22-2023
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
 
     <div class="wrapper">
-        <header class="header">Select a Bike</header>
-        <section class="content">
-            <div class="columns">
-            <main class="main" >
-                <c-list onproductselected={handleProductSelected}></c-list>
-            </main>
-            <aside class="sidebar-second">
-                <c-detail product-id={selectedProductId}></c-detail>
-            </aside>
-            </div>
-        </section>
+      <header class="header">Available Bikes for {name}</header>
+      <section class="content">
+        <div class="columns">
+          <main class="main" >
+            <c-list onproductselected={handleProductSelected}></c-list>
+          </main>
+          <aside class="sidebar-second">
+            <c-detail product-id={selectedProductId}></c-detail>
+          </aside>
+        </div>
+      </section>
     </div>
     
-</template>
+  </template>
