@@ -1,0 +1,30 @@
+<!--
+  @description       : Conditional rendereing.
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 10-26-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <lightning-card title="Conditional Rendering with Button" icon-name="utility:hierarchy">
+        <div class="slds-m-around_medium">
+            <p>
+                <template lwc:if={show}>
+                    PEEK-A-BOO!
+                </template>
+                <template lwc:else>
+                    I'm hiding!
+                </template>
+            </p>
+            <p>
+                <lightning-button 
+                    onclick={handleClick} 
+                    variant="neutral" 
+                    label="Switch">
+                </lightning-button>
+            </p>
+        </div>
+    </lightning-card>
+
+</template>
