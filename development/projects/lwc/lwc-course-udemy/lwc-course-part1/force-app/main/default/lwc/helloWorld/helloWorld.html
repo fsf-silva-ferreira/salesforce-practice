@@ -1,0 +1,22 @@
+<!--
+  @description       : Section 9 - Data Binding in LWC - Part 1
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-17-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <lightning-card title="Hello World">
+        <div class="slds-m-around_medium">
+            <p>Hello, {greeting}</p>
+            
+            <lightning-input 
+                label="Name" 
+                value={greeting} 
+                onchange={changeHandler}>
+            </lightning-input>
+        </div>
+    </lightning-card>
+
+</template>
