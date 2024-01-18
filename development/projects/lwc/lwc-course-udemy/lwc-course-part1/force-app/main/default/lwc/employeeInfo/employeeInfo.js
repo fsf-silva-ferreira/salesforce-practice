@@ -7,7 +7,7 @@ export default class EmployeeInfo extends LightningElement {
     age;
     salary;
 
-    //Boolean property
+    //Property controlling data visibility
     show = true;
 
 
