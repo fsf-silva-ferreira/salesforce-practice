@@ -1,0 +1,20 @@
+<!--
+  @description       : 20 - Passing Data from Parent to Child - Parent
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-21-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card title="Employee List">
+        <ul>
+            <template for:each={employees} for:item="employee">
+                <li key={employee.name} style="padding: 10px">
+                    <c-employee-detail details={employee}></c-employee-detail>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+
+</template>
