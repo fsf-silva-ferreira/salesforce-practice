@@ -1,6 +1,14 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class BoolParent extends LightningElement {
+
+    //Boolean public property must default to false
+    @api
+    show = false;
+
+    handleShowHide() {
+        this.show = !this.show;
+    }
 
     constructor() {
         super();

@@ -5,8 +5,30 @@
   @last modified on  : 01-21-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
+
+<!--
+  Sources: 
+  https://developer.salesforce.com/docs/platform/lwc/guide/create-lifecycle-hooks.html
+  https://www.salesforcepoint.com/2020/10/disconnectedCallback-lwc-example.html
+-->
 <template>
     
-    <c-bool-child></c-bool-child>
+  <lightning-card title="Lifecycle Hooks Example">
+      <p class="slds-m-around_medium">
+        I am parent LWC component.
+      </p>
+
+      <lightning-button 
+          variant="brand" 
+          slot="actions" 
+          label="Show/Hide" 
+          onclick={handleShowHide}
+          class="slds-m-left_x-small">
+      </lightning-button>
+
+      <template if:false={show}>
+          <c-bool-child></c-bool-child>
+      </template>
+  </lightning-card>    
     
 </template>

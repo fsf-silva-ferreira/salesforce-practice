@@ -1,10 +1,8 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class BoolChild extends LightningElement {
 
-    @api
-    show = false;
-
+    //Lifecycle hooks
     constructor() {
         super()
         console.log('Constructor on the child is called');
