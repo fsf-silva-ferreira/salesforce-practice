@@ -1,0 +1,75 @@
+<!--
+  @description       : 31 - View and Create Record with LDS
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-25-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card title="Contact Manager">
+        <lightning-layout>
+
+            <!-- New contact form -->
+            <lightning-layout-item size="6">
+                <lightning-card title="Create a New Contact">                    
+                    <lightning-input 
+                        class="slds-m-around_small" 
+                        name="Contact Name" 
+                        label="Name" 
+                        onchange={handleContactNameChange}>
+                    </lightning-input>
+
+                    <lightning-input 
+                        class="slds-m-around_small" 
+                        name="Contact Phone" 
+                        label="Phone" 
+                        onchange={handleContactPhoneChange}>
+                    </lightning-input>
+
+                    <lightning-input 
+                        class="slds-m-around_small" 
+                        name="Contact Email" 
+                        label="Email" 
+                        onchange={handleContactEmailChange}>
+                    </lightning-input>
+
+                    <lightning-button 
+                        class="slds-m-around_small" 
+                        label="Create Contact" 
+                        onclick={createContact} 
+                        variant="brand">
+                    </lightning-button>
+                </lightning-card>            
+            </lightning-layout-item>
+
+            <!-- New contact display -->
+            <lightning-layout-item size="6">
+                <lightning-card title="View Contact Record">
+                    <p>
+                        <lightning-formatted-text 
+                            class="slds-m-around_small" 
+                            value={newName}>
+                        </lightning-formatted-text>
+                    </p>
+
+                    <p>
+                        <lightning-formatted-phone 
+                            class="slds-m-around_small" 
+                            value={newPhone}>
+                        </lightning-formatted-phone>
+                    </p>
+
+                    <p>
+                        <lightning-formatted-email 
+                            class="slds-m-around_small" 
+                            value={newEmail}>
+                        </lightning-formatted-email>
+                    </p>
+                </lightning-card>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </lightning-card>
+    
+</template>
