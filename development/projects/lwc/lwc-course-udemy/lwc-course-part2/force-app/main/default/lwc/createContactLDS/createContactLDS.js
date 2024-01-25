@@ -31,7 +31,7 @@ export default class CreateContactLDS extends LightningElement {
         const contactRecordInput = 
         {
             apiName:'Contact',
-            fields
+            fields //Shorthand syntax
         };
 
         createRecord(contactRecordInput)
