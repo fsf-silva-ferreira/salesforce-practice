@@ -1,0 +1,25 @@
+<!--
+  @description       : 34 - Display Record with Custom Layout
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-27-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card title="Record View Form">
+        <lightning-record-view-form record-id={recordId} object-api-name="Account">
+            <div class="slds-grid slds-m-around_medium">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Name"></lightning-output-field>
+                    <lightning-output-field field-name="Phone"></lightning-output-field>
+                </div>
+
+                <div class="slds-col slds-size_2-of-2">
+                    <lightning-output-field field-name="Industry"></lightning-output-field>
+                    <lightning-output-field field-name="AnnualRevenue"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+    </lightning-card>
+</template>

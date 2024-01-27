@@ -1,0 +1,33 @@
+<!--
+  @description       : 30 - How to Create a Record with LDS
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-24-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card title="Create Contact with LDS">
+        <lightning-layout multiple-rows="true">
+
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input name="Contact Name" label="Name" onchange={contactNameChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input name="Contact Email" label="Email" onchange={contactEmailChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input name="Contact Phone" label="Phone" onchange={contactPhoneChangeHandler}></lightning-input>
+            </lightning-layout-item>
+            
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-button name="Create Contact" label="Create Contact" onclick={createContact} variant="brand"></lightning-button>
+            </lightning-layout-item>
+            
+        </lightning-layout>
+
+    </lightning-card>
+
+</template>
