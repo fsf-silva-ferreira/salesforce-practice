@@ -1,0 +1,39 @@
+<!--
+  @description       : 40 - Using Toast Notifications in LWC
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-28-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card>
+        <center>
+            <div class="slds-m-top_medium sldsm-m-bottom_x-large">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                    <b> Toast Notification Demo </b>
+                </h2>
+            </div>
+
+            <lightning-button-group>
+                <lightning-button 
+                    label="Show Success" 
+                    onclick={handleSuccess}>
+                </lightning-button>
+                <lightning-button 
+                    label="Show Error" 
+                    onclick={handleError}>
+                </lightning-button>
+                <lightning-button 
+                    label="Show Warning" 
+                    onclick={handleWarning}>
+                </lightning-button>
+                <lightning-button 
+                    label="Show Information" 
+                    onclick={handleInformation}>
+                </lightning-button>
+            </lightning-button-group>
+        </center>
+    </lightning-card>
+
+</template>
