@@ -1,0 +1,72 @@
+<!--
+  @description       : 42 to 45 - Navigation Service in Lightning Web Components
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-29-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+
+<!--
+    Sources:
+    https://developer.salesforce.com/docs/platform/lwc/guide/reference-page-reference-type.html
+    https://www.lightningdesignsystem.com/utilities/text/
+-->
+
+<template>
+
+    <lightning-card>
+        <lightning-layout multiple-rows="true">
+
+            <lightning-layout-item size="12" class="slds-text-heading_medium slds-text-align_center">
+                <b>Service in Lightning Web Components</b>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-card title="Navigate to Record Page">
+                    <lightning-button-group class="slds-m-left_medium">
+                        <lightning-button label="New Record Page" onclick={navigateToNewRecordPage}></lightning-button>
+                        <lightning-button label="Edit Record Page" onclick={navigateEditRecordPage}></lightning-button>
+                        <lightning-button label="View Record Page" onclick={navigateToViewRecordPage}></lightning-button>
+                    </lightning-button-group>
+                </lightning-card>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+                <lightning-card title="Navigate to List Views">
+                    <lightning-button-group class="slds-m-left_medium">
+                        <lightning-button label="Account Recent View" onclick={navigateToRecenttListView}></lightning-button>
+                        <lightning-button label="Related List View" onclick={navigateToRelatedListView}></lightning-button>                
+                    </lightning-button-group>
+                </lightning-card>
+            </lightning-layout-item>
+            
+            <lightning-layout-item size="6">
+                <lightning-card title="Navigate to Object Pages">
+                    <lightning-button-group class="slds-m-left_medium">
+                        <lightning-button label="Account Page" onclick={navigateToAccountPage}></lightning-button>
+                        <lightning-button label="Contact Page" onclick={navigateToContactPage}></lightning-button>
+                    </lightning-button-group>
+                </lightning-card>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6">
+            <lightning-card title="Navigate to Web Page">
+                <lightning-button-group class="slds-m-left_medium">
+                    <lightning-button label="Web Page" onclick={navigateToWebPage}></lightning-button>
+                </lightning-button-group>
+            </lightning-card>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12">
+                <lightning-card title="Navigate to Standard Home Tabs">
+                    <lightning-button-group class="slds-m-left_medium">
+                        <lightning-button label="Home Page" onclick={navigateToHomePage}></lightning-button>
+                        <lightning-button label="Chatter Page" onclick={navigateToChatterPage}></lightning-button>
+                    </lightning-button-group>
+                </lightning-card>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </lightning-card>
+
+</template>
