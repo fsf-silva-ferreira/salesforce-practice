@@ -1,0 +1,84 @@
+<!--
+  @description       : Displays all bike details.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 02-03-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card icon-name="standard:apex-plugin">
+
+        <template if:true={product.data}>
+            <span slot="title">{product.data.fields.Name.value}</span>
+            <lightning-button-icon
+                icon-name="utility:expand-alt"
+                slot="actions"
+                onclick={handleNavigateToRecord}>
+            </lightning-button-icon>  
+            
+            <div class="slds-m-horizontal_medium">
+                <img
+                    src={product.data.fields.Picture_URL.value}
+                    class="product"
+                    alt="Produxt picture"
+                />
+                <div class="row">
+                    <div>Category:</div>
+                    <div>{product.data.fields.Category__c.value}</div>
+                </div>
+                <div class="row">
+                    <div>Level:</div>
+                    <div>{product.data.fields.Level__c.value}</div>
+                </div>
+                <div class="row">
+                <div>MSRP:</div>
+                    <div>
+                        <lightning-formatted-number
+                            format-style="currency"
+                            currency-code="USD"
+                            value={product.data.fields.MSRP__C.value}
+                            class="price">
+                        </lightning-formatted-number>
+                    </div>
+                </div>
+
+                <section>Electric Components</section>
+                <div class="row">
+                    <div>Battery:</div>
+                    <div>500Wh</div>
+                </div>
+                <div class="row">
+                    <div>Charge:r</div>
+                    <div>42V4A</div>
+                </div>
+                <div class="row">
+                    <div>Motor:</div>
+                    <div>250 watt, 75Nm</div>
+                </div>
+
+                <section>Frame</section>
+                <div class="row">
+                    <div>Frame:</div>
+                    <div>{product.data.fields.Material__c.value}</div>
+                </div>                
+                <div class="row">
+                    <div>Fork:</div>
+                    <div>Air spring, adjustable rebound</div>
+                </div>
+
+                <section>Brakes</section>
+                <div class="row">
+                    <div>Front:</div>
+                    <div>Hydraulic disc, 200mm</div>
+                </div>
+                <div class="row">
+                    <div>Rear:</div>
+                    <div>Hydraulic disc, 200mm</div>
+                </div>
+            </div>
+        </template>
+
+    </lightning-card>
+
+</template>

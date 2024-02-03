@@ -1,0 +1,37 @@
+<!--
+  @description       : Displays basic data of the bike - picture, name and MSRP.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 02-03-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <div draggable={draggable} ondragstart={handleDragStart}>
+        <!-- Tile link to bike details -->
+        <a onclick={handleClick}>
+            <!-- Displays primary data of the bike -->
+            <div class="content">
+                <img
+                    src={pictureUrl}
+                    class="product slds-align_absolute-center"
+                    alt="Prodcut picture"
+                />
+                <div>
+                    <p class="title slds-align_absolute-center">{name}</p>
+                    <p class="slds-align_absolute-center">
+                        MSRP:&nbsp; <!-- non-braking space -->
+                        <lightning-formatted-number
+                            format-style="currency"
+                            currency-code="USD"
+                            value={msrp}
+                            class="price"
+                            maximum-fraction-digits="0">
+                        </lightning-formatted-number>                            
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+</template>

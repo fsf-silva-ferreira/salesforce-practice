@@ -1,0 +1,27 @@
+img.product {
+    width: 100%;
+    margin-bottom: 8px;    
+}
+
+.row {
+    width: 80px;
+}
+
+.row div:first-child {
+    width: 80px;
+}
+
+.row div:nth-child(2) {
+    flex: 1;
+}
+
+section {
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+.price {
+    color: #c23335;
+}

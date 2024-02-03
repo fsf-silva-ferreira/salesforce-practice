@@ -1,0 +1,16 @@
+.slds-card {
+    background: rgb(243, 242, 242);
+}
+
+.search-bar {
+    display: block;
+    margin: 0 0.5rem 0.3 rem 0.5rem;
+}
+
+c-product-tile {
+    min-width: 200px;
+}
+
+c-paginator {
+    display: block;
+}
