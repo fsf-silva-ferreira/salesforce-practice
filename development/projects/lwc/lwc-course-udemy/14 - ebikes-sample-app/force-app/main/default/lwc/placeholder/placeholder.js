@@ -1,12 +1,11 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 
-import BIKE_ASSETS_URL from '@salesforce/resourceUrl/bike_assets'
-
+/** Static Resources. */
+import BIKE_ASSETS_URL from '@salesforce/resourceUrl/bike_assets';
 
 export default class Placeholder extends LightningElement {
+    @api message;
 
-    logoUrl = BIKE_ASSETS_URL + '/logo.svg';
-
-    @api
-    message;   
+    /** Url for bike logo. */
+    @track logoUrl = BIKE_ASSETS_URL + '/logo.svg';
 }

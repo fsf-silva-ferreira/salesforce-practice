@@ -1,27 +1,23 @@
 import { LightningElement, api } from 'lwc';
 
 export default class Paginator extends LightningElement {
+    /** The current page number. */
+    @api pageNumber;
 
-    @api
-    pageNumber;
-    @api
-    pageSize;
-    @api
-    totalItemCount;
+    /** The number of items on a page. */
+    @api pageSize;
 
+    /** The total number of items in the list. */
+    @api totalItemCount;
 
-    //Event handlers
     handlePrevious() {
-        previousPageEvent = new CustomEvent('previous');
-        this.dispatchEvent(previousPageEvent);
+        this.dispatchEvent(new CustomEvent('previous'));
     }
 
     handleNext() {
-        nextPageEvent = new CustomEvent('next');
-        this.dispatchEvent(nextPageEvent);
+        this.dispatchEvent(new CustomEvent('next'));
     }
 
-    //Getters and setters
     get currentPageNumber() {
         return this.totalItemCount === 0 ? 0 : this.pageNumber;
     }
