@@ -18,7 +18,7 @@ export default class Paginator extends LightningElement {
     }
 
     handleNext() {   
-        //const, var, or let required to make previous button work     
+        //const, var, or let required to make next button work     
         const nextPageEvent = new CustomEvent('next');
         this.dispatchEvent(nextPageEvent);
     }
