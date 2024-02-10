@@ -4,9 +4,10 @@
 
 .search-bar {
     display: block;
-    margin: 0 0.5rem 0.3rem 0.5rem;
+    margin: 0 0.5rem 0.3 rem 0.5rem;
 }
 
+/* Issue root cause: This class was missing*/
 .content {
     display: flex;
     flex-wrap: wrap;
