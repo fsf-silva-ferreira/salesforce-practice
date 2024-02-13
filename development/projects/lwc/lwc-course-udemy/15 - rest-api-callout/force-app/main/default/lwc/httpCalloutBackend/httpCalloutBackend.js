@@ -2,7 +2,7 @@ import { LightningElement } from 'lwc';
 import getCurrencyData from '@salesforce/apex/CurrencyConversionController.retrieveCurencyConversionRates';
 
 
-const options = 
+const currencies = 
 [
     {label: 'USD', value: 'USD'},
     {label: 'EUR', value: 'EUR'},
@@ -13,53 +13,90 @@ const options =
 
 export default class HttpCalloutBackend extends LightningElement {
 
-    fromCurrencyValue;
-    toCurrencyValue;
-    options = options;
-    toCurrencyOptions = options;
-    conversionData;
+    currencyOptions = currencies;
 
+    //Currency properties
+    fromCurrencyValueInput;
+    toCurrencyValueInput;
+    fromCurrencyValueOutput;
+    toCurrencyValueOutput;
+
+    //Control property
+    currenciesTheSame;
+    apiRateLimit;
+
+    //API response
+    conversionData;
+    
+
+    //Event handlers
     handleFromCurrencyChange(event) {
-        this.fromCurrencyValue = event.detail.value;
-        console.log('this.handleFromCurrencyChange => ' + this.fromCurrencyValue);
+        this.fromCurrencyValueInput = event.detail.value;
+        console.log('this.fromCurrencyValueInput => ' + this.fromCurrencyValueInput);
     }
 
     handleToCurrencyChange(event) {
-        this.toCurrencyValue = event.detail.value;
-        console.log('this.toCurrencyValue => ' + this.toCurrencyValue);
+        this.toCurrencyValueInput = event.detail.value;
+        console.log('this.toCurrencyValueInput => ' + this.toCurrencyValueInput);
+    }
+    
+    handleCurrencyConversion() {
+        if(this.fromCurrencyValueInput !== this.toCurrencyValueInput) {
+            this.currenciesTheSame = false;
+            this.getConversionRate();    
+        } else {
+            this.apiRateLimit = false;
+            this.conversionData = null;
+            this.currenciesTheSame = true;
+        }
     }
 
-    //TO-DO: Commit this version
-    handleCurrencyConversion() {
-        let endpoint = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency='+this.fromCurrencyValue+'&to_currency='+this.toCurrencyValue
-        +'&apikey=PNSMD5PNMH0VMF5P';
+    getConversionRate() {
+        //TO-DO: Test happy path
+        //let endpoint = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency='+this.fromCurrencyValueInput+'&to_currency='+this.toCurrencyValueInput
+        //+'&apikey=PNSMD5PNMH0VMF5P';
 
-        getCurrencyData({strEndpointUrl: endpoint})
+        //getCurrencyData({strEndpointUrl: endpoint})
+        getCurrencyData
+        (
+            {
+                fromCurrencyValue: this.fromCurrencyValueInput, 
+                toCurrencyValue: this.toCurrencyValueInput
+            }
+        )
         .then(
             data => {
-                let objData = {
-                    From_Currency_Name: '',
-                    From_Currency_Code: '',
-                    To_Currency_Name: '',
-                    To_Currency_Code: '',
-                    Last_Refreshed:'',
-                    Exchange_rate:''
-                };
-
                 window.console.log('json response => ' + JSON.stringify(data));
                 let exchangeData = data['Realtime Currency Exchange Rate'];
-                window.console.log('exchange data => ' + exchangeData);
+                window.console.log('exchange data => ' + JSON.stringify(exchangeData));
 
-                objData.From_Currency_Code = exchangeData['1. From_Currency Code'];
-                objData.From_Currency_Name = exchangeData['2. From_Currency Name'];
-                objData.To_Currency_Code = exchangeData['3. To_Currency Code'];
-                objData.To_Currency_Name = exchangeData['4. To_Currency Name'];
-                objData.Exchange_rate = exchangeData['5. Exchange Rate'];
-                objData.Last_Refreshed = exchangeData['6. Last Refreshed'];
+                const apiInformation = data['Information'];
+                if(exchangeData == undefined) {                    
+                    if(apiInformation.includes('API rate limit is 25 requests per day')) {                    
+                        this.apiRateLimit = true;                        
+                    }
+                } else {
+                    this.conversionData = {
+                        From_Currency_Name: '',
+                        From_Currency_Code: '',
+                        To_Currency_Name: '',
+                        To_Currency_Code: '',
+                        Last_Refreshed:'',
+                        Exchange_rate:''
+                    };
 
-                this.conversionData = objData;
+                    this.conversionData.From_Currency_Code = exchangeData['1. From_Currency Code'];
+                    this.conversionData.From_Currency_Name = exchangeData['2. From_Currency Name'];
+                    this.conversionData.To_Currency_Code = exchangeData['3. To_Currency Code'];
+                    this.conversionData.To_Currency_Name = exchangeData['4. To_Currency Name'];
+                    this.conversionData.Exchange_rate = exchangeData['5. Exchange Rate'];
+                    this.conversionData.Last_Refreshed = exchangeData['6. Last Refreshed'];
 
-                window.console.log('objData => ' + JSON.stringify(objData));
+                    this.fromCurrencyValueOutput = this.fromCurrencyValueInput;
+                    this.toCurrencyValueOutput = this.toCurrencyValueInput;           
+
+                    window.console.log('this.conversionData => ' + JSON.stringify(this.conversionData));
+                }                
             }            
         )
         .catch(
