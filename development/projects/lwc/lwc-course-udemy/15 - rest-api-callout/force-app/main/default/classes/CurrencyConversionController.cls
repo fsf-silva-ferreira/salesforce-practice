@@ -2,25 +2,31 @@
  * @description       : API call to get currency exchange rate.
  * @author            : Flávio Ferreira
  * @group             : 
- * @last modified on  : 02-13-2024
+ * @last modified on  : 02-14-2024
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ * 
+ * 
+ * Search source:
+ * In apex, how to replace the value in the string
+ * https://salesforce.stackexchange.com/questions/276105/in-apex-how-to-replace-the-value-in-the-string
 **/
 public with sharing class CurrencyConversionController {
 
     @AuraEnabled
     public static Map<String, Object> retrieveCurencyConversionRates(String fromCurrencyValue, String toCurrencyValue) {
-        Web_Service_Config__mdt webServiceConfig = Web_Service_Config__mdt.getInstance('CurrencyExchangeRate'); 
+        String currencyExchangeRateResponse = null;
+        Map<String, Object> mapJsonData = new Map<String, Object>();        
+        Web_Service_Config__mdt webServiceConfig = Web_Service_Config__mdt.getInstance('CurrencyExchangeRate');
 
-        Map<String, Object> mapJsonData = new Map<String, Object>();
-        String strResponse = null;
-        //String endpoint = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency='+ fromCurrencyValue +'&to_currency=' + toCurrencyValue
-            //+'&apikey=PNSMD5PNMH0VMF5P';
-        String endpoint = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency='+ fromCurrencyValue +'&to_currency=' + toCurrencyValue
-        +'&apikey=' + webServiceConfig.apiKey__c;
+        List<String> apiQueryParameters = new List<String>();
+        apiQueryParameters.add(fromCurrencyValue);
+        apiQueryParameters.add(toCurrencyValue);
+        apiQueryParameters.add(webServiceConfig.apiKey__c);
         
+        String endpoint = String.format(webServiceConfig.endpoint__c, apiQueryParameters);
+
         HttpRequest httpRequest = new HttpRequest();
         httpRequest.setEndpoint(endpoint);
-        //httpRequest.setMethod('GET');
         httpRequest.setMethod(webServiceConfig.httpMethod__c);
         httpRequest.setHeader('Authorization', 'OAuth ' + UserInfo.getSessionId());
         httpRequest.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId());
@@ -29,7 +35,7 @@ public with sharing class CurrencyConversionController {
             Http http = new Http();
             HttpResponse httpResponse  = http.send(httpRequest);
             if (httpResponse.getStatusCode() == 200) {
-                strResponse = httpResponse.getBody();
+                currencyExchangeRateResponse = httpResponse.getBody();
             } else {
                 throw new CalloutException(httpResponse.getBody());
             }
@@ -37,8 +43,8 @@ public with sharing class CurrencyConversionController {
             throw e;
         }
 
-        if(String.isNotBlank(strResponse)) {
-            mapJsonData = (Map<String,Object>) JSON.deserializeUntyped(strResponse);
+        if(String.isNotBlank(currencyExchangeRateResponse)) {
+            mapJsonData = (Map<String,Object>) JSON.deserializeUntyped(currencyExchangeRateResponse);
             System.debug('mapJsonData = ' + mapJsonData);
         }
 

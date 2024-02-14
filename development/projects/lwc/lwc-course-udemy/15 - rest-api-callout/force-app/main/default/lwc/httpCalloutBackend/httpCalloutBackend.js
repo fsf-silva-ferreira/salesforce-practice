@@ -15,7 +15,7 @@ export default class HttpCalloutBackend extends LightningElement {
 
     currencyOptions = currencies;
 
-    //Currency properties
+    //Currency input properties
     fromCurrencyValueInput;
     toCurrencyValueInput;
     fromCurrencyValueOutput;
@@ -51,12 +51,8 @@ export default class HttpCalloutBackend extends LightningElement {
         }
     }
 
+    //Business logics
     getConversionRate() {
-        //TO-DO: Test happy path
-        //let endpoint = 'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency='+this.fromCurrencyValueInput+'&to_currency='+this.toCurrencyValueInput
-        //+'&apikey=PNSMD5PNMH0VMF5P';
-
-        //getCurrencyData({strEndpointUrl: endpoint})
         getCurrencyData
         (
             {
@@ -66,11 +62,9 @@ export default class HttpCalloutBackend extends LightningElement {
         )
         .then(
             data => {
-                window.console.log('json response => ' + JSON.stringify(data));
                 let exchangeData = data['Realtime Currency Exchange Rate'];
-                window.console.log('exchange data => ' + JSON.stringify(exchangeData));
-
                 const apiInformation = data['Information'];
+
                 if(exchangeData == undefined) {                    
                     if(apiInformation.includes('API rate limit is 25 requests per day')) {                    
                         this.apiRateLimit = true;                        

@@ -2,7 +2,7 @@
   @description       : Calls Conversion Rate API from Apex class.
   @author            : Flávio Ferreira
   @group             : 
-  @last modified on  : 02-13-2024
+  @last modified on  : 02-14-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -55,12 +55,14 @@
             </lightning-layout-item>
         </template>
 
+        <!-- Exception path #1: Equal currencies -->
         <template if:true={currenciesTheSame}>
             <div class="slds-p-around_medium" id="modal_content-id-2">
                 <div style="font-size: 15px" class="slds-align_absolute-center slds-m-bottom_small"><h1><b>Conversion rate not available: Currencies are the same!</b></h1></div>
             </div>    
         </template>
 
+        <!-- Exception path #2: API rate limit -->
         <template if:true={apiRateLimit}>
             <div class="slds-p-around_medium" id="modal_content-id-3">
                 <div style="font-size: 15px" class="slds-align_absolute-center slds-m-bottom_small"><h1><b>Conversion rate not available: Max. 25 API requests per day!</b></h1></div>
