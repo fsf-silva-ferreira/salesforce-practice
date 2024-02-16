@@ -1,0 +1,77 @@
+<!--
+  @description       : Calls Conversion Rate API right from LWC.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 02-15-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    
+    <lightning-card title="Realtime Currency Exchenge Rate" icon-name="standard:currency">
+
+        <!-- Currency fields - Input Layout -->
+        <lightning-layout multiple-rows="true" vertical-align="end">
+            <lightning-layout-item size="12" padding="around-small">
+                <b>Calling API from frontend</b>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning-combobox title="Select Currency" label="From Base Currency" value={fromCurrencyValueInput} placeholder="--Select--"
+                            options={currencyOptions} onchange={handleFromCurrencyChange}></lightning-combobox>
+                    </div>
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning-combobox title="Select Currency" label="To Currency" value={toCurrencyValueInput} placeholder="--Select--"
+                            options={currencyOptions} onchange={handleToCurrencyChange}></lightning-combobox>
+                    </div>
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-button title="Currency Conversion" label="Conversion Rate" variant="brand" onclick={handleCurrencyConversion}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <!-- Exchange Rates - Output Layout -->
+        <template if:true={conversionData}>
+            <lightning-layout-item size="12">
+                <div class="slds-p-around_medium" id="modal_content-id-1">
+                    <div style="font-size: 15px" class="slds-align_absolute-center slds-m-bottom_small"><h1>Exchange Rates Information from <b>{fromCurrencyValueOutput}</b> to <b>{toCurrencyValueOutput}</b></h1></div>
+                    <dl class="slds-list_horizontal slds-wrap">
+                        <dt class="slds-item_label slds-truncate" title="From Currency Name">From Currency Name</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>{conversionData.From_Currency_Name}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="From Currency Code">From Currency Code</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>{conversionData.From_Currency_Code}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="To Currency Name">To Currency Name</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>{conversionData.To_Currency_Name}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="To Currency Code">To Currency Code</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>{conversionData.To_Currency_Code}</b></dd>
+                        <dt class="slds-item_label slds-truncate" title="Exchange Rate">Exchange Rate</dt>
+                        <dd class="slds-item_detail slds-truncate"><b>{conversionData.Exchange_rate}</b></dd>
+                    </dl>
+                </div>
+            </lightning-layout-item>
+        </template>
+
+        <!-- Exception path #1: Equal currencies -->
+        <template if:true={currenciesTheSame}>
+            <div class="slds-p-around_medium" id="modal_content-id-2">
+                <div style="font-size: 15px" class="slds-align_absolute-center slds-m-bottom_small"><h1><b>Conversion rate not available: Currencies are the same!</b></h1></div>
+            </div>    
+        </template>
+
+        <!-- Exception path #2: API rate limit -->
+        <template if:true={apiRateLimit}>
+            <div class="slds-p-around_medium" id="modal_content-id-3">
+                <div style="font-size: 15px" class="slds-align_absolute-center slds-m-bottom_small"><h1><b>Conversion rate not available: Max. 25 API requests per day!</b></h1></div>
+            </div>    
+        </template>
+    </lightning-card>
+
+</template>
