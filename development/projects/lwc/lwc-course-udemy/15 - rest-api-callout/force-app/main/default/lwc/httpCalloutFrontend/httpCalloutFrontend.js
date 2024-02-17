@@ -34,7 +34,6 @@ export default class HttpCalloutFrontend extends LightningElement {
     endpoint;
     httpMethod;
     apiKey;
-    accessToken;
 
     //API response
     conversionData;
@@ -70,12 +69,10 @@ export default class HttpCalloutFrontend extends LightningElement {
             currencyExchangeRateApiMetadata => {                
                 this.endpoint = currencyExchangeRateApiMetadata['endpoint'];
                 this.httpMethod = currencyExchangeRateApiMetadata['httpMethod'];
-                this.apiKey = currencyExchangeRateApiMetadata['apiKey'];
-                this.accessToken = currencyExchangeRateApiMetadata['accessToken'];
+                this.apiKey = currencyExchangeRateApiMetadata['apiKey'];                
                 window.console.log('this.endpoint = ' + this.endpoint);
                 window.console.log('this.httpMethod = ' + this.httpMethod);
                 window.console.log('this.apiKey = ' + this.apiKey);
-                window.console.log('this.accessToken = ' + this.accessToken);
 
                 this.setConversionRateFromApi();
             }
@@ -91,14 +88,7 @@ export default class HttpCalloutFrontend extends LightningElement {
         this.endpoint = this.endpoint.replace('{0}', this.fromCurrencyValueInput).replace('{1}', this.toCurrencyValueInput)
             .replace('{2}', this.apiKey);
 
-        fetch(this.endpoint,
-		{
-			method: this.httpMethod,
-			headers: {
-				"Content-type":"application/json",
-				"Authorization": this.accessToken
-			}			
-		})
+        fetch(this.endpoint, { method: this.httpMethod})
 		.then((response) => {
 			return response.json();
 		})
