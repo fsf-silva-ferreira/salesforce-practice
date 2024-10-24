@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 09-30-2023
+  @last modified on  : 10-24-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -21,7 +21,8 @@
               <lightning-input 
                 type="text" 
                 label="Enter ZIP Code"
-                required
+                required               
+                message-when-too-short="ZIP code must be 8 digits long."
                 message-when-value-missing="ZIP code required."
                 value={zipCode}
                 onchange={handleKeyChange}
@@ -36,8 +37,7 @@
               variant="brand"
               label="Get Address" 
               title="Primary action" 
-              onclick={handleButtonClick}
-              class="slds-m-top_x-small">
+              onclick={handleButtonClick}>
             </lightning-button>
           </lightning-layout-item>
         </div>
