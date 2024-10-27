@@ -1,0 +1,43 @@
+<!-- eventChild.html -->
+<template>
+
+    <lightning-layout>
+
+      <lightning-layout-item>
+        <lightning-button
+          label="Previous"
+          icon-name="utility:chevronleft"
+          onclick={previousHandler}
+        ></lightning-button>
+      </lightning-layout-item>
+
+      <!--
+        flexibility attribute:
+
+        Make the item fluid so that it absorbs any extra space in its
+        container or shrinks when there is less space. 
+        
+        Allowed values are:
+        - auto (columns grow or shrink equally as space allows),
+        - shrink (columns shrink equally as space decreases),
+        - no-shrink (columns don't shrink as space reduces),
+        - grow (columns grow equally as space increases),
+        - no-grow (columns don't grow as space increases),
+        - no-flex (columns don't grow or shrink as space changes).
+
+        Use a comma-separated value for multiple options, such as 'auto, no-shrink'.
+      -->
+      <lightning-layout-item flexibility="auto"></lightning-layout-item>
+
+      <lightning-layout-item>
+        <lightning-button
+          label="Next"
+          icon-name="utility:chevronright"
+          icon-position="right"
+          onclick={nextHandler}
+        ></lightning-button>
+      </lightning-layout-item>
+
+    </lightning-layout>
+
+  </template>

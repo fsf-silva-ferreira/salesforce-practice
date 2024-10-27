@@ -1,0 +1,14 @@
+<!-- eventParent.html -->
+<template>
+    <lightning-card title="Creating and Dispatching Events" icon-name="custom:custom9">
+      <div class="slds-m-around_medium">
+        <p class="slds-m-vertical_medium content">Page {page}</p>
+
+        <!--
+            To listen for events, use an HTML attribute with the syntax "oneventtype". 
+            Since our event types are previous and next, the listeners are onprevious and onnext.
+        -->
+        <c-event-child onprevious={previousHandler} onnext={nextHandler}></c-event-child>
+      </div>
+    </lightning-card>
+  </template>

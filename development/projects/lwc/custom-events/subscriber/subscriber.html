@@ -1,0 +1,20 @@
+<!--
+  @description       : https://www.youtube.com/watch?v=hIv22aTl3-g&t=302s
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 10-27-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-layout>
+        <lightning-layout-item size="6" class="slds-p-around_small">
+            <c-publisher onmessage={handleMessage}></c-publisher>
+        </lightning-layout-item>
+
+        <lightning-layout-item size="6" class="slds-p-around_small">
+            <lightning-card title="Subscriber" icon-name="custom:custom9">
+                <p class="slds-p-left_small">Listening ...</p>
+            </lightning-card>
+        </lightning-layout-item>        
+    </lightning-layout>
+</template>
