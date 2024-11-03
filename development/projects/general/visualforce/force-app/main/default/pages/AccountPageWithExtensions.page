@@ -1,0 +1,13 @@
+<!--
+  @description       : Multiple controller extensions can be defined for a single page through a comma-separated list. 
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 11-03-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Source: https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_controller_extension.htm
+-->
+<apex:page standardController="Account" 
+    extensions="ExtOne,ExtTwo" showHeader="false">
+    <apex:outputText value="{!foo}" />
+</apex:page>
