@@ -1,0 +1,29 @@
+<!--
+  @description       : Use lightning-output-field in lightning-record-view-form to display the value of a record field on a Salesforce object. 
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 11-04-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Source: https://developer.salesforce.com/docs/component-library/bundle/lightning-output-field/documentation
+-->
+<template>
+    <lightning-card title="Output Field Sample">
+
+        <!-- Contact Beatriz Jessica Parker -->
+        <lightning-record-view-form
+            record-id="0032E00003MAxZkQAL"
+            object-api-name="Contact"
+        >
+            <div class="slds-box slds-theme_default">
+                <lightning-output-field field-name="Name"> </lightning-output-field>
+                <lightning-output-field field-name="Phone"></lightning-output-field>
+                <lightning-output-field field-name="Email"></lightning-output-field>
+                <lightning-output-field field-name="Title"></lightning-output-field>
+                <lightning-output-field field-name="Birthdate"></lightning-output-field>
+                <lightning-output-field field-name="LeadSource"></lightning-output-field>
+            </div>
+        </lightning-record-view-form>
+
+    </lightning-card>
+</template>
