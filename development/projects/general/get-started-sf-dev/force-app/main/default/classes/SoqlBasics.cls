@@ -52,9 +52,9 @@ public with sharing class SoqlBasics {
                 but no Contact is returned.
             */
             Contact m = [SELECT Name FROM Contact WHERE Name = 'XYZ' LIMIT 1];
-        } catch(QueryException qe) {
+        } catch(QueryException queryException) {
             //Contact record named 'XYZ' DOESN'T EXIST
-            System.debug('The following exception has occurred: ' + qe.getMessage());    
+            System.debug('The following exception has occurred: ' + queryException.getMessage());    
         }
     } 
 }
