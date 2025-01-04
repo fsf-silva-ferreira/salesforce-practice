@@ -1,0 +1,9 @@
+/*
+ * We set special style rules for the container and list content to maximize their height.
+ */
+.THIS.container {
+  height:100%;
+}
+.THIS .content {
+  height:calc(100% - 49px);
+}
