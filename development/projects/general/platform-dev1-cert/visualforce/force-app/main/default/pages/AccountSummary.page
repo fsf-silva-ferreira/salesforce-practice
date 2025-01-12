@@ -2,20 +2,23 @@
   @description       : Using Account standard controller.
   @author            : Flávio Ferreira
   @group             : 
-  @last modified on  : 11-13-2024
+  @last modified on  : 01-11-2025
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 
-  Sample URL:
+  Sample URLs:
   https://merged-org-dev-ed--c.vf.force.com/apex/AccountSummary?core.apexpages.request.devconsole=1&id=001Hu00003TODHSIA5
+  https://curious-goat-spcst1-dev-ed--c.trailblaze.vf.force.com/apex/AccountSummary?&id=001bm000007yIivAAE
 -->
 <apex:page standardController="Account">
+
     <apex:pageBlock title="Account Summary">
         <apex:pageBlockSection>
-            Account owner: {! Account.Owner.Name } <br/>
-            Name: {! Account.Name } <br/>
-            Phone: {! Account.Phone } <br/>
-            Industry: {! Account.Industry } <br/>
-            Revenue: {! Account.AnnualRevenue } <br/>
+            Account owner: {! Account.Owner.Name } <br/>            
+            Name: {! Account.Name} <br/>
+            Phone: {! Account.Phone} <br/>
+            Industry: {! Account.Industry} <br/>
+            Revenue: {! Account.AnnualRevenue} <br/>
         </apex:pageBlockSection>
     </apex:pageBlock>
+
 </apex:page>

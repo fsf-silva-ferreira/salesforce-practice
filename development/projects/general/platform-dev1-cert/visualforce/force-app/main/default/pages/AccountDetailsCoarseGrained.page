@@ -1,0 +1,23 @@
+<!--
+  @description       : Using <apex:detail> coarse-grained component.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-11-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Org link:
+  https://curious-goat-spcst1-dev-ed--c.trailblaze.vf.force.com/apex/AccountDetailsCoarseGrained?id=001bm000007yIivAAE
+-->
+<apex:page standardController="Account">
+
+    <apex:pageBlock title="Account Details">
+        <apex:pageBlockSection>
+            <!--
+            <apex:detail> is a coarse-grained output component that adds many fields, sections, buttons, 
+            and other user interface elements to the page in just one line of markup.
+            -->
+            <apex:detail relatedList="false"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+
+</apex:page>

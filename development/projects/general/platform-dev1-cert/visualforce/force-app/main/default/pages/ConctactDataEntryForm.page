@@ -1,0 +1,22 @@
+<!--
+  @description       : This page displays a contact data entry form.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-08-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<apex:page standardController="Contact">
+	<apex:form >
+		<apex:pageBlock title="Edit Contact">
+			<apex:pageBlockSection columns="1">
+				<apex:inputField value="{!Contact.FirstName}"/>
+				<apex:inputField value="{!Contact.LastName}"/>
+				<apex:inputField value="{!Contact.Email}"/>
+				<apex:inputField value="{!Contact.Birthdate}"/>
+			</apex:pageBlockSection>
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!save}" value="Save"/>
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

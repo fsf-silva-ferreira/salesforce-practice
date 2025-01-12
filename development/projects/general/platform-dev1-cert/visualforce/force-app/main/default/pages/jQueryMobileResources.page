@@ -2,17 +2,18 @@
   @description       : Adding zipped static resources to a Visualforce page.
   @author            : Flávio da Silva Ferreira
   @group             : 
-  @last modified on  : 11-15-2024
+  @last modified on  : 01-12-2025
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+
   <!-- Add static resource to page’s <head> -->
-  <apex:stylesheet value="{!
-    URLFOR($Resource.jQueryMobile,'jquery.mobile-1.4.5.css')}"/>
+  <apex:stylesheet value="{!URLFOR($Resource.jQueryMobile,'jquery.mobile-1.4.5.css')}"/>
   <apex:includeScript value="{!$Resource.jQueryMobile }"/>
-  <apex:includeScript value="{!
-    URLFOR($Resource.jQueryMobile,'jquery.mobile-1.4.5.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.jQueryMobile,'jquery.mobile-1.4.5.js')}"/>
+
   <div style="margin-left: auto; margin-right: auto; width: 50%">
+
     <!-- Display images directly referenced in a static resource -->
     <h3>Images</h3>
     <p>A hidden message:
@@ -23,11 +24,12 @@
       <apex:image alt="cloud" title="cloud"
         url="{!URLFOR($Resource.jQueryMobile, 'images/icons-png/cloud-black.png')}"/>
     </p>
-  <!-- Display images referenced by CSS styles, all from a static resource. -->
-  <h3>Background Images on Buttons</h3>
-  <button class="ui-btn ui-shadow ui-corner-all
-    ui-btn-icon-left ui-icon-action">action</button>
-  <button class="ui-btn ui-shadow ui-corner-all
-    ui-btn-icon-left ui-icon-star">star</button>
+
+    <!-- Display images referenced by CSS styles, all from a static resource. -->
+    <h3>Background Images on Buttons</h3>
+    <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-action">action</button>
+    <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-star">star</button>
+
   </div>
+
 </apex:page>

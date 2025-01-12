@@ -2,12 +2,13 @@
   @description       : Adding a static resource to a Visualforce page.
   @author            : Flávio Ferreira
   @group             : 
-  @last modified on  : 11-15-2024
+  @last modified on  : 01-12-2025
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <apex:page>
     <!-- Add the static resource to page's <head> -->
     <apex:includeScript value="{!$Resource.jQuery }"/>
+
     <!-- A short bit of jQuery to test it's there -->
     <script type="text/javascript">
         jQuery.noConflict();
@@ -15,6 +16,7 @@
             jQuery("#message").html("Hello from jQuery!");
         });
     </script>
+    
     <!-- Where the jQuery message will appear -->
     <h1 id="message"></h1>
 </apex:page>

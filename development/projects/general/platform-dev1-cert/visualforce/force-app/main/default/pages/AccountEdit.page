@@ -2,11 +2,12 @@
   @description       : Editing and updating a record in a Visualforce page by using <apex:form>.
   @author            : Flávio Ferreira
   @group             : 
-  @last modified on  : 11-14-2024
+  @last modified on  : 01-11-2025
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 
-  Sample URL:
+  Sample URLs:
   https://merged-org-dev-ed--c.vf.force.com/apex/AccountEdit?id=0012E00002l7bsCQAQ
+  https://curious-goat-spcst1-dev-ed--c.trailblaze.vf.force.com/apex/AccountEdit?id=001bm000007yIivAAE
 -->
 <apex:page standardController="Account">
   <apex:form>
@@ -27,7 +28,7 @@
       </apex:pageBlockButtons>
     </apex:pageBlock>
 
-    <!-- Account's Contacts Page Block -->
+    <!-- Account Contacts Page Block -->
     <apex:pageBlock title="Contacts">
       <apex:pageBlockTable value="{!Account.contacts}" var="contact">
           <apex:column>

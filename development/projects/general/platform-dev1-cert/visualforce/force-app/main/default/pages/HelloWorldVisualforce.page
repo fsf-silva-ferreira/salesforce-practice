@@ -1,0 +1,28 @@
+<!--
+  @description       : Simple and introductory Visualforce page.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<apex:page sidebar="false" showHeader="false">
+
+    <h1>Hello World Visualforce Page!</h1>
+
+    <apex:pageBlock title="A Block Title">
+
+      <apex:pageBlockSection title="A Section Title">
+        I'm three components deep!
+      </apex:pageBlockSection>      
+      <apex:pageBlockSection title="A New Section">
+        <apex:pageBlockSectionItem>
+          Section item 1
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem>
+          Seection item 2
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+
+    </apex:pageBlock>
+
+</apex:page>

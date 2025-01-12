@@ -2,7 +2,7 @@
  * @description       : Managing a list of contacts.
  * @author            : Flávio Ferreira
  * @group             : 
- * @last modified on  : 11-15-2024
+ * @last modified on  : 01-12-2025
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public class ContactsListWithController {
