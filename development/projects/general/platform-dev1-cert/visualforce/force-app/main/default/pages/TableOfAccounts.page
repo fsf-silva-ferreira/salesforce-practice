@@ -1,0 +1,16 @@
+<!--
+  @description       : Accessing data with list controllers.
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-13-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<apex:page standardController="Account" recordSetVar="accounts" tabstyle="Account" sidebar="false">
+
+    <apex:pageBlock>
+        <apex:pageBlockTable value="{!accounts}" var="account">
+            <apex:column value="{!account.name}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+
+</apex:page>

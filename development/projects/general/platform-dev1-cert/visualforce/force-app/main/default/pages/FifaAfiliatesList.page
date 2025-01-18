@@ -1,0 +1,22 @@
+<!--
+  @description       : Displaying a list of FIFA affiliates, by a custom controller. 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 01-18-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  URL: [Org host]/apex/FifaAfiliatesList
+-->
+<apex:page controller="FootballAssociationController">
+
+    <apex:pageBlock title="FIFA Affiliates">
+        <apex:pageBlockTable value="{!footballAssociations}" var="fifaAffiliate">
+            <apex:column value="{!fifaAffiliate.Acronym__c}"/>
+            <apex:column value="{!fifaAffiliate.Name}"/>
+            <apex:column value="{!fifaAffiliate.Continental_Affiliation__c}"/>
+            <apex:column value="{!fifaAffiliate.Year_Founded__c}" width="50"/>
+            <apex:column value="{!fifaAffiliate.President__c}" width="60"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+
+</apex:page>

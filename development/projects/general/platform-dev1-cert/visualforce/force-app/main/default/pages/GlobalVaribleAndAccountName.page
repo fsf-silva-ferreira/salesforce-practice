@@ -1,0 +1,17 @@
+<!--
+  @description       : Page showing global variable data and account name.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-17-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Sample URL:
+  https://curious-goat-spcst1-dev-ed--c.trailblaze.vf.force.com/apex/GlobalVaribleAndAccountName?id=001bm00000WFE86AAH
+
+  Query parameter:
+  ?id=001bm00000WFE86AAH
+-->
+<apex:page standardController="Account">
+    Hello {!$User.FirstName}!
+    <p>You are viewing the {!account.name} account.</p>
+</apex:page>

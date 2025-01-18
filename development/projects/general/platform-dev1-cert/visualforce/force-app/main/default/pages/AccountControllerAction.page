@@ -1,0 +1,38 @@
+<!--
+  @description       : The following page allows you to update an account.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-13-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Source:
+  https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_controller_std_actions.htm
+-->
+
+<!-- 
+    Remember, for this page to display account data, the ID of a valid account record must be specified as a query parameter in the URL for the page. 
+    For example:
+    https://mindful-goat-gj6xm4-dev-ed--c.vf.force.com/apex/AccountControllerAction?id=0014W00003BhnTFQAZ
+-->
+<apex:page standardController="Account" tabStyle="Football_Association__c">
+
+    <!-- Validation error displays here -->
+    <apex:messages />
+
+    <apex:form >
+        <apex:pageBlock title="Account Content" mode="edit" rendered="{!$ObjectType.Account.accessible}">
+            <!-- Buttons (actions) area -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            <!-- Fields area -->
+            <apex:pageBlockSection title="Account Fields Section" columns="2">
+                <apex:inputField value="{!account.name}"/>
+                <apex:inputField value="{!account.site}"/>
+                <apex:inputField value="{!account.type}"/>
+                <apex:inputField value="{!account.accountNumber}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>
