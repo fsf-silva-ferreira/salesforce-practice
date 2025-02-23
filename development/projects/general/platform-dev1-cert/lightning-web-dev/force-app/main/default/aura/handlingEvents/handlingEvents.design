@@ -1,0 +1,3 @@
+<design:component label="Handling Events">
+    <design:attribute name="text" label="Text" description="A string waiting for change."/>
+</design:component>

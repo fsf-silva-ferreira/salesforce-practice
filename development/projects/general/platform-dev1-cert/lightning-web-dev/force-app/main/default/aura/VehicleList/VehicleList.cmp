@@ -1,0 +1,42 @@
+<!--
+  @description       : Displaying a vehicle list from custom object.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 01-21-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component controller="VehicleDb" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes">
+  <aura:handler name="init" value="{!this}" action="{!c.getListCars}" />
+  <aura:attribute name="listCars" type="Object" default="" />
+
+  <div class="slds-grid slds-wrap">
+    <aura:iteration items="{!v.listCars}" var="item">
+      <lightning:card class="slds-col slds-size--1-of-2 slds-m-horizontal_xx-small">
+        <aura:set attribute="title">
+          {!item.Name}
+        </aura:set>
+        <div>
+          <img src="{!item.Preview__c}" alt="{!item.Name}"></img>
+        </div>
+        <div>
+          <p>
+            <span class="title">Nome: </span>
+            <span>{!item.Name}</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            <span class="title">Ano: </span>
+            <span>{!item.Year__c}</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            <span class="title">Marca: </span>
+            <span>{!item.Brand__c}</span>
+          </p>
+        </div>
+      </lightning:card>
+    </aura:iteration>
+  </div>
+</aura:component>

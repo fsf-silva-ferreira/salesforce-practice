@@ -2,13 +2,17 @@
   @description       : The following Visualforce markup shows how the controller extension can be used in a page. 
   @author            : Flávio Ferreira
   @group             : 
-  @last modified on  : 11-03-2024
+  @last modified on  : 01-18-2025
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 
   Source: https://developer.salesforce.com/docs/atlas.en-us.pages.meta/pages/pages_controller_extension.htm
 -->
 <apex:page standardController="Account" extensions="MyControllerExtension">
+    <!-- Important component to identify validation errors stopping record updates -->
+    <apex:messages/>
+    
     {!greeting} <p/>
+    
     <apex:form>
         <apex:inputField value="{!account.name}"/> <p/>
         <apex:commandButton value="Save" action="{!save}"/>
