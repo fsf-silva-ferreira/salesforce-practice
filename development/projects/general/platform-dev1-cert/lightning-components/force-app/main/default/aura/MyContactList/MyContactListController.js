@@ -1,10 +1,14 @@
 ({
     myAction : function(component, event, helper) {
-        component.set("v.Columns", [
-            {label:"First Name", fieldName:"FirstName", type:"text"},
-            {label:"Last Name", fieldName:"LastName", type:"text"},
-            {label:"Phone", fieldName:"Phone", type:"phone"}
-        ]);
+        component.set
+        (
+            "v.Columns", 
+            [
+                {label:"First Name", fieldName:"FirstName", type:"text"},
+                {label:"Last Name", fieldName:"LastName", type:"text"},
+                {label:"Phone", fieldName:"Phone", type:"phone"}
+            ]
+        );
 
         /* "c" and "v" working as Value Provider */
         var action = component.get("c.getContacts");

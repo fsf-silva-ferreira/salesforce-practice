@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "quickstart-lightning-components",
+  "name": "lightning-web-dev",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "62.0"

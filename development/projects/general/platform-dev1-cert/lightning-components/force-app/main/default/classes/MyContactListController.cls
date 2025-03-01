@@ -2,7 +2,7 @@
  * @description       : Class to access data from Contacts.
  * @author            : Flávio Ferreira
  * @group             : 
- * @last modified on  : 11-23-2024
+ * @last modified on  : 01-19-2025
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class MyContactListController {
