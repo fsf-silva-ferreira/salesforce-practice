@@ -2,8 +2,11 @@
  * @description       : Practicing maps.
  * @author            : Flávio Ferreira
  * @group             : 
- * @last modified on  : 02-23-2025
+ * @last modified on  : 03-02-2025
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ * 
+ * Documentation:
+ * https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_map_sobject.htm
 **/
 public with sharing class MapExample {
     
@@ -21,5 +24,11 @@ public with sharing class MapExample {
         System.debug('Elements og the map: ' + studentNames);
         System.debug('Value for the key 2: ' + studentNames.get(2));
         System.debug('Value for the key 500: ' + studentNames.get(500));
+    }
+
+    public static void createMapFromQuery() {
+        Map<Id, Account> accountMap = new Map<Id,Account>([SELECT Id, Name, AccountNumber, (SELECT Id, Name, Birthdate, Email FROM Contacts) FROM Account]);
+
+        System.debug('Account map from SOQL: ' + accountMap);
     }
 }
