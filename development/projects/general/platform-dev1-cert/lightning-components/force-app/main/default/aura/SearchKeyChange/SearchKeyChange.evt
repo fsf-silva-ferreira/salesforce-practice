@@ -1,0 +1,10 @@
+<!-- 
+    This event is responsible for communicating between contactList and searchbar components.
+
+    Documentation:
+    https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/events_intro.htm
+    https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_event.htm
+-->
+<aura:event type="APPLICATION" description="Handling key up events in searchBar component.">
+    <aura:attribute name="searchKey" type="String" />
+</aura:event>

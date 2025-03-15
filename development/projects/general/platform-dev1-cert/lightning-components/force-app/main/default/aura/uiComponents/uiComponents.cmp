@@ -1,0 +1,19 @@
+<!--
+  @description       : 
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <ui:inputText label="Name" aura:Id="name" placeholder="Enter your name"/>
+
+    <br></br>
+
+    <ui:outputText aura:Id="nameOutput" value=""/>
+
+    <br></br>
+    <br></br>
+    
+    <ui:button label="Hit me!!" aura:Id="buttonId" press="{!c.getInput}"/>
+</aura:component>

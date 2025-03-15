@@ -1,0 +1,20 @@
+<!--
+  @description       : Adding styling to Lightning application using external static resource.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <h1>Hello Flávio Ferreira</h1>
+
+    <div>
+        <div class="red">I'm red</div>
+        <div class="blue">I'm blue</div>
+        <div class="green">I'm green</div>
+        <ltng:require styles="/resource/bootstrap"/>
+        <div class="myBootstrap">
+            Hello
+        </div>
+    </div>
+</aura:component>

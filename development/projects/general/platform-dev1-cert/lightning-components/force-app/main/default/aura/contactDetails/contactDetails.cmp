@@ -1,0 +1,20 @@
+<!--
+  @description       : Component to show contact details.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-15-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  
+-->
+<aura:component controller="ContactController">
+    <aura:attribute name="contact" type="Contact"  />
+    <aura:handler event="aura:locationChange" action="{!c.handleLocationChange}" default="{'sobjectType' : 'Contact'}" />
+
+    <div class="details">
+        <h1>{!v.contact.Name}</h1>
+        <h3>{!v.contact.Account.Name}</h3>
+        <h3>{!v.contact.Title}</h3>
+        <h3>{!v.contact.Phone}</h3>
+    </div>
+</aura:component>

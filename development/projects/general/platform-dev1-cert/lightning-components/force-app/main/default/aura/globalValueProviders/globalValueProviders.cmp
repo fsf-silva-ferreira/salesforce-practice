@@ -1,0 +1,28 @@
+<!--
+  @description       : Working with global providers.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/expr_source.htm
+-->
+<aura:component>
+    <!-- Every component has a unique global ID generated at runtime -->
+    Global ID: {!globalID} <br></br>
+
+    <!--$Browser -->
+    Browser is on a tablet: {!$Browser.isTablet} <br></br>
+    Is it running on phone? {!$Browser.isIPhone} <br></br>
+    Is it running on Android? {!$Browser.isAndroid} <br></br>
+    Where am I running: {!$Browser.formFactor} <br></br>
+
+    <br></br>
+
+    <!-- $Locale -->
+    Language: {!$Locale.language} <br></br>
+    Time zone: {!$Locale.timezone} <br></br>
+    Number format: {!$Locale.numberFormat} <br></br>
+    Currency: {!$Locale.currency}
+</aura:component>

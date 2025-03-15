@@ -1,0 +1,11 @@
+<!--
+  @description       : Client-side component accessing server-side Apex.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component controller="SimpleServerSideController">
+    <aura:attribute name="firstName" type="String" default="Flávio"/>
+    <ui:button label="Call Server" press="{!c.echo}"/>
+</aura:component>

@@ -1,0 +1,31 @@
+<!--
+  @description       : Working with attributes.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <aura:attribute name="number1" type="Integer" default="30"/>
+    <aura:attribute name="number2" type="Integer" default="20"/>
+    <aura:attribute name="sum" type="Integer"/>
+
+    {!v.number1} + {!v.number2} = {!v.sum}
+
+    <br></br>
+    
+    <ui:button label="Click me" press="{!c.add}"/>
+
+    <br></br>
+    <br></br>
+    
+    <!--
+      Component attributes
+      Example URL - Attributes working as parameters: 
+      https://mindful-goat-gj6xm4-dev-ed.lightning.force.com/c/helloAuraApp.app?value1=Luciene&value2=Almeida
+    -->
+    <aura:attribute name="value1" type="String" default="Flávio"/>
+    <aura:attribute name="value2" type="String" default="Ferreira"/>
+
+    Hello {!v.value1}&nbsp;{!v.value2}
+</aura:component>

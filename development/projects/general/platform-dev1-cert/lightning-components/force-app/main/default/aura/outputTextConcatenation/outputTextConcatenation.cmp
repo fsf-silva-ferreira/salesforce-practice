@@ -1,0 +1,19 @@
+<!--
+  @description       : Handling values in component view.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <aura:attribute name="firstName" type="String" default="John"/>
+    <aura:attribute name="lastName" type="String" default="Smith"/>
+
+    <ui:inputText label="First Name" value="{!v.firstName}" updateOn="keyup"/>
+    <ui:inputText label="Last Name" value="{!v.lastName}" updateOn="keyup"/>
+
+    <br></br>
+
+    <!-- No need to use controller to handle first ans last names -->
+    <ui:outputText value="{!v.firstName + ' ' + v.lastName}"/>
+</aura:component>

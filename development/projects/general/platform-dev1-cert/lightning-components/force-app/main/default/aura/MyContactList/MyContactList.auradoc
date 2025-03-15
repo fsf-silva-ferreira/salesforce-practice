@@ -1,6 +1,0 @@
-<aura:documentation>
-	<aura:description>Documentation</aura:description>
-	<aura:example name="MyContactList" ref="MyContactList" label="Label">
-		An Aura component is a combination of markup, JavaScript, and CSS.
-	</aura:example>
-</aura:documentation>

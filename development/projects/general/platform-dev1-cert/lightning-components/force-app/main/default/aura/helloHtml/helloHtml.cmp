@@ -1,0 +1,19 @@
+<!--
+  @description       : helloHtml component to build up a composite.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <div class="white">
+        Hello HTML
+    </div>
+
+    <h2>Checkout the style in this list</h2>
+    <ul>
+        <li class="red">I'm red</li>
+        <li class="orange">I'm orange</li>
+        <li class="blue">I'm blue</li>
+    </ul>
+</aura:component>

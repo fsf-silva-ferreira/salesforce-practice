@@ -1,0 +1,11 @@
+<!--
+  @description       : helloAttributes component to build up a composite.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <aura:attribute name="whom" type="String" default="UDEMY"/>
+    Hello {!v.whom}
+</aura:component>

@@ -1,0 +1,17 @@
+<!--
+  @description       : Working with standard components.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <aura:attribute name="numbers" type="List"/>
+    <ui:button label="Display Numbers" press="{!c.getNumbers}"/>
+
+    <!-- No need to reinvent the wheel! -->
+    <aura:iteration var="number" items="{!v.numbers}">
+        <br></br>
+        {!number.value} 
+    </aura:iteration>
+</aura:component>

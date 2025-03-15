@@ -1,0 +1,22 @@
+<!--
+  @description       : Displaying opportunities from server-side.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/controllers_server_actions_call.htm
+
+  Community questions:
+  https://trailhead.salesforce.com/trailblazer-community/feed/0D54V00007T4EehSAF
+  https://salesforce.stackexchange.com/questions/130091/auraclientservice-postprocess-error-in-processing-rangeerror-maximum-call-sta
+-->
+<aura:component controller="OpportunityController">
+    <aura:attribute name="opportunities" type="Opportunity[]"/>
+    <ui:button label="Show Opportunities" press="{!c.setOpportunityList}"/>
+
+    <aura:iteration var="opportunity" items="{!v.opportunities}">
+        <p>{!opportunity.Name}</p>
+    </aura:iteration>
+</aura:component>

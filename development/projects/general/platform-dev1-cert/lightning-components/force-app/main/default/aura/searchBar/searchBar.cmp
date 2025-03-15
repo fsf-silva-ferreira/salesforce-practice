@@ -1,0 +1,10 @@
+<!--
+  @description       : Component to search contacts.
+  @author            : Flávio
+  @group             : 
+  @last modified on  : 03-11-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <input type="text" class="form-control" placeholder="Search" onkeyup="{!c.searchKeyChange}" />
+</aura:component>

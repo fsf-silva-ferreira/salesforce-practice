@@ -1,0 +1,28 @@
+<!--
+  @description       : Displaying list of contacts from server-side.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-12-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Questions about using third-party JavaScript libraries:
+  https://salesforce.stackexchange.com/questions/261316/lightning-web-components-and-css-frameworks
+
+  Bootstrap download: https://getbootstrap.com/docs/4.1/getting-started/download
+-->
+<aura:component controller="ContactController">
+    <aura:attribute name="contacts" type="Contact[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:SearchKeyChange" action="{!c.searchKeyChange}" />
+
+    <ul class="list-group">
+        <aura:iteration items="{!v.contacts}" var="contact">
+            <li class="list-group-item">
+                <a href="{!'#contact/'+contact.Id}">
+                    <p>{!contact.Name}</p>
+                    <p>{!contact.Phone}</p>
+                </a>
+            </li>
+        </aura:iteration>
+    </ul>
+</aura:component>

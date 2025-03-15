@@ -1,0 +1,13 @@
+<!--
+  @description       : Composite component nesting other two ones.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    This file includes other components.
+
+    <c:helloHtml/>
+    <c:helloAttributes whom="component composition"/>
+</aura:component>

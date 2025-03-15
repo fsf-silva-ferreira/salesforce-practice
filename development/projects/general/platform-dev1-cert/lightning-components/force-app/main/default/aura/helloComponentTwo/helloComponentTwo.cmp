@@ -1,0 +1,10 @@
+<!--
+  @description       : Another component to join a Lightning app.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-08-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <h1>My Tutorial Rack, thank you!!</h1>
+</aura:component>

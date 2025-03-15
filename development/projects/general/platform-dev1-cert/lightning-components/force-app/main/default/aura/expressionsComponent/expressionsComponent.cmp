@@ -1,0 +1,22 @@
+<!--
+  @description       : Working with expressions.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-09-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/expr_conditional.htm
+  https://developer.salesforce.com/docs/component-library/bundle/aura:if/documentation
+-->
+<aura:component>
+    <aura:attribute name="edit" type="Boolean" default="true"/>
+
+    <aura:if isTrue="{!v.edit}">
+        <ui:button label="Submit"/>
+    
+        <aura:set attribute="else">
+            Hi this is Flávio
+        </aura:set>
+    </aura:if>
+</aura:component>

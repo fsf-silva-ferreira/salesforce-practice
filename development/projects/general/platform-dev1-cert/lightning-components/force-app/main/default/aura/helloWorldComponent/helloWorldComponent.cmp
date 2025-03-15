@@ -1,0 +1,10 @@
+<!--
+  @description       : Introducing Lightning components.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-08-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <h1>Hello Lightning Deepika</h1>
+</aura:component>
