@@ -1,0 +1,22 @@
+<!--
+  @description       : Component communication, from parent to child: Parent component.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Parent to Child Demo">
+
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <lightning-input label="Enter the message" onchange={handleChangeEvent}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <c-child-component></c-child-component>
+            </lightning-layout-item>
+        </lightning-layout>
+
+    </lightning-card>
+</template>

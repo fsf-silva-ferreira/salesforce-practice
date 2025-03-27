@@ -1,0 +1,23 @@
+<!--
+  @description       : Creating and dispatching events: Child component.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html
+  https://developer.salesforce.com/docs/platform/lwc/guide/events.html
+  https://dom.spec.whatwg.org/#events
+  https://javascript.info/dispatch-events
+  https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling
+  https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+-->
+<template>
+    <lightning-input 
+        class="slds-m-top_large"
+        name="textValue" 
+        label="Send message to the parent component" 
+        onchange={handleInputTextChange}>
+    </lightning-input>
+</template>

@@ -1,0 +1,33 @@
+<!--
+  @description       : If:true|false directive in LWC.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-15-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <!-- Input form -->
+    <template if:true={show}>
+        <lightning-card title="Employee Information">
+            <div class="slds-m-around_medium">
+                <lightning-input label="Enter Name" value={name} onchange={nameHandler}></lightning-input>
+                <lightning-input label="Enter Age" value={age} onchange={ageHandler}></lightning-input>
+                <lightning-input label="Enter Salary" value={salary} onchange={salaryHandler}></lightning-input>
+                <lightning-button label="Save" onclick={saveButtonHandler}></lightning-button>
+            </div>
+        </lightning-card>
+    </template>
+
+    <!-- Display form -->
+    <template if:false={show}>
+        <lightning-card title="Employee Details">
+            <div class="slds-m-around_medium">
+                <p>Employee Name: {name}</p>
+                <p>Employee Age: {age}</p>
+                <p>Employee Salary: {salary}</p>
+            </div>
+        </lightning-card>    
+    </template>
+
+</template>

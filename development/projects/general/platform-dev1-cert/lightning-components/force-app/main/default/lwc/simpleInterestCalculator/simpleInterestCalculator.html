@@ -1,0 +1,35 @@
+<!--
+  @description       : Building a Simple Application: Simple Interest Calculator.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-15-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Simple Interest Calculator">
+        <lightning-layout multiple-rows>
+            <!-- Input fields -->
+            <lightning-layout-item size="12" padding="around-medium">
+                <lightning-input type="number" label="Enter Principal" onchange={principalChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-medium">
+                <lightning-input type="number" label="Enter Number of Years" onchange={timeChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="12" padding="around-medium">
+                <lightning-input type="number" label="Enter Rate of Interest" onchange={rateChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <!-- Calculation button -->
+            <lightning-layout-item size="6" padding="around-medium">
+                <lightning-button label="Calculate SI" icon-position="center" onclick={calculateSiHandler}></lightning-button>
+            </lightning-layout-item>
+
+            <!-- Output field -->
+            <lightning-layout-item size="6" padding="around-medium">
+                <lightning-formatted-text value={currentOutput}></lightning-formatted-text>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

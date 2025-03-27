@@ -1,0 +1,20 @@
+<!--
+  @description       : Passing data from parent to child: Employee Detail, the child component.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwc/guide/create-components-compose.html
+  https://developer.salesforce.com/docs/platform/lwc/guide/create-components-compose-intro.html
+-->
+<template>
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-tile label={employee.name}>
+            <p class="slds truncate">
+                Employee Address: {employee.address}
+            </p>
+        </lightning-tile>
+    </div>
+</template>

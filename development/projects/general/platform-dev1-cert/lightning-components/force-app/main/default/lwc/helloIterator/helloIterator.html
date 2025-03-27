@@ -1,0 +1,23 @@
+<!--
+  @description       : Redering a list of items with iterator directive.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-15-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwc/guide/create-lists.html
+-->
+<template>
+    <lightning-card title="Hello Iterator">
+        <ul class="slds-m-around_medium">
+            <template iterator:it={contacts}>
+                <li key={it.value.id}>
+                    <div if:true={it.first} class="list-first"></div>
+                    {it.value.Name}, {it.value.Title}
+                    <div if:true={it.last} class="list-last"></div>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

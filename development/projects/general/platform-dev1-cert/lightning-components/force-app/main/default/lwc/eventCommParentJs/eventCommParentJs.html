@@ -1,0 +1,21 @@
+<!--
+  @description       : Handling events by JavaScript: Parent component.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html
+  https://developer.salesforce.com/docs/platform/lwc/guide/events.html
+  https://dom.spec.whatwg.org/#events
+-->
+<template>
+    <lightning-card title="Handling Event from Child by JavaScript">
+        <div class="slds-m-around_medium">
+            Value from the child component: {message}  
+            <!-- The click event is fired from the innermost element -->          
+            <c-event-comm-child-bubbles></c-event-comm-child-bubbles>
+        </div>
+    </lightning-card>
+</template>

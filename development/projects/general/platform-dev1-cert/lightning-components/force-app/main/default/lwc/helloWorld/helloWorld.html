@@ -1,0 +1,19 @@
+<!--
+  @description       : Working with Lightning Web Components (LWC) features like reactiveness and data binding.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-15-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Hello World">
+        <div class="slds-m-around_medium">
+            <p>Hello, {greeting}</p>
+            <lightning-input 
+                label="Name" 
+                value={greeting} 
+                onchange={changeHandler}>
+            </lightning-input>
+        </div>
+    </lightning-card>
+</template>

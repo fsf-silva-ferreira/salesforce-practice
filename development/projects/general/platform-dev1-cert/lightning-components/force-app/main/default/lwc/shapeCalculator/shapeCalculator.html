@@ -1,0 +1,62 @@
+<!--
+  @description       : Building a simple application: Shape Calculator.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-15-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-card/documentation
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-layout/documentation
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-layout-item/documentation
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-button/documentation
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-button-group/documentation
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-formatted-text/documentation
+-->
+<template>
+
+    <!-- Field container -->
+    <lightning-card title="Shape Calculator">
+        
+        <!-- Field layout -->
+        <lightning-layout multiple-rows>
+            <!-- Input fields -->
+            <lightning-layout-item size="12" padding="around-small">
+                <lightning-input type="number" label="Enter side of the square" onchange={sideChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-input type="number" label="Enter width of the rectangle" onchange={widthChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-input type="number" label="Enter height of the rectangle" onchange={heightChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-input type="number" label="Enter diagonal 1 for rhombus" onchange={diagonal1ChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-input type="number" label="Enter diagonal 2 for rhombus" onchange={diagonal2ChangeHandler}></lightning-input>
+            </lightning-layout-item>
+
+            <!-- Button group -->
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-button-group>
+                    <lightning-button label="Square" icon-position="right" onclick={calculateSquareHandler}></lightning-button>
+                    <lightning-button label="Rectangle" icon-position="center" onclick={calculateRectangleAreaHandler}></lightning-button>
+                    <lightning-button label="Rhombus" icon-position="left" onclick={calculateRhombusAreaHandler}></lightning-button>
+                </lightning-button-group>
+            </lightning-layout-item>
+
+            <!-- Output field -->
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-formatted-text value={currentOutput}></lightning-formatted-text>
+            </lightning-layout-item>
+        </lightning-layout>
+        
+    </lightning-card>
+
+
+</template>

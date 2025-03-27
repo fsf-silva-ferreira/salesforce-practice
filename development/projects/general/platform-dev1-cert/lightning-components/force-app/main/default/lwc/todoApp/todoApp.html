@@ -1,0 +1,32 @@
+<!--
+  @description       : Parent component setting child's public property.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/component-library/bundle/lightning-layout-item/specification
+  https://developer.salesforce.com/docs/platform/lwc/guide/create-components-data-binding.html
+-->
+<template>
+    <lightning-card title="Todo List">
+        <lightning-layout multiple-rows>
+
+            <!-- List of child components -->
+            <lightning-layout-item size="12" padding="horizontal-medium">
+                <c-todo-item item-name="Milk"></c-todo-item>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="horizontal-medium">
+                <c-todo-item item-name="Bread"></c-todo-item>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="horizontal-medium">
+                <c-todo-item item-name="Butter"></c-todo-item>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="horizontal-medium">
+                <c-todo-item item-name="Honey"></c-todo-item>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </lightning-card>
+</template>

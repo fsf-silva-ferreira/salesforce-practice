@@ -1,0 +1,20 @@
+<!--
+  @description       : Component subscribing to color-changing event.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwr/references/csr-reference/pagereference.html
+  https://developer.salesforce.com/docs/platform/lwc/guide/events-pubsub.html
+-->
+<template>
+    <lightning-card title="Canvas Subscriber">
+        <lightning-layout>
+            <lightning-layout-item flexibility="grow">
+                <div class="templateBodyClass" style={colorStyle}></div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

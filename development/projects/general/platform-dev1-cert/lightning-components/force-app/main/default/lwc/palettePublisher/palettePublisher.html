@@ -1,0 +1,32 @@
+<!--
+  @description       : Component publishong color-changing event.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwr/references/csr-reference/pagereference.html
+  https://developer.salesforce.com/docs/platform/lwc/guide/events-pubsub.html
+-->
+<template>
+    <lightning-card title="Palette Publisher">
+        <lightning-layout>
+            <lightning-layout-item flexibility="auto" padding="around-small">
+
+                <lightning-combobox 
+                    label="Color" value={color} options={colorCodeOptions} 
+                    onchange={changeColor}>                    
+                </lightning-combobox>         
+
+                <div class="slds-p-top_small">
+                    <lightning-button 
+                        label="Change Color" variant="brand" 
+                        onclick={handleChangeColor}>                        
+                    </lightning-button>
+                </div>
+
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

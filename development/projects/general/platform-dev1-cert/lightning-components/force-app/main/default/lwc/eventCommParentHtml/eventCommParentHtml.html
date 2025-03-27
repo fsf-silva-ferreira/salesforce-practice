@@ -1,0 +1,20 @@
+<!--
+  @description       : Handling events by HTML: Parent component.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 03-16-2025
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+
+  Documentation:
+  https://developer.salesforce.com/docs/platform/lwc/guide/events-create-dispatch.html
+  https://developer.salesforce.com/docs/platform/lwc/guide/events.html
+  https://dom.spec.whatwg.org/#events
+-->
+<template>
+    <lightning-card title="Handling Event from Child by HTML">
+        <div class="slds-m-around_medium">
+            Value from the child component: {message}            
+            <c-event-comm-child onmycustomevent={handleCustomEvent}></c-event-comm-child>
+        </div>
+    </lightning-card>
+</template>
