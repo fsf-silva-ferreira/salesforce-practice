@@ -14,3 +14,9 @@ delete footballAssociations;
 FootballAssociationScheduler footballAssociationScheduler = new FootballAssociationScheduler();
 footballAssociationScheduler.scheduleConcacafConmebolUefa();
 footballAssociationScheduler.scheduleCafAfcOfc();
+
+
+
+//DELETING OBJECT
+List<Football_Association__c> footballAssociations = [SELECT Id FROM Football_Association__c];
+delete footballAssociations;
