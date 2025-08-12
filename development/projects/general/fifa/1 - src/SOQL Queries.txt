@@ -18,8 +18,10 @@ SELECT
 	Id, 
 	Name, 
 	Acronym__c, 
-	Year_Founded__c 
+	Website__c, 
+	External_id__c, 
+	Continental_Affiliation__c 
 FROM 
-	Football_Association__c 
-Order by 
+	Football_Association__c where Continental_Affiliation__c = 'OFC'
+order by 
 	CreatedDate desc

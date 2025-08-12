@@ -1,43 +1,45 @@
 /**
- * @description       : 
- * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @description       : Iterating rows of file data.
+ * @author            : Flávio Ferreira
  * @group             : 
- * @last modified on  : 08-09-2025
+ * @last modified on  : 08-12-2025
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+ * 
+ * External link:
+ * https://salesforce.stackexchange.com/questions/85048/catch-regex-too-complicated-when-splitting-a-string-in-salesforce
 **/
-public with sharing class Utility_RowIterator implements Iterator<String>, Iterable<String>
-{
-   private String m_Data;
-   private Integer m_index = 0;
-   private String m_rowDelimiter = '\n';
+public with sharing class Utility_RowIterator implements Iterator<String>, Iterable<String> {
+
+   private String data;
+   private Integer index = 0;
+   private String rowDelimiter = '\n';
     
-   public Utility_RowIterator(String fileData)
-   {
-      m_Data = fileData; 
+   public Utility_RowIterator(String fileData) {
+      data = fileData; 
    }
-   public Utility_RowIterator(String fileData, String rowDelimiter)
-   {
-      m_Data = fileData; 
-      m_rowDelimiter = rowDelimiter;
+
+   public Utility_RowIterator(String fileData, String rowDelimiter) {
+      data = fileData; 
+      this.rowDelimiter = rowDelimiter;
    }
     
-   public Boolean hasNext()
-   {
-      return m_index < m_Data.length() ? true : false;
+   public Boolean hasNext() {
+      return index < data.length() ? true : false;
    }
-   public String next()
-   {     
-      Integer key = m_Data.indexOf(m_rowDelimiter, m_index);
-       
-      if (key == -1)
-        key = m_Data.length();
-             
-      String row = m_Data.subString(m_index, key);
-      m_index = key + 1;
+
+   public String next() {     
+      Integer key = data.indexOf(rowDelimiter, index);       
+      if (key == -1) {
+        key = data.length();
+      }
+
+      String row = data.subString(index, key);
+      index = key + 1;
+
       return row;
    }
-   public Iterator<String> Iterator()
-   {
+
+   public Iterator<String> Iterator() {
       return this;   
    }
 }

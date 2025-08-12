@@ -1,8 +1,8 @@
 /**
- * @description       : 
- * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @description       : Handling Football_Association__c object.
+ * @author            : Flávio Ferreira
  * @group             : 
- * @last modified on  : 08-09-2025
+ * @last modified on  : 08-11-2025
  * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 **/
 public with sharing class FootballAssociationObjectHandler {
