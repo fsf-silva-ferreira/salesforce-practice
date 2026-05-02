@@ -1,0 +1,48 @@
+<!--
+  @description       : Transition spinner between two HTML sections using setTimout.
+  @author            : Flávio Ferreira
+  @group             : 
+  @last modified on  : 05-02-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <!-- Main container with relative position -->
+    <div class="slds-is-relative" style="min-height: 200px;">        
+        <!-- Conditional spinner -->
+        <template lwc:if={isLoading}>
+            <lightning-spinner 
+                alternative-text="Carregando..." 
+                size="medium" 
+                variant="brand">
+            </lightning-spinner>
+        </template>
+
+        <!-- Section 1 -->
+        <template lwc:if={showSectionOne}>
+            <section >
+                <lightning-card  title="Primeira Etapa"> 
+                    <lightning-layout>
+                        <lightning-layout-item siz="12" class="slds-m-around_medium">                                            
+                            <lightning-button label="Confirmar e Avançar" onclick={handleButtonClick}></lightning-button>                        
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-card>
+            </section>
+        </template>
+
+        <!-- Section 2 -->
+        <template lwc:if={showSectionTwo}>
+            <section class="slds-m-top_xx-small">                
+                <lightning-card  title="Segunda Etapa"> 
+                    <lightning-layout>
+                        <lightning-layout-item siz="12" class="slds-m-around_medium"> 
+                            Dados Carregados
+                        </lightning-layout-item>
+                    </lightning-layout>                            
+                </lightning-card>
+            </section>
+        </template>
+    </div>
+
+</template>
